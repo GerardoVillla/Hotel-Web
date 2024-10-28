@@ -1,0 +1,229 @@
+
+*{
+	margin: 0;
+	padding: 0;
+}
+
+body{
+	display: grid;
+	min-height: 100vh;
+	grid-template-rows: auto 1fr auto;/*auto es el header, 1fr es el contenido y auto es el footer*/
+	grid-template-areas: 
+	"header"
+	".contenido"
+	"footer";
+	margin: 0;/*Parece que esta declaracion es redundante porque ya se aplica en arriba */
+}
+
+header{
+	background-color: #B5C18E;
+	padding: 1rem 1.25rem;
+	display: inline-flex;
+	justify-content:space-between;/*Investigar sobre porque funciono con este*/
+	align-items: center; /*Centra verticalmente el header*/
+
+	position: sticky; /* Hacer que el header sea sticky */
+	top: 0; /* Pegar en la parte superior */
+	z-index: 1000; /* Asegúrate de que esté por encima de otros elementos */
+}
+
+
+header nav{
+	/* TODO: REVISAR SI SE PUEDE HACER ALGO CON ESTA ETIQUETA */
+}
+
+header nav ul{
+	display: inline-flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 2em;
+}
+
+header nav ul li{
+	list-style: none;
+}
+
+header nav ul li a{
+	font-size: 1.5rem;
+	text-decoration: none;
+	color: #000;
+}
+
+#btn-reservar{
+	background-color: #A30350;
+	padding: 0.5rem 2rem;
+	border-radius: 5px;
+	box-shadow: 0 4px 0 rgba(0, 0, 0, 0.2); /* Sombra solo en la parte inferior */
+}
+#btn-reservar a{
+	color: aliceblue;
+}
+
+
+.contenido{
+	display: grid;
+	grid-template-columns: repeat(16, 1fr);
+	grid-template-rows: repeat(4, minmax(100px, auto));
+	row-gap: 2rem;
+}	
+
+#img-home{
+	grid-column: 1 / -1;
+	grid-row: 1;
+}
+
+#img-home img{
+	width: 100%;
+	height: 517px; /*Se puede cambiar por unidad mas relativa*/ 
+	object-fit: cover;
+	overflow: hidden;
+}
+
+#bienvenida-tarjeta{
+	padding: 0 2.5rem;
+	grid-column: 1 / -1;
+	grid-row: 2;
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+}
+/*Cambiar a id*/
+.articulo{
+	display: flexbox;
+	flex-direction: column;
+	padding-bottom: 6rem;
+	width: 85%;
+}
+.articulo h1{
+	margin-bottom: 2rem;
+}
+.articulo h1 span{
+	color: #42AB00;
+}
+
+#bienvenida-tarjeta h1{
+	font-size: 3.5rem;
+}
+#bienvenida-tarjeta p{
+	font-size: 1.25rem;
+	padding-right: 1.25em;
+}
+
+#bienvenida-tarjeta img{
+	width: 235px;
+	height: 303px;
+	border-radius: 37px;
+}
+
+#desglose-habitaciones{
+	grid-column: 1 / -1;
+	grid-row: 3;
+	background-color: #EADBC8;
+}
+
+
+#desglose-habitaciones h1{
+	font-size: 3.5rem;
+	text-align: center;
+	margin: 2rem;
+}
+
+.carrusel{
+	width: 100%;
+	display: inline-flex;
+	justify-content:space-evenly;
+	align-items: center;
+}
+
+.tarjeta-habitacion{
+	background-color: #FFFFFF;
+	border-radius: 0 0 10px 10px;
+	width: 25%;
+	text-align: center;
+	margin-bottom: 5rem;
+	text-decoration: none;
+	color: #000;
+}
+
+.descripcion-articulo{
+	margin: 0 1.5rem 1.5rem 1.5rem;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content:space-between;
+	gap: 1rem;
+	align-items: center;
+}
+.descripcion-articulo h2{
+	font-size:xx-large;
+}
+
+
+.descripcion-articulo p{
+	text-align: left;
+}
+
+.descripcion-articulo h3{
+	margin-left: auto
+}
+
+
+#desglose-habitaciones img{
+	border-radius: 10px;
+	margin: 1rem;
+	max-width: 300px;
+	max-height: 225px;
+	width: 100%;
+	height: 25rem;/*Si uso porcentaje se cambian en diferentes tamanos*/
+}
+
+
+
+#desglose-habitaciones .tarjeta-habitacion:hover{
+	transform: scale(1.1);
+	transition: transform 0.4s;
+}
+
+#nosotros-tarjeta{
+	grid-column: 1 / -1;
+	grid-row: 4;
+}
+
+#nosotros-tarjeta img{
+	width: 50%;
+	max-width: 400px;
+	height: 600px;/*cambiar a una unidad mas relativa*/
+	
+}
+#articulo-nosotros{
+	padding: 0 2.5rem;
+	display: inline-flex;
+	flex-direction: row;
+	justify-content:space-between;
+	align-items: center;
+}
+
+#descripcion-nosotros{
+	width: 50%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	gap: 1rem;
+	align-items: center;
+	margin: auto;
+}
+
+#descripcion-nosotros h2{
+	font-size:40px
+}
+#descripcion-nosotros p{
+	text-align: center;
+	font-size: 1.25rem;
+}
+
+footer{
+	height: 100%;
+	background-color: #C7B7A3;
+}
+
+
