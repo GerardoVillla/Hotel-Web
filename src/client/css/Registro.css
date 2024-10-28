@@ -1,7 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Domine:wght@400..700&family=Quicksand:wght@300..700&display=swap');
+
 
 *{
     padding: 0;
     margin: 0;
+    font-family: "Domine", serif;
 }
 
 body{
@@ -41,25 +44,35 @@ body{
     background-color: #B5C18E;
     color: black;
     cursor: pointer;
-    border: 1;
+    border: none;
     border-right: none;
     padding: 10px;
     transition: background-color 0.3s;
-    width: 100px; /*ancho definido*/
+    width: 120px; /*ancho definido*/
     border-top-left-radius: 8px;
     border-bottom-left-radius: 8px;
+    box-shadow: 0 4px 0 rgba(0, 0, 0, 0.3);
 }
 
-#formulario-seccion #botones-nav #btn_ResgistrarsePag{
+#formulario-seccion #botones-nav #btn_iniciarSPag:hover{
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+#formulario-seccion #botones-nav #btn_RegistrarsePag{
     background-color: #A30350;
     color: white;
     cursor: pointer;
     border: none;
     padding: 10px;
     transition: background-color 0.3s;
-    width: 100px;/*ancho definido?*/
+    width: 120px;/*ancho definido?*/
     border-top-right-radius: 8px;
     border-bottom-right-radius: 8px;
+    box-shadow: 0 4px 0 rgba(0, 0, 0, 0.3);
+}
+
+#formulario-seccion #botones-nav #btn_RegistrarsePag:hover{
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 /*hace que los inputs y el boton se estiren*/
 #formulario-contenedor{
@@ -95,5 +108,10 @@ body{
     border-radius: 4px;
     transition: background-color 0.3s;
     align-self: center;
-    width: 150px; /*Ancho definido?*/
+    width: 170px; /*Ancho definido?*/
+    box-shadow: 0 4px 0 rgba(0, 0, 0, 0.3);
+}
+
+#formulario-contenedor #btn_Registro:hover{
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
