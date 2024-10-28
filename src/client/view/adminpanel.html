@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="/src/client/css/adminpanel-styles.css">
+	<title>Panel Administrador</title>
+</head>
+<body>
+	<header>
+		<h1>Hotel ecológico</h1>
+		<nav>
+			<ul>
+				<li id="btn-menu"><a href="#">Menu</a></li>
+			</ul>
+		</nav>
+	</header>
+	<section id="panel-admin">
+		<div id="barra-editor">
+			<form>
+				<span>
+					<select name="categorias">
+						<option value="Estandar">Estandar</option>
+						<option value="Deluxe">Deluxe</option>
+						<option value="Suite">Suite</option>
+					</select>
+				</span>
+				<div id="botones-panel">
+					<input id="btn-agregar" type="button" value="Agregar">
+					<input id="btn-editar" type="button" value="Editar">
+					<input id="btn-eliminar"type="button" value="Eliminar">
+				</div>
+			</form>
+		</div>
+		<div id="seccion-habitaciones">
+			<ul>
+				<li class="habitacion-propiedades">
+					<img src="/src/client/assets/img/home/deluxe.jpg" alt="">
+						<div class="detalles-habitacion">
+							<h2 id="nombre-habitacion">Deluxe</h2>
+							<p><strong>Categoría:</strong> <span id="categoria-habitacion">Deluxe</span></p>
+							<p><strong>Disponibilidad:</strong> <span id="disponibilidad-habitacion">Disponible</span></p>
+							<p><strong>Cantidad:</strong> <span id="cantidad-habitacion">2</span></p>
+							<p><strong>Costo:</strong> <span id="costo-habitacion">$200</span></p>
+						</div>	
+				</li>
+				<li class="habitacion-propiedades">
+					<img src="/src/client/assets/img/home/deluxe.jpg" alt="">
+						<div class="detalles-habitacion">
+							<h2 id="nombre-habitacion">Deluxe</h2>
+							<p><strong>Categoría:</strong> <span id="categoria-habitacion">Deluxe</span></p>
+							<p><strong>Disponibilidad:</strong> <span id="disponibilidad-habitacion">Disponible</span></p>
+							<p><strong>Cantidad:</strong> <span id="cantidad-habitacion">2</span></p>
+							<p><strong>Costo:</strong> <span id="costo-habitacion">$200</span></p>
+						</div>	
+					</li>
+					<li class="habitacion-propiedades">
+						<img src="/src/client/assets/img/home/deluxe.jpg" alt="">
+							<div class="detalles-habitacion">
+								<h2 id="nombre-habitacion">Deluxe</h2>
+								<p><strong>Categoría:</strong> <span id="categoria-habitacion">Deluxe</span></p>
+								<p><strong>Disponibilidad:</strong> <span id="disponibilidad-habitacion">Disponible</span></p>
+								<p><strong>Cantidad:</strong> <span id="cantidad-habitacion">2</span></p>
+								<p><strong>Costo:</strong> <span id="costo-habitacion">$200</span></p>
+							</div>	
+						</li>
+					
+			</ul>
+		</div>
+	</section>
+	<footer>
+		<p>&copy; Derechos reservados a un tal fulano</p>
+	</footer>
+</body>
+</html>

@@ -1,0 +1,168 @@
+
+*{
+	padding: 0 ;
+	margin: 0;
+}
+
+
+body{
+	display: grid;
+	min-height: 100vh;
+	grid-template-rows: auto 1fr auto;/*auto es el header, 1fr es el contenido y auto es el footer*/
+	grid-template-areas: 
+	"header"
+	"section"
+	"footer";
+	margin: 0;/*Parece que esta declaracion es redundante porque ya se aplica en arriba */
+}
+
+header{
+	background-color: #B5C18E;
+	padding: 1rem 1.25rem;
+	display: inline-flex;
+	justify-content:space-between;/*Investigar sobre porque funciono con este*/
+	align-items: center; /*Centra verticalmente el header*/
+
+	position: sticky; /* Hacer que el header sea sticky */
+	top: 0; /* Pegar en la parte superior */
+	z-index: 1000; /* Asegúrate de que esté por encima de otros elementos */
+}
+header nav ul{
+	display: inline-flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 2em;
+}
+
+header nav ul li{
+	list-style: none;
+}
+
+header nav ul li a{
+	font-size: 1.5rem;
+	text-decoration: none;
+	color: #000;
+}
+#btn-menu{
+	background-color: #A30350;
+	padding: 0.5rem 2rem;
+	border-radius: 5px;
+	box-shadow: 0 4px 0 rgba(0, 0, 0, 0.2); /* Sombra solo en la parte inferior */
+}
+#btn-menu a{
+	color: aliceblue;
+}
+
+
+#panel-admin{
+	display: grid;
+	grid-template-columns: repeat(16, 1fr);
+	grid-template-rows: auto auto;
+	min-height: 80vh; /* Esto asegura que el panel admin tenga espacio suficiente */
+}
+
+
+#barra-editor{
+	grid-column: 2 / span 14;
+	grid-row: 1;
+	align-content: center;
+	margin: 3rem 0;
+}
+
+#barra-editor form{
+	width: 100%;
+	display: inline-flex;
+	justify-content: space-between;
+
+}
+
+#barra-editor select{
+	width: 10rem;
+	height: 2rem;
+	border-radius: 5px;
+	border: none;
+}
+
+
+#botones-panel{
+	display: inline-flex;
+	gap: 1.5rem;
+
+}
+
+#botones-panel input{
+	border-radius: 5px;
+	border: none;
+	width: 6rem;
+	height: 2rem;
+	color: white;
+	box-shadow: 0 4px 0 rgba(0, 0, 0, 0.2);
+}
+
+#btn-agregar{
+	background-color: #03750C;
+}
+
+#btn-editar{
+	background-color: #c7b7a3;
+}
+
+#btn-eliminar{
+	background-color: #A30350;
+}
+
+#seccion-habitaciones{
+	grid-column: 2 / span 14;
+	grid-row: 2;
+}
+
+#seccion-habitaciones ul li img{
+	width: 30vh;
+	height: 20vh;
+}
+.habitacion-propiedades {
+	background-color: #eadbc8;
+    display: flex;
+    align-items: flex-start; /* Alinea la imagen y el texto en la parte superior */
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin-bottom: 15px;
+}
+
+.habitacion-propiedades img {
+    width: 10vh; /* Ajusta el tamaño de la imagen */
+    height: auto;
+    margin-right: 20px; /* Espacio entre la imagen y los detalles */
+    border-radius: 5px; /* Opcional: bordes redondeados */
+}
+
+.detalles-habitacion {
+    display: flex;
+    flex-direction: column;
+	width: 100%;
+}
+
+.detalles-habitacion h2 {
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.detalles-habitacion p {
+    margin: 5px 0;
+}
+
+/* Efecto de "presionar" al hacer clic */
+#botones-panel input:active {
+    transform: scale(0.95); /* Hace el botón ligeramente más pequeño */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); /* Ajusta la sombra para dar sensación de profundidad */
+}
+
+/* Efecto de sombra de hover */
+#botones-panel input:hover {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Añade una sombra en hover */
+}
+
+footer{
+	height: 100%;
+	background-color: #C7B7A3;
+}
