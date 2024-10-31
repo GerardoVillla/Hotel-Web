@@ -9,29 +9,83 @@
     <body>
     <div class="grid">
         <nav class="nav">
-            <input type="button">
+            <a href="home.html">regresar</a>
         </nav>
 
         <section class="section">
             <div class="lista_habitaciones">
-                
+                    <ul>
+                        <li>
+                            <p>ordenar por:</p>
+                            <select>
+                                <option>precio: mayor-menor</option>
+                                <option>precio: menor-mayor</option>
+                                <option>alfabetico</option>
+                            </select>
+                        </li>
+                        <li>
+                            <h1>Habitaci&oacute;nes disponibles: </h1>
+                        </li>
+                        <li class="habitacion-propiedades">
+                            <img src="/src/client/assets/img/home/deluxe.jpg" alt="">
+                                <div class="detalles-habitacion">
+                                    <h2 id="nombre-habitacion">Deluxe</h2>
+                                    <p><strong>Categoría:</strong> <span id="categoria-habitacion">Deluxe</span></p>
+                                    <p><strong>Disponibilidad:</strong> <span id="disponibilidad-habitacion">Disponible</span></p>
+                                    <p><strong>Cantidad:</strong> <span id="cantidad-habitacion">2</span></p>
+                                    <p><strong>Costo:</strong> <span id="costo-habitacion">$200</span></p>
+                                    <button>reservar</button>
+                                </div>	
+                        </li>
+                        <li class="habitacion-propiedades">
+                            <img src="/src/client/assets/img/home/deluxe.jpg" alt="">
+                                <div class="detalles-habitacion">
+                                    <h2 id="nombre-habitacion">Deluxe</h2>
+                                    <p><strong>Categoría:</strong> <span id="categoria-habitacion">Deluxe</span></p>
+                                    <p><strong>Disponibilidad:</strong> <span id="disponibilidad-habitacion">Disponible</span></p>
+                                    <p><strong>Cantidad:</strong> <span id="cantidad-habitacion">2</span></p>
+                                    <p><strong>Costo:</strong> <span id="costo-habitacion">$200</span></p>
+                                    <button>reservar</button>
+                                </div>	
+                            </li>
+                            <li class="habitacion-propiedades">
+                                <img src="/src/client/assets/img/home/deluxe.jpg" alt="">
+                                    <div class="detalles-habitacion">
+                                        <h2 id="nombre-habitacion">Deluxe</h2>
+                                        <p><strong>Categoría:</strong> <span id="categoria-habitacion">Deluxe</span></p>
+                                        <p><strong>Disponibilidad:</strong> <span id="disponibilidad-habitacion">Disponible</span></p>
+                                        <p><strong>Cantidad:</strong> <span id="cantidad-habitacion">2</span></p>
+                                        <p><strong>Costo:</strong> <span id="costo-habitacion">$200</span></p>
+                                        <button>reservar</button>
+                                    </div>	
+                                </li>
+                            
+                    </ul>
             </div>
         </section>
 
         <aside class="aside">
+            <h1>Reservar</h1>
             <form>
+                <label>Elige una habitaci&oacute;n</label>
                 <select>
-                    <option>11</option>
-                    <option>22</option>
-                    <option>33</option>
+                    <option>habitaci&oacute;n tipo1</option>
+                    <option>habitaci&oacute;n tipo2</option>
+                    <option>habitaci&oacute;n tipo3</option>
                 </select>
+                <label>Dia de entrada</label>
                 <input type="date">
+                <label>Dia de salida</label>
                 <input type="date">
-                <input type="number" min="1">
-
-                <input type="submit">
+                <label>Numero de personas</label>
+                <input type="number" min="1" max="10" maxlength="3">
             </form>
+            <input type="submit" value="actualizar búsqueda">
         </aside>
+
+        <footer>
+            <p>&copy; Derechos reservados a un tal fulano</p>
+        </footer>
     </div>
     </body>
 </html>
