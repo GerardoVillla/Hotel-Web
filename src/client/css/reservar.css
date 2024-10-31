@@ -1,0 +1,42 @@
+@charset "UTF-8";
+
+/*general settings*/
+
+html {
+    box-sizing: border-box;
+}
+
+*, *::before, *::after {
+    box-sizing: inherit;
+}
+
+body {
+    background-color: #EADBC8;
+    font-family: Georgia;
+    margin: 0;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 40% 10% 50%;
+    grid-template-rows: 80px 500px auto;
+}
+
+.nav {
+    grid-column: 1 / 3;
+    grid-row: 1 / 2;
+    padding: 20px;
+}
+
+.aside {
+    grid-column: 1 / 3;
+    grid-row: 2 / 3;
+    background-color: #F1F1F1;
+
+}
+
+.section {
+    grid-column: 3 / 4;
+    grid-row: 1 / 4;
+    text-align: center;
+}
