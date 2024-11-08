@@ -118,7 +118,7 @@ header nav ul li a{
 
 #seccion-habitaciones ul li img{
 	width: 30vh;
-	height: 20vh;
+	height: 25vh;
 }
 .habitacion-propiedades {
 	background-color: #eadbc8;
@@ -127,6 +127,11 @@ header nav ul li a{
     border: 1px solid #ddd;
     padding: 15px;
     margin-bottom: 15px;
+}
+/*Habitacion seleccionada*/
+.habitacion-propiedades.selected{
+	transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .habitacion-propiedades img {
