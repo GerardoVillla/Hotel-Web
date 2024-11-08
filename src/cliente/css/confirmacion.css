@@ -1,0 +1,56 @@
+@import url('https://fonts.googleapis.com/css2?family=Domine:wght@400..700&family=Quicksand&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    
+}
+
+html, body {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "Domine", serif;
+}
+
+#grid{
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    height: 100vh; /* Ocupa toda la altura de la pantalla */
+    width: 100vw; /* Ocupa toda la anchura de la pantalla */
+}
+#Confirm-mensaje{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    grid-row: 1;
+    padding: 20px;
+    text-align: center;
+}
+#Botones{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    grid-row: 2;
+    gap: 5vh;
+    padding: 20px;
+}
+button{
+    border: none;
+    border-radius: 5px;
+}
+button.Aceptar{
+    background-color: #03750c;
+}
+button.Cancelar{
+    background-color: #ae0003;
+    
+}
+button.Aceptar, button.Cancelar{
+    font-size: 20px;
+    height: 60px;
+    width: 150px;
+    color: white;
+}
