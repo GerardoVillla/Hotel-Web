@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/edithabitacion-styles.css" type="text/css">
+    <title>Editar habitacion</title>
+</head>
+<body>
+    <header>
+        <h1>Hotel ecologico Ek' Balam</h1>
+    </header>
+    <form id="grid" method="get" enctype="multipart/form-data" >
+        <div id="etiquetas">
+            <p><b>Categoria (tipo):</b></p>
+            <p><b>Disponibilidad:</b></p> 
+            <p><b>Habitaciones:</b></p>
+            <p><b>Costo: $</b></p>
+        </div>
+        <div id="entradas">
+            <p><input type="text" id="txt_categoria"></p>
+            <p><input type="text" id="txt_disponibilidad"></p>
+            <p><input type="text" id="txt_habitaciones"></p>
+            <p><input type="text" id="txt_costo"></p>
+        </div>
+        <div id="descripcion">
+            <p><b>Descripcion:</b></p>
+            <textarea id="t_area_descripcion"></textarea>
+        </div>
+        <div id="btns_vista_prev">
+            <p><b>Cambiar imagen:   </b><input type="file" id="btn_cambiarimg" accept="image/*"></p>
+            <button  class="btn" id="btn_vistprev" >
+                Vista previa
+            </button>
+            <!--<button id="btn_cambiarimg">
+                cambiar imagen
+            </button> -->
+            
+        </div>
+        <div id="imagen">
+        </div>
+        <div id="vista_previa">
+            <h2 id="titulo_habitacion">Economico</h2>
+            <!--<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem minus autem ut, inventore aut nemo aspernatur dolorem. Autem, nobis iusto. Voluptates aut voluptatibus vero quod laboriosam consectetur et. Magnam, a.
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt modi at voluptates saepe alias ullam nostrum autem, temporibus cupiditate, consequuntur dolorem ducimus dolores veritatis quas repellat cumque similique eligendi adipisci?
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem magni officia placeat perferendis minus est repudiandae beatae. Perferendis asperiores a accusamus, optio architecto voluptatum esse officiis, excepturi, neque iste eum!
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem laudantium autem nam inventore voluptatem quidem dolore alias id similique numquam! Amet beatae quisquam voluptatibus temporibus a quos ipsa vero ut
+            </p>-->
+            <p id="info_descripcion">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad doloremque eum cum? Eligendi id vitae dicta perferendis magnam dignissimos voluptatum. Ducimus, in labore. Amet magnam, ducimus necessitatibus facilis explicabo iusto.</p>
+            <p id="info_disponibilidad"><b>Disponibilidad:</b></p>
+            <p id="info_habitaciones"><b>Habitaciones:</b></p>
+            <p id="info_Costo"><b>Costo:</b></p>
+        </div>
+        <div  id="btns_verificacion">
+            <button class="btn" id="btn_guardar">
+                Guardar
+            </button>
+            <button class="btn" id="btn_cancelar">
+                Cancelar
+            </button>
+        </div>
+    </form>
+    <footer>
+        <p>@todos los derechos reservados</p>
+    </footer>
+</body>
+</html>
