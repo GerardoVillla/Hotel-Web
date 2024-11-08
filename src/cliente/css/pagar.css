@@ -1,0 +1,120 @@
+@charset "UTF-8";
+
+/*general settings*/
+
+html {
+    box-sizing: border-box;
+}
+
+*, *::before, *::after {
+    box-sizing: inherit;
+}
+
+body {
+    color: #1d2731;
+    background-color: #B5C18E;
+    font-family: Georgia;
+    margin: 0;
+}
+
+.grid {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: auto 800px auto;
+    grid-template-rows: 100px 1fr 100px auto;
+}
+
+nav {
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+	display: inline-flex;
+	align-items: center;
+    padding: 0 2rem;
+}
+
+nav a{
+	font-size: 1.5rem;
+	text-decoration: none;
+	color: #000;
+    background-color: #C7B7A3;
+	padding: 0.5rem 2rem;
+	border-radius: 5px;
+	box-shadow: 0 4px 0 rgba(0, 0, 0, 0.2);
+}
+
+nav a:hover {
+    color: #F1F1F1;
+    background-color: #1d2731;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+section {
+    text-align: center;
+    grid-column: 2 / 3;
+    grid-row: 2 / 3;
+    background-color: #F1F1F1;
+    padding: 50px;
+
+}
+section a {
+    font-size: 1.5rem;
+	text-decoration: none;
+	color: #000;
+    background-color: #B5C18E;
+	padding: 0.5rem 2rem;
+    margin-top: 30px;
+	border-radius: 5px;
+	box-shadow: 0 4px 0 rgba(0, 0, 0, 0.2);
+}
+
+section a:hover {
+    color: #F1F1F1;
+    background-color: #1d2731;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+form label {
+    display: flex;
+    flex-direction: row;
+}
+
+form p {
+    margin-left: auto;
+}
+
+form input {
+    appearance: none;
+    margin-right: auto;
+    border: none;
+    background: transparent;
+    border-bottom: 2px solid #1E1E1E;
+    font-size: 1.25rem;
+    transition: border-color 0.3s;
+    padding: 5px 10px;
+    outline: none;
+}
+
+form input.boton {
+    appearance: none;
+    font-size: 1.5rem;
+	text-decoration: none;
+	color: #000;
+    background-color: #B5C18E;
+	padding: 0.5rem 2rem;
+    margin-top: 30px;
+	border-radius: 5px;
+	box-shadow: 0 4px 0 rgba(0, 0, 0, 0.2);
+}
+
+
+footer{
+    grid-column: 1 / 4;
+    grid-row: 4 / 5;
+	height: 100%;
+	background-color: #C7B7A3;
+}

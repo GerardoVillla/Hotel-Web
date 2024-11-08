@@ -1,0 +1,39 @@
+body{
+    display: flex;
+    justify-content: center; /* Centra la tabla horizontalmente */
+    align-items: center;    /* Centra la tabla verticalmente */
+    min-height: 100vh;      /* Hace que ocupe el 100% de la altura de la ventana */
+    margin: 0;
+    background-color: transparent;
+}
+
+button{
+    width: 5%;
+    height: 5%;
+    text-align: center;
+}
+
+table{
+    border-collapse: collapse;
+    width: 80%;
+    margin: auto;
+}
+
+img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+#imgsection{
+    width: 40%;
+    padding: 0px;
+    text-align: center;
+}
+
+#infosection{
+    width: 60%;
+    background-color: #eadbc8;
+    padding: 15px;
+}
