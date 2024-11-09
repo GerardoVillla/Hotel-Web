@@ -93,12 +93,26 @@ footer{
     border-radius: 8px;
 }
 
+
 #entradas input{
     background-color: #EADBC8;
     height: 18px;
     border: none;
     border-radius: 4px;
+    display: block;
+    margin: 15px 0 15px 0;
 }
+
+
+#entradas select{
+    background-color: #EADBC8;
+    height: 18px;
+    border: none;
+    margin: 15px 0 15px 0;
+    border-radius: 4px;
+    display: block;
+}
+
 
 .btn:hover, #entradas input:hover, #descripcion textarea:hover{
     opacity: 80%;
