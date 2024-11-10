@@ -46,9 +46,9 @@ class autenticacion{
 	
 }
 
-if(isset($_GET['txt_nombre']) && isset($_GET['pass_contraseña'])){
-	$usuario = $_GET["txt_nombre"];
-	$contrasena = $_GET["pass_contraseña"];
+if(isset($_POST['txt_nombre']) && isset($_POST['pass_contraseña'])){
+	$usuario = $_POST["txt_nombre"];
+	$contrasena = $_POST["pass_contraseña"];
 	$autenticador = new autenticacion();
 	$autenticador->iniciarSesion($usuario, $contrasena);
 }

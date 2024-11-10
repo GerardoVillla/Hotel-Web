@@ -15,7 +15,7 @@
             <input type="button" name="iniciosesion" value="Registrarse" id="btn_RegistrarsePag">
         </div>
         <div id="formulario-contenedor">
-			<form action="/ecologico/src/servidor/autenticacion.php" method="get">
+			<form action="/ecologico/src/servidor/autenticacion.php" method="post">
                 <h3>Nombre:</h3>
                 <br><br>
                 <input type="text" maxlength="35" size="35" name="txt_nombre" id="txt_nombre">
