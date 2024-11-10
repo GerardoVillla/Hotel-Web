@@ -54,23 +54,23 @@ document.addEventListener('DOMContentLoaded', () => {
                 alert("Todos los campos deben tener valor");
             }else{
                 console.log("Creando cambio");
-                const HabInformacion = {/*
+                const HabInformacion = {
                     nombre: document.getElementById('txt_categoria').value,
                     cantidad: document.getElementById('txt_habitaciones').value,
                     cantidadDisponible: document.getElementById('txt_habdisponibles').value,
                     costo: document.getElementById('txt_costo').value,
-                    imagen: document.getElementById('imagen-prev').src*/
-                    nombre: Categoria,
+                    imagen: document.getElementById('imagen-prev').src
+                    /*nombre: Categoria,
                     cantidad: Habs,
                     cantidadDisponible: HabsDisp,
                     costo: Costo,
-                    imagen: document.getElementById('imagen-prev').src
+                    imagen: document.getElementById('imagen-prev').src*/
                 };
                 
-                /*
+                
                 localStorage.setItem('HabElegida', JSON.stringify(HabInformacion));
                 localStorage.setItem('ModoEdit', 'añadir');
-                */
+                
                 let listaHabitaciones = JSON.parse(localStorage.getItem('listaHabitaciones')) || [];
                 if (modo === 'editar') {
                     listaHabitaciones = listaHabitaciones.map(hab => 
