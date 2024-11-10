@@ -17,7 +17,7 @@ body{
 
 #imagen-seccion{
     flex:1;
-    background-image: url('../assets/img/iniciosesion/IniciarSesionFoto.jpg');
+    background-image: url('/ecologico/src/cliente/recursos/img/iniciosesion/IniciarSesionFoto.jpg');
     background-size: cover;
     background-position: center;
 }

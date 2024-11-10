@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     const selectCuarto = document.getElementById('Categorias-cuarto');
     const contenedorCuartos = document.getElementById('seccion-habitaciones');
-    console.log("C1")/*
+    console.log("C1")
     if (selectCuarto && contenedorCuartos) {
         const listaCuartos = contenedorCuartos.querySelector('#lista-cuartos');
 
@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     } else {
         console.log("El elemento 'tipoCuarto' o 'contenedorCuartos' no se encontró.");
-    }*/
+    }
 
     // Cargar categorías desde localStorage y actualizar el `<select>`
     const listaCategorias = JSON.parse(localStorage.getItem('listaCategorias')) || [];
