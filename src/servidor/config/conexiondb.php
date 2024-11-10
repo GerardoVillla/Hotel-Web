@@ -8,7 +8,7 @@ class Conexiondb{
 	private $db = "hotelecologico";
 	public $conexion;
 
-	public function _getConnection(){
+	public function getConnection(){
 		$this->conexion = new mysqli($this->server, $this->user, $this->pass, $this->db);
 		if($this->conexion->connect_error){
 			die("Conexion fallida: " . $this->conexion->connect_error);
