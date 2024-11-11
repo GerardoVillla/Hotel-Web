@@ -33,6 +33,25 @@ function iniciarSesion($usuario, $contrasena): void{
 	$stmt->close();
 }
 
+
+function registrarUsuario($usuario, $contrasena): void{
+	$conexionSql = new conexiondb();
+	$conexionSql = $conexionSql->getConnection();
+
+	$consulta = "INSERT INTO clientes(user, contraseña, rol) VALUES(?,?,?)";
+	$stmt = $conexionSql->prepare($consulta);
+	$rol = "cliente";
+	$stmt->bind_param("sss", $usuario, $contrasena, $rol);
+	$stmt->execute();
+	$stmt->close();
+	
+	// Redirigir a la página de inicio de sesión con un mensaje de éxito
+    header("Location: ../../index.php?registro_exitoso=1");
+    exit();
+	
+	//echo "Usuario registrado";
+}
+
 function validarSesion(){
 	session_start();
 	if(!isset($_SESSION["idUsuario"])){
