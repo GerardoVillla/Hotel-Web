@@ -1,41 +1,53 @@
 
+
+
+//Carga las habitaciones disponibles de la base de datos
 document.addEventListener('DOMContentLoaded', () => {
     actualizarHabitacionEnLista();  
-    //
-    
+    cargarTodasHabitaciones();
+});
+
+//Filtra por categorias de habitaciones
+const contenedorCuartos = document.getElementById('seccion-habitaciones');
+const listaCuartos = contenedorCuartos.querySelector('#lista-cuartos');
+const selectCuarto = document.getElementById('Categorias-cuarto');
+selectCuarto.addEventListener('change', () => {
     const selectCuarto = document.getElementById('Categorias-cuarto');
+    const tipoSeleccionado = selectCuarto.value;
+    if (tipoSeleccionado === 'Todas') {
+        cargarTodasHabitaciones();
+        return;
+    }
+    console.log("Filtrando habitaciones")
+    fetch(`../../servidor/habitacion.php?action=filtrar&categoria=${tipoSeleccionado}`)
+    .then(response => response.text())
+    .then(html => {
+            listaCuartos.innerHTML = html;
+    })
+    .catch(error => console.error('Error al filtrar habitaciones:', error));
+});
+
+
+function cargarTodasHabitaciones(){
+    const selectCuarto = document.getElementById('Categorias-cuarto');
+    console.log(selecc_cuarto);
     const contenedorCuartos = document.getElementById('seccion-habitaciones');
     console.log("C1")
     if (selectCuarto && contenedorCuartos) {
         const listaCuartos = contenedorCuartos.querySelector('#lista-cuartos');
+        
+        fetch('../../servidor/habitacion.php?action=listar')
+        .then(response => response.text())
+        .then(html => {
+            listaCuartos.innerHTML = html;
+            console.log("Insertando habitaciones desde la base de datos")
+        })
+        .catch(error => console.error('Error al cargar habitaciones:', error));
 
-        selectCuarto.addEventListener('change', () => {
-            const tipoSeleccionado = selectCuarto.value;
-            console.log("C2")
-            // Encuentra el <li> de la habitación con el tipo seleccionado
-            const habitacionSeleccionada = Array.from(listaCuartos.children).find(cuarto => 
-                cuarto.dataset.tipo === tipoSeleccionado
-            );
-            console.log("C3")
-            if (habitacionSeleccionada) {
-                // Mueve la habitación seleccionada al inicio de la lista <ul>
-                listaCuartos.prepend(habitacionSeleccionada);
-            }
-        });
     } else {
         console.log("El elemento 'tipoCuarto' o 'contenedorCuartos' no se encontró.");
     }
-
-    // Cargar categorías desde localStorage y actualizar el `<select>`
-    const listaCategorias = JSON.parse(localStorage.getItem('listaCategorias')) || [];
-    selectCuarto.innerHTML = '<option disabled selected>...</option>';
-    listaCategorias.forEach(categoria => {
-        const option = document.createElement('option');
-        option.value = categoria;
-        option.textContent = categoria;
-        selectCuarto.appendChild(option);
-    });
-});
+}
 
 
 function selecc_cuarto(element) {

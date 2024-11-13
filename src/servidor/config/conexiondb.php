@@ -13,7 +13,7 @@ class Conexiondb{
 		if($this->conexion->connect_error){
 			die("Conexion fallida: " . $this->conexion->connect_error);
 		}else{
-			echo"conectado";
+			//echo"conectado";
 		}
 		return $this->conexion;
 	}
