@@ -119,16 +119,16 @@ header nav ul li a{
 }
 
 #seccion-habitaciones ul li img{
-	width: 30vh;
-	height: 25vh;
+	width: 20vh;
+	height: 30vh;
 }
 .habitacion-propiedades {
-	background-color: #eadbc8;
+	background-color: #ffffff;
     display: flex;
     align-items: flex-start; /* Alinea la imagen y el texto en la parte superior */
-    border: 1px solid #ddd;
+    border: 1px solid #030303;
     padding: 15px;
-    margin-bottom: 15px;
+    margin-bottom: 35px;
 }
 /*Habitacion seleccionada*/
 .habitacion-propiedades.selected{
@@ -139,6 +139,7 @@ header nav ul li a{
 .habitacion-propiedades img {
     width: 10vh; /* Ajusta el tamaño de la imagen */
     height: auto;
+	object-fit: cover;
     margin-right: 20px; /* Espacio entre la imagen y los detalles */
     border-radius: 5px; /* Opcional: bordes redondeados */
 }
@@ -162,6 +163,7 @@ header nav ul li a{
 #botones-panel input:active {
     transform: scale(0.95); /* Hace el botón ligeramente más pequeño */
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); /* Ajusta la sombra para dar sensación de profundidad */
+	background-color: #d4edda;
 }
 
 /* Efecto de sombra de hover */
