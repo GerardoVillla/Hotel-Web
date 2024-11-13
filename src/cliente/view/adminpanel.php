@@ -24,7 +24,7 @@ validarSesion();
 			<form>
 				<span>
 					<select name="categorias" id="Categorias-cuarto">
-						<option disabled selected>...</option>
+						<option value= "Todas" selected>Todas</option>
 						<option value="Estandar">Estandar</option>
 						<option value="Deluxe">Deluxe</option>
 						<option value="Suite">Suite</option>
@@ -39,17 +39,6 @@ validarSesion();
 		</div>
 		<div id="seccion-habitaciones">
 			<ul id="lista-cuartos">
-				<li class="habitacion-propiedades" onClick="selecc_cuarto(this)" data-tipo="Estandar">
-					<img src="../recursos/img/principal/deluxe.jpg" alt="">
-						<div class="detalles-habitacion">
-							<h2 id="nombre-habitacion">Estandar</h2>
-							<p><strong>Categoría:</strong> <span id="categoria-habitacion">Economico</span></p>
-							<p><strong>Disponibilidad:</strong> <span id="disponibilidad-habitacion">Disponible</span></p>
-							<p><strong>Habitaciones:</strong> <span id="cantidad-habitacion">5</span></p>
-							<p><strong>Hab. disponibles:</strong> <span id="cantidad-disponible">5</span></p>
-							<p><strong>Costo:</strong> <span id="costo-habitacion">$1200</span></p>
-						</div>	
-				</li>
 				<li class="habitacion-propiedades" onClick="selecc_cuarto(this)" data-tipo="Suite">
 					<img src="../recursos/img/principal/deluxe.jpg" alt="">
 						<div class="detalles-habitacion">
@@ -61,17 +50,6 @@ validarSesion();
 							<p><strong>Costo:</strong> <span id="costo-habitacion">$2000</span></p>
 
 						</div>	
-					</li>
-					<li class="habitacion-propiedades" onClick="selecc_cuarto(this)" data-tipo="Deluxe">
-						<img src="../recursos/img/principal/deluxe.jpg" alt="">
-							<div class="detalles-habitacion">
-								<h2 id="nombre-habitacion">Deluxe</h2>
-								<p><strong>Categoría:</strong> <span id="categoria-habitacion">Deluxe</span></p>
-								<p><strong>Disponibilidad:</strong> <span id="disponibilidad-habitacion">Disponible</span></p>
-								<p><strong>Habitaciones:</strong> <span id="cantidad-habitacion">5</span></p>
-								<p><strong>Hab. disponibles:</strong> <span id="cantidad-disponible">5</span></p>
-								<p><strong>Costo:</strong> <span id="costo-habitacion">$3000</span></p>
-							</div>	
 					</li>
 			</ul>
 		</div>

@@ -12,8 +12,6 @@ document.getElementById('btn_iniciarSPag').onclick = function(){
 console.log("Registro exitoso");
 const urlParams = new URLSearchParams(window.location.search);
 if (urlParams.has('registro_exitoso')) {
-	console.log(urlParams);
-	console.log("Registro exitoso");
     const message = document.createElement('h3');
     message.style.color = 'black';
     message.textContent = 'Usuario registrado exitosamente. Por favor, inicie sesión.';
