@@ -83,7 +83,7 @@ function dirigirAeditar(modo) {
     } else {
         localStorage.removeItem('HabElegida');
     }
-    window.location.href = 'edithabitacion.html';
+    window.location.href = 'edithabitacion.php';
 }
 
 function actualizarHabitacionEnLista() {
