@@ -1,10 +1,13 @@
 <?php
 include_once "config/conexiondb.php";
 
-
 if(isset($_GET["action"])){
 	$peticion = $_GET["action"];
 	switch($peticion){
+		case "obtenerDescripcion";
+			$idHabitacion = $_GET["id"];
+			obtenerDescripcion($idHabitacion);
+			break;
 		case "listar";
 			listar();
 			break;
@@ -45,10 +48,12 @@ function listar(){
 		$rutaImg = "../recursos/img/habitaciones/".$registro['urlImagen'];
         $html .= '<img src="' . $rutaImg . '" alt="">';
         $html .= '<div class="detalles-habitacion">';
+		$html .= '<h2 id="codigo-habitacion">' .$registro['idhabitacion'] . '</h2>';
         $html .= '<h2 id="nombre-habitacion">' . $registro['nombre'] . '</h2>';
         $html .= '<p><strong>Categoría:</strong> <span id="categoria-habitacion">' . $registro['categoria'] . '</span></p>';
-        $html .= '<p><strong>Cap. personas:</strong> <span id="cantidad-habitacion">' . $registro['capacidadDePersonas'] . '</span></p>';
-        $html .= '<p><strong>Hab. disponibles:</strong> <span id="cantidad-disponible">' . $registro['disponibilidad'] . '</span></p>';
+        $html .= '<p><strong>Cap. personas:</strong> <span id="cantidad-personas">' . $registro['capacidadDePersonas'] . '</span></p>';
+        $html .= '<p><strong>Total habitaciones:</strong> <span id="total-habitaciones">' . $registro['numHabitaciones'] . '</span></p>';
+		$html .= '<p><strong>Hab. disponibles:</strong> <span id="cantidad-disponible">' . $registro['disponibles'] . '</span></p>';
         $html .= '<p><strong>Costo:</strong> <span id="costo-habitacion">' . $registro['costoPorNoche'] . '</span></p>';
         $html .= '</div>';
         $html .= '</li>';
@@ -72,10 +77,12 @@ function filtrarPorCategoria($categoria){
 		$rutaImg = "../recursos/img/habitaciones/".$registro['urlImagen'];
         $html .= '<img src="' . $rutaImg . '" alt="">';
         $html .= '<div class="detalles-habitacion">';
+		$html .= '<h2 id="codigo-habitacion">' .$registro['idhabitacion'] . '</h2>';
         $html .= '<h2 id="nombre-habitacion">' . $registro['nombre'] . '</h2>';
         $html .= '<p><strong>Categoría:</strong> <span id="categoria-habitacion">' . $registro['categoria'] . '</span></p>';
-        $html .= '<p><strong>Cap. personas:</strong> <span id="cantidad-habitacion">' . $registro['capacidadDePersonas'] . '</span></p>';
-        $html .= '<p><strong>Hab. disponibles:</strong> <span id="cantidad-disponible">' . $registro['disponibilidad'] . '</span></p>';
+        $html .= '<p><strong>Cap. personas:</strong> <span id="cantidad-personas">' . $registro['capacidadDePersonas'] . '</span></p>';
+		$html .= '<p><strong>Total habitaciones:</strong> <span id="total-habitacion">' . $registro['numHabitaciones'] . '</span></p>';
+        $html .= '<p><strong>Hab. disponibles:</strong> <span id="cantidad-disponible">' . $registro['disponibles'] . '</span></p>';
         $html .= '<p><strong>Costo:</strong> <span id="costo-habitacion">' . $registro['costoPorNoche'] . '</span></p>';
         $html .= '</div>';
         $html .= '</li>';
@@ -83,4 +90,29 @@ function filtrarPorCategoria($categoria){
 	$conexionSql->close();
 	echo $html;
 	return $html;
+}
+
+
+function obtenerDescripcion($idHabitacion){
+    $conexionSql = new Conexiondb();
+    $conexionSql = $conexionSql->getConnection();
+
+    $consulta = "SELECT descripcion FROM habitaciones WHERE idhabitacion = ?";
+    $stmt = $conexionSql->prepare($consulta);
+    $stmt->bind_param("i", $idHabitacion);
+    $stmt->execute();
+    $resultado = $stmt->get_result();
+
+    if ($resultado->num_rows <= 0) {
+        $stmt->close();
+        $conexionSql->close();
+        return "No se encontró la habitación";
+    }
+
+    $registro = $resultado->fetch_assoc();
+    $descripcionHab = $registro['descripcion'];
+    $stmt->close();
+    $conexionSql->close();
+	echo $descripcionHab;
+    return $descripcionHab;
 }
