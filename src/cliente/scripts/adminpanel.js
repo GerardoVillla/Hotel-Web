@@ -23,6 +23,7 @@ selectCuarto.addEventListener('change', () => {
     .then(response => response.text())
     .then(html => {
             listaCuartos.innerHTML = html;
+            console.log(html);
     })
     .catch(error => console.error('Error al filtrar habitaciones:', error));
 });
@@ -68,13 +69,15 @@ function dirigirAeditar(modo) {
     localStorage.setItem('ModoEdit', modo);
 
     if (modo === 'editar' && HabElegida) {
-        // Extrae la información de la habitación seleccionada
+        // Extrae la información de la habitación seleccionada en un objeto
         const HabInfo = {
+            descripcion : '',
+            codigo: HabElegida.querySelector('#codigo-habitacion').textContent,
             nombre: HabElegida.querySelector('#nombre-habitacion').textContent,
             categoria: HabElegida.querySelector('#categoria-habitacion').textContent,
-           /* disponibilidad: HabElegida.querySelector('#disponibilidad-habitacion').textContent,*/
-            cantidad: HabElegida.querySelector('#cantidad-habitacion').textContent,
+            cantidad: HabElegida.querySelector('#total-habitaciones').textContent,
             cantidadDisponible: HabElegida.querySelector('#cantidad-disponible').textContent,
+            capacidadPersonas: HabElegida.querySelector('#cantidad-personas').textContent,
             costo: HabElegida.querySelector('#costo-habitacion').textContent.replace('$','').trim(),
             imagen: HabElegida.querySelector('img').src
         };
@@ -83,7 +86,7 @@ function dirigirAeditar(modo) {
     } else {
         localStorage.removeItem('HabElegida');
     }
-    window.location.href = 'edithabitacion.html';
+    window.location.href = 'edithabitacion.php';
 }
 
 function actualizarHabitacionEnLista() {

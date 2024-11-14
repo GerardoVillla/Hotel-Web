@@ -39,18 +39,8 @@ validarSesion();
 		</div>
 		<div id="seccion-habitaciones">
 			<ul id="lista-cuartos">
-				<li class="habitacion-propiedades" onClick="selecc_cuarto(this)" data-tipo="Suite">
-					<img src="../recursos/img/principal/deluxe.jpg" alt="">
-						<div class="detalles-habitacion">
-							<h2 id="nombre-habitacion">Suite</h2>
-							<p><strong>Categoría:</strong> <span id="categoria-habitacion">Ejecutiva</span></p>
-							<p><strong>Disponibilidad:</strong> <span id="disponibilidad-habitacion">Disponible</span></p>
-							<p><strong>Habitaciones:</strong> <span id="cantidad-habitacion">5</span></p>
-							<p><strong>Hab. disponibles:</strong> <span id="cantidad-disponible">5</span></p>
-							<p><strong>Costo:</strong> <span id="costo-habitacion">$2000</span></p>
-
-						</div>	
-					</li>
+				<li class="habitacion-propiedades" onClick="selecc_cuarto(this)" data-tipo="Suite">	
+				</li>
 			</ul>
 		</div>
 	</section>
