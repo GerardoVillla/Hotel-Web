@@ -1,31 +1,32 @@
 import { cookiesCarrito } from './cookiesCarrito.js';
 
-function anadirReservaAlCarrito(){
+function anadirReservaAlCarrito() {
     const habitacion = document.getElementById('idHabitacion').textContent;
     cookiesCarrito.agregarHabitacionAlCarrito(habitacion);
 
     const entrada = document.getElementById('entrada').value;
-    document.cookie = `entrada${habitacion}=${entrada}; expires=${cookiesCarrito.fechaExpiracionDefault}; path=/`;
+    document.cookie = `entrada${habitacion}=${entrada}; expires=${cookiesCarrito.fechaExpiracionDefault()}; path=/`;
 
-    const salida = document.getElementById('salida').vale;
-    document.cookie = `salida${habitacion}=${salida}; expires=${cookiesCarrito.fechaExpiracionDefault}; path=/`;
 
-    const numPersonas = document.getElementById('numPersonas').vale;
-    document.cookie = `habitacion${habitacion}=${numPersonas}; expires=${cookiesCarrito.fechaExpiracionDefault}; path=/`;
+    const salida = document.getElementById('salida').value; // Cambiado de vale a value
+    document.cookie = `salida${habitacion}=${salida}; expires=${cookiesCarrito.fechaExpiracionDefault()}; path=/`;
+
+    const numPersonas = document.getElementById('numPersonas').value; // Cambiado de vale a value
+    document.cookie = `habitacion${habitacion}=${numPersonas}; expires=${cookiesCarrito.fechaExpiracionDefault()}; path=/`;
 }
 
-function actualizarImagen(idImagen){
-    fetch(`../../servidor/buscador.php?idImagen=${encodeURIComponent(idImagen)}`)
+function actualizarImagen(idImagen) {
+    fetch(`../../servidor/buscador.php?idImagen=${idImagen}`) // Usar idImagen dinámicamente
         .then(response => {
             if (!response.ok) {
                 throw new Error("Error en la respuesta del servidor");
             }
-            return response.json();
+            return response();
         })
         .then(data => {
             const urlImagen = data.url;
             if (urlImagen) {
-                document.getElementById('imagenElemento').src = urlImagen;
+                document.getElementById('imagenElemento').src = ("../recursos/img/habitaciones/" + urlImagen);
             } else {
                 console.error("URL de imagen no encontrada en la respuesta");
             }
@@ -33,16 +34,7 @@ function actualizarImagen(idImagen){
         .catch(error => console.error("Error en la solicitud AJAX:", error));
 }
 
-document.addEventListener('DOMContentLoaded', function() {
-    actualizarImagen(document.getElementById('idHabitacion').textContent);
-    document.querySelector('#btn_anadir').onclick = function() {
-        anadirReservaAlCarrito();
-    }
-});
-
-document.getElementById('reservaForm').addEventListener('submit', function(event) {
-    event.preventDefault(); 
-
+function verificar() {
     const entrada = document.getElementById('entrada').value;
     const salida = document.getElementById('salida').value;
     const numPersonas = document.getElementById('numPersonas').value;
@@ -72,9 +64,23 @@ document.getElementById('reservaForm').addEventListener('submit', function(event
     if (mensajeError) {
         mensajeDiv.innerHTML = mensajeError;
         mensajeDiv.style.color = 'red';
+        return false;
     } else {
         mensajeDiv.innerHTML = 'Formulario validado correctamente.';
         mensajeDiv.style.color = 'green';
-        //event.target.submit();
+        return true;
+    }
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+    const idHabitacion = document.getElementById('idHabitacion').textContent;
+    actualizarImagen(idHabitacion);
+
+    document.querySelector('#btn_anadir').onclick = function () {
+        if (verificar()) { // Solo si pasa la verificación
+            anadirReservaAlCarrito();
+            window.location.replace("reservar.html");
+        }
     }
 });
+                                                     
