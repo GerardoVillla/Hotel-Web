@@ -67,6 +67,10 @@ footer{
     grid-row: 3/4;
     background-color: black;
 }
+#imagen-prev{
+    width: 50vh;
+    height: 40vh;
+}
 
 #vista_previa{
     grid-column: 3/8;
@@ -113,6 +117,9 @@ footer{
     display: block;
 }
 
+#entradas, #etiquetas, #descripcion{
+    margin-top: 30px;
+}
 
 .btn:hover, #entradas input:hover, #descripcion textarea:hover{
     opacity: 80%;
@@ -149,6 +156,7 @@ footer{
 #btn_cancelar{
     background-color: #ae0003;
 }
+
 
 @media (max-width: 780px){
 

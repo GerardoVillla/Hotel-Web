@@ -65,10 +65,13 @@ header nav ul li a{
 
 
 #barra-editor{
-	grid-column: 2 / span 14;
-	grid-row: 1;
-	align-content: center;
-	margin: 3rem 0;
+    grid-column: 2 / span 14;
+    grid-row: 1;
+    align-content: center;
+    margin: 1rem 0;
+    z-index: 10; /* Asegúrate de que esté por encima de otros elementos */
+    background-color: #fff; /* Asegura que tenga un fondo */
+    padding: 1rem; /* Añade padding para el contenido */
 }
 
 #barra-editor form{
@@ -116,7 +119,14 @@ header nav ul li a{
 #seccion-habitaciones{
 	grid-column: 2 / span 14;
 	grid-row: 2;
+	overflow-y: auto;
+	max-height: 75vh;
 }
+
+#seccion-habitaciones::-webkit-scrollbar {
+    display: none;
+}
+
 
 #seccion-habitaciones ul li img{
 	width: 20vh;
@@ -128,7 +138,7 @@ header nav ul li a{
     align-items: flex-start; /* Alinea la imagen y el texto en la parte superior */
     border: 1px solid #030303;
     padding: 15px;
-    margin-bottom: 35px;
+	margin: 15px 40px 20px 40px;
 }
 /*Habitacion seleccionada*/
 .habitacion-propiedades.selected{
