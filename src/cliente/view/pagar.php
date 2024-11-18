@@ -1,3 +1,10 @@
+<?php
+
+
+
+
+?>
+
 <html>
     <head>
         <title>Pagar</title>
@@ -9,17 +16,21 @@
     <body>
     <div class="grid">
         <nav>
-            <a href="reservar.html">regresar</a>
+            <a href="principal.php">regresar</a>
         </nav>
 
         <section>
-            <h2>Pago de reservaci&oacute;n</h2>
+            <h2>Reservaci&oacute;n : </h2>
             <h3>
-                <label>Habitación:<br></label>
-                <label></label>Dias:<br></label>
-                <label></label>Personas:<br></label>
+                <label>Habitación: <br></label>
+                <label>Dias: <br></label>
+                <label>Personas: <br></label>
+                <label>Total: </label>
             </h3>
+
+
             <form>
+                <h2>Detalles del pago: </h2>
                 <label>
                     <p>Titular</p><input type="text" >
                 </label>
@@ -34,7 +45,7 @@
                 </label>
             </form>
 
-            <a href="home.html" class="boton">Pagar</a>
+            <a class="boton">Pagar</a>
         </section>
 
         <footer>

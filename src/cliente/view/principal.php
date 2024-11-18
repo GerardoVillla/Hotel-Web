@@ -16,9 +16,9 @@ validarSesion();
 		<h1>Hotel ecológico</h1>
 		<nav>
 			<ul>
-				<li><a href="pagar.html">Carrito</a></li>
+				<li><a href="pagar.php">Carrito</a></li>
 				<li><a href="#nosotros-tarjeta">Nosotros</a></li>
-				<li id="btn-reservar"><a href="reservar.html">Reservar habitaciones</a></li>
+				<li id="btn-reservar"><a href="reservar.php">Reservar habitaciones</a></li>
 			</ul>
 		</nav>
 	</header>
@@ -27,6 +27,9 @@ validarSesion();
 		<div id="img-home">
 			<img src="../recursos/img/principal/home.png" alt="img de bienvenida">
 		</div>
+
+
+
 		<section id="bienvenida-tarjeta">
 			<div class="articulo">
 				<h1>Bienvenido a <span>Hotel Ek' Balam</span></h1>

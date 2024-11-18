@@ -1,7 +1,7 @@
 import { cookiesCarrito } from './cookiesCarrito.js';
 
 function anadirReservaAlCarrito() {
-    const habitacion = document.getElementById('idHabitacion').textContent;
+    const habitacion = document.getElementById('idhabitacion').value;
     cookiesCarrito.agregarHabitacionAlCarrito(habitacion);
 
     const entrada = document.getElementById('entrada').value;
@@ -13,25 +13,6 @@ function anadirReservaAlCarrito() {
 
     const numPersonas = document.getElementById('numPersonas').value; // Cambiado de vale a value
     document.cookie = `habitacion${habitacion}=${numPersonas}; expires=${cookiesCarrito.fechaExpiracionDefault()}; path=/`;
-}
-
-function actualizarImagen(idImagen) {
-    fetch(`../../servidor/buscador.php?idImagen=${idImagen}`) // Usar idImagen dinámicamente
-        .then(response => {
-            if (!response.ok) {
-                throw new Error("Error en la respuesta del servidor");
-            }
-            return response();
-        })
-        .then(data => {
-            const urlImagen = data.url;
-            if (urlImagen) {
-                document.getElementById('imagenElemento').src = ("../recursos/img/habitaciones/" + urlImagen);
-            } else {
-                console.error("URL de imagen no encontrada en la respuesta");
-            }
-        })
-        .catch(error => console.error("Error en la solicitud AJAX:", error));
 }
 
 function verificar() {
@@ -73,13 +54,11 @@ function verificar() {
 }
 
 document.addEventListener('DOMContentLoaded', function () {
-    const idHabitacion = document.getElementById('idHabitacion').textContent;
-    actualizarImagen(idHabitacion);
 
     document.querySelector('#btn_anadir').onclick = function () {
         if (verificar()) { // Solo si pasa la verificación
             anadirReservaAlCarrito();
-            window.location.replace("reservar.html");
+            window.location.replace("../view/principal.php");
         }
     }
 });

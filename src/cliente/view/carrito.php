@@ -1,3 +1,13 @@
+<?php
+    if(isset($_GET['id'])){
+        include_once("../../servidor/reservacion.php");
+    }else{
+        $curl = "Location:".$GLOBALS["raiz_sitio"]."/src/cliente/view/reservar.php.php";
+        header($curl);
+        exit();
+    }
+?>
+
 <html>
     <head>
         <title>A&nacute;adir al carrito:</title>
@@ -9,24 +19,19 @@
     <body>
     <div class="grid">
         <nav class="nav">
-            <a href="home.html">regresar</a>
+            <a href="reservar.php">regresar</a>
         </nav>
 
         <aside class="aside">
-            <img src="" alt="imagen de fondo" id="imagenElemento">
+        <?php obtenerImagen($_GET['id']) ?>    
+
         </aside>
 
         <section class="section">
             <h2>Añadir al carrito</h2><br>
             <form id="reservaForm">
-                <label>Habitacion: <br> -habitacion-- <p id="idHabitacion">1</p><br></label>
-                <label>Dia de entrada: </label>
-                <input type="date" id="entrada">
-                <label>Dia de salida: </label>
-                <input type="date" id="salida">
-                <label>Numero de personas:</label>
-                <input type="number" min="1" max="10" maxlength="3" id="numPersonas">
-                <input type="submit" value="añadir" id="btn_anadir">
+                <?php reservar($_GET['id']) ?>
+                <input type="button" value="añadir" id="btn_anadir">
             </form>
             <div id="mensaje"></div>
         </section>
