@@ -16,11 +16,9 @@ validarSesion();
 		<h1>Hotel ecológico</h1>
 		<nav>
 			<ul>
-				<li><a href="index.html">Carrito</a></li>
+				<li><a href="pagar.html">Carrito</a></li>
 				<li><a href="#nosotros-tarjeta">Nosotros</a></li>
-				<li><a href="#desglose-habitaciones">Habitaciones</a></li>
-				<!--Este es el boton de reservar-->
-				<li id="btn-reservar"><a href="reservar.html">Reservar</a></li>
+				<li id="btn-reservar"><a href="reservar.html">Reservar habitaciones</a></li>
 			</ul>
 		</nav>
 	</header>

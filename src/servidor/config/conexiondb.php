@@ -5,7 +5,7 @@ class Conexiondb{
 	private $user = "root";
 	private $pass = "";
 	//Nombre que le se puso a la bd en phpmyadmin
-	private $db = "hotelecologico";
+	private $db = "ecologico";
 	public $conexion;
 
 	public function getConnection(){
