@@ -1,3 +1,7 @@
+<?php
+require_once ("../../servidor/sesion.php");
+validarSesion();
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
