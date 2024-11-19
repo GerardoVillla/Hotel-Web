@@ -58,25 +58,26 @@ function reservar() {
             <form>
                 <h2>Detalles del pago: </h2>
                 <label>
-                    <p>Titular</p><input type="text" >
+                    <p>Titular</p><input type="text" id="titular">
                 </label>
                 <label>
-                    <p>Numero de tarjeta:</p><input type="number" maxlength="22">
+                    <p>Numero de tarjeta:</p><input type="number" maxlength="22" id="numeroTarjeta">
                 </label>
                 <label>
                     <p>Mes de vencimiento:</p><input type="month">
                 </label>
                 <label>
-                    <p>CVV</p><input type="number" min="000" maxlength="3" max="999">
+                    <p>CVV</p><input type="number" min="000" maxlength="3" max="999" id="cvv">
                 </label>
             </form>
 
-            <a class="boton">Pagar</a>
+            <a class="boton" id="btnPagar">Pagar</a>
         </section>
 
         <footer>
             <p>&copy; Derechos reservados a un tal fulano</p>
         </footer>
     </div>
+    <script type="module" src="../scripts/pagar.js"></script>
     </body>
 </html>
