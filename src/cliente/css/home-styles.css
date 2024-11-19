@@ -1,7 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Domine:wght@400..700&family=Quicksand&display=swap');
+
 
 *{
 	margin: 0;
 	padding: 0;
+	font-family: "Domine", serif;
 }
 
 body{
@@ -13,6 +16,7 @@ body{
 	".contenido"
 	"footer";
 	margin: 0;/*Parece que esta declaracion es redundante porque ya se aplica en arriba */
+	
 }
 
 header{
@@ -105,8 +109,9 @@ header nav ul li a{
 	font-size: 3.5rem;
 }
 #bienvenida-tarjeta p{
+	text-align: justify;
 	font-size: 1.25rem;
-	padding-right: 1.25em;
+	padding-right: 7rem;
 }
 
 #bienvenida-tarjeta img{
