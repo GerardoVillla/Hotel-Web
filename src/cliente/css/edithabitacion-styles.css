@@ -118,7 +118,7 @@ footer{
 }
 
 #entradas, #etiquetas, #descripcion{
-    margin-top: 30px;
+    margin-top: 10px;
 }
 
 .btn:hover, #entradas input:hover, #descripcion textarea:hover{
