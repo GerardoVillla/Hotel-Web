@@ -56,6 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 alert("Todos los campos deben tener valor");
             }else{
                 console.log("Creando cambio");
+                let img = document.getElementById('imagen-prev');
                 const HabInformacionAEnviar = {
                     nombre: document.getElementById('txt_nombre').value,
                     categoria: document.getElementById('txt_categoria').value,
@@ -64,8 +65,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     disponibles: document.getElementById('txt_habdisponibles').value,
                     capacidadDePersonas: document.getElementById('txt_capacidad').value,
                     costoPorNoche: document.getElementById('txt_costo').value,
-                    //btn_cambiarimg: document.getElementById('imagen-prev').src
-                    urlImagen: "cascada2.jpg"
+                    btn_cambiarimg: img.files[0].name,
+                    //urlImagen: "cascada2.jpg"
     
                 };
 

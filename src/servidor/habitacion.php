@@ -44,7 +44,6 @@ if(isset($_POST["action"])){
 function actualizarHabitacion($idHabitacion, $campo, $valorActualizado){
 	$conexionSql = new Conexiondb();
 	$conexionSql = $conexionSql->getConnection();
-
 	$peticion = "UPDATE habitaciones SET $campo = ? WHERE idhabitacion = ?";
 	$stmt = $conexionSql->prepare($peticion);
 	if(in_array($campo, ["numHabitaciones", "disponibles", "capacidadDePersonas", "costoPorNoche"])){

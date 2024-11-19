@@ -48,7 +48,7 @@ validarSesion();
             <p><b>Cambiar imagen:   </b><input type="file" id="btn_cambiarimg" accept="image/*" onchange="PrevisualizarImagen(event)"></p>
         </div>
         <div id="imagen">
-            <img id="imagen-prev" src="../assets/img/home/deluxe.jpg" alt="Previsualización de la Imagen">
+            <img id="imagen-prev" src="../assets/img/home/deluxe.jpg" alt="Previsualización de la Imagen" accept="image/*">
         </div>
         <div id="vista_previa">
             <h2 id="id_habitacion">ID</h2>
