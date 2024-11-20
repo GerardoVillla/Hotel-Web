@@ -1,38 +1,81 @@
 <?php
 include_once "config/conexiondb.php";
 
-if(isset($_GET["action"])){
-	$peticion = $_GET["action"];
+if(isset($_POST["action"])){
+	$peticion = $_POST["action"];
 	switch($peticion){
 		case "obtenerDescripcion";
-			$idHabitacion = $_GET["id"];
+			$idHabitacion = $_POST["id"];
 			obtenerDescripcion($idHabitacion);
 			break;
 		case "listar";
 			listar();
 			break;
 		case "filtrar";
-			$categoria = $_GET["categoria"];
+			$categoria = $_POST["categoria"];
 			filtrarPorCategoria($categoria);
 			break;
 		case "crear":
-			$categoria = $_GET["txt_categoria"];
-			$habitaciones = $_GET["txt_habitaciones"];
-			$habitacionesDisp = $_GET["txt_habdisponibles"];
-			$costo = $_GET["txt_costo"];
-			$img = $_GET["btn_cambiarimg"];
-			$descripcion = $_GET["txt_descripcion"];
-			insertar();
+			$nombre = $_POST["nombre"];
+			$categoria = $_POST["categoria"];
+			$descripcion = $_POST["descripcion"];
+			$habitaciones = $_POST["numHabitaciones"];
+			$habitacionesDisp = $_POST["disponibles"];
+			$capacidad = $_POST["capacidadDePersonas"];
+			$costo = $_POST["costoPorNoche"];
+			$img = $_POST["urlImagen"];
+			crearHabitacion($nombre, $categoria, $descripcion, $habitaciones, $habitacionesDisp, $capacidad, $costo, $img);
 			break;
-		case "editar":
+		case "actualizar":
+			$idHabitacion = $_POST["id"];
+			$valor = $_POST["valor"];
+			$campo = $_POST["campo"];
+			actualizarHabitacion($idHabitacion, $campo, $valor);	
 			break;
 		case "eliminar":
+			$idHabitacion = $_POST["id"];
+			eliminarHabitacion($idHabitacion);
 			break;
 	}
 }
 
-function insertar(){
+
+
+function actualizarHabitacion($idHabitacion, $campo, $valorActualizado){
+	$conexionSql = new Conexiondb();
+	$conexionSql = $conexionSql->getConnection();
+	$peticion = "UPDATE habitaciones SET $campo = ? WHERE idhabitacion = ?";
+	$stmt = $conexionSql->prepare($peticion);
+	if(in_array($campo, ["numHabitaciones", "disponibles", "capacidadDePersonas", "costoPorNoche"])){
+		$stmt->bind_param("ii", $valorActualizado, $idHabitacion);
+	}else{
+		$stmt->bind_param("si", $valorActualizado, $idHabitacion);
+	}
+	$stmt->execute();
+	$stmt->close();
+	$conexionSql->close();																																			
+	return;
 }
+
+function eliminarHabitacion($idHabitacion){
+	$conexionSql = new Conexiondb();
+	$conexionSql = $conexionSql->getConnection();
+
+	$peticion = "DELETE FROM habitaciones WHERE idhabitacion = ?";
+	$stmt = $conexionSql->prepare($peticion);
+	$stmt->bind_param("i", $idHabitacion);
+	
+	if($stmt->execute()){
+		echo "Habitación eliminada";
+	}else{
+		echo "Error al eliminar habitación" . $stmt->error;
+	}	
+	$stmt->close();
+	$conexionSql->close();
+	return;
+
+}
+
 
 function listar(){
 	$conexionSql = new Conexiondb();
@@ -115,4 +158,33 @@ function obtenerDescripcion($idHabitacion){
     $conexionSql->close();
 	echo $descripcionHab;
     return $descripcionHab;
+}
+
+function crearHabitacion($nombre, $categoria, $descripcion, $habitaciones, $habitacionesDisp, $capacidad, $costo, $img){
+	try{
+	// Habilitar informes de errores
+	ini_set('display_errors', 1);
+	ini_set('display_startup_errors', 1);
+	error_reporting(E_ALL);
+	
+	// Configurar mysqli para lanzar excepciones
+	mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+	$conexionSql = new Conexiondb();
+	$conexionSql = $conexionSql->getConnection();
+
+	$peticion = "INSERT INTO habitaciones (nombre, categoria, descripcion, numHabitaciones, disponibles, capacidadDePersonas, costoPorNoche, urlImagen) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+	$stmt = $conexionSql->prepare($peticion);
+	$stmt->bind_param("sssiiiis", $nombre, $categoria, $descripcion, $habitaciones, $habitacionesDisp, $capacidad, $costo, $img);
+	
+	if($stmt->execute()){
+		echo "Habitación creada";
+	}else{
+		echo "Error al crear habitación" . $stmt->error;
+	}	
+	$stmt->close();
+	$conexionSql->close();
+	}catch(Exception $e){
+		echo "Error al crear habitación" . $e->getMessage();
+	}
+	return;
 }

@@ -1,9 +1,5 @@
-
-
-
-//Carga las habitaciones disponibles de la base de datos
+// Propósito: Proveer funcionalidades para la administración de habitaciones
 document.addEventListener('DOMContentLoaded', () => {
-    actualizarHabitacionEnLista();  
     cargarTodasHabitaciones();
 });
 
@@ -19,7 +15,13 @@ selectCuarto.addEventListener('change', () => {
         return;
     }
     console.log("Filtrando habitaciones")
-    fetch(`../../servidor/habitacion.php?action=filtrar&categoria=${tipoSeleccionado}`)
+    const argumentos = new URLSearchParams();
+    argumentos.append("action", "filtrar");
+    argumentos.append("categoria", tipoSeleccionado);
+    fetch('../../servidor/habitacion.php', {
+        method: 'POST',
+        body: argumentos
+    })
     .then(response => response.text())
     .then(html => {
             listaCuartos.innerHTML = html;
@@ -36,11 +38,16 @@ function cargarTodasHabitaciones(){
     console.log("C1")
     if (selectCuarto && contenedorCuartos) {
         const listaCuartos = contenedorCuartos.querySelector('#lista-cuartos');
-        
-        fetch('../../servidor/habitacion.php?action=listar')
+        argumentos = new URLSearchParams();
+        argumentos.append('action', 'listar');
+        fetch('../../servidor/habitacion.php', {
+            method : 'POST',
+            body: argumentos
+        })
         .then(response => response.text())
         .then(html => {
             listaCuartos.innerHTML = html;
+            console.log(html);
             console.log("Insertando habitaciones desde la base de datos")
         })
         .catch(error => console.error('Error al cargar habitaciones:', error));
@@ -89,34 +96,6 @@ function dirigirAeditar(modo) {
     window.location.href = 'edithabitacion.php';
 }
 
-function actualizarHabitacionEnLista() {
-    const HabInfo = JSON.parse(localStorage.getItem('HabElegida'));
-    console.log("if(HabInfo)");
-    if (HabInfo) {
-        // Buscar habitación existente o crear nueva
-        let habitacion = document.querySelector(`[data-tipo="${HabInfo.nombre}"]`);
-        if (!habitacion) {
-            console.log("añadiendo a lista");
-            habitacion = document.createElement('li');
-            habitacion.classList.add('habitacion-propiedades');
-            habitacion.dataset.tipo = HabInfo.nombre;
-            document.getElementById('lista-cuartos').appendChild(habitacion);
-        }
-
-        // Actualiza o crea el contenido de la habitación
-        habitacion.innerHTML = `
-            <img src="${HabInfo.imagen}" alt="">
-            <div class="detalles-habitacion">
-                <h2 id="nombre-habitacion">${HabInfo.nombre}</h2>
-                <p><strong>Categoría:</strong> <span id="categoria-habitacion">${HabInfo.nombre}</span></p>
-                <p><strong>Disponibilidad:</strong> <span id="disponibilidad-habitacion">Disponible</span></p>
-                <p><strong>Habitaciones:</strong> <span id="cantidad-habitacion">${HabInfo.cantidad}</span></p>
-                <p><strong>Hab. disponibles:</strong> <span id="cantidad-disponible">${HabInfo.cantidadDisponible}</span></p>
-                <p><strong>Costo:</strong> <span id="costo-habitacion">$${HabInfo.costo}</span></p>
-            </div>
-        `;
-    }
-}
 
 function eliminarHab() {
     const HabElegida = document.querySelector('.habitacion-propiedades.selected');
@@ -129,13 +108,26 @@ function eliminarHab() {
     if (!confirmacion) return;
     // Obtener el nombre de la habitación seleccionada
     const nombreHabitacion = HabElegida.querySelector('#nombre-habitacion').textContent;
+    const idhabitacion = HabElegida.querySelector('#codigo-habitacion').textContent;
+    // Eliminar la habitación de la base de datos
+    const argumentos = new URLSearchParams();
+    argumentos.append('action', 'eliminar');
+    argumentos.append('id', idhabitacion);
+    fetch('../../servidor/habitacion.php', {
+        method: 'POST',
+        body: argumentos
+    }).then(response => response.text())
+    .then(text => console.log(text))
+    .catch(error => console.error('Error al eliminar habitación:', error));
+    
     // Obtener la lista de habitaciones de localStorage
     let listaHabitaciones = JSON.parse(localStorage.getItem('listaHabitaciones')) || [];
     // Filtrar la habitación a eliminar y actualizar la lista en localStorage
     listaHabitaciones = listaHabitaciones.filter(habitacion => habitacion.nombre !== nombreHabitacion);
     localStorage.setItem('listaHabitaciones', JSON.stringify(listaHabitaciones));
     // Remover la habitación del DOM
-    HabElegida.remove();
+    //HabElegida.remove();
 
     alert(`La habitación "${nombreHabitacion}" ha sido eliminada.`);
+    window.location.reload();
 }

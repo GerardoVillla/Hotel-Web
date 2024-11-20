@@ -46,7 +46,7 @@ header nav ul li a{
 	color: #000;
 }
 #btn-menu{
-	background-color: #A30350;
+	background-color: #191f04;
 	padding: 0.5rem 2rem;
 	border-radius: 5px;
 	box-shadow: 0 4px 0 rgba(0, 0, 0, 0.2); /* Sombra solo en la parte inferior */
@@ -85,7 +85,7 @@ header nav ul li a{
 	width: 10rem;
 	height: 2rem;
 	border-radius: 5px;
-	border: none;
+	border: #bababa solid 2px;
 }
 
 
@@ -136,7 +136,7 @@ header nav ul li a{
 	background-color: #ffffff;
     display: flex;
     align-items: flex-start; /* Alinea la imagen y el texto en la parte superior */
-    border: 1px solid #030303;
+    border: 2px solid #bababa;
     padding: 15px;
 	margin: 15px 40px 20px 40px;
 }
@@ -144,6 +144,7 @@ header nav ul li a{
 .habitacion-propiedades.selected{
 	transform: scale(1.05);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+	background-color: beige;
 }
 
 .habitacion-propiedades img {
@@ -173,7 +174,6 @@ header nav ul li a{
 #botones-panel input:active {
     transform: scale(0.95); /* Hace el botón ligeramente más pequeño */
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); /* Ajusta la sombra para dar sensación de profundidad */
-	background-color: #d4edda;
 }
 
 /* Efecto de sombra de hover */
