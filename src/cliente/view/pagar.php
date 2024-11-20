@@ -1,5 +1,5 @@
 <?php
-include_once("../servidor/sesion.php");
+include_once("../../servidor/sesion.php");
 
 function reservar() {
     validarSesion();
@@ -13,27 +13,34 @@ function reservar() {
     }
 
     $html = "<h2>Detalles de la reserva:</h2>";
+    $totalFinal = 0;
 
-    for ($i = 0; $i < $longitud; $i++) {
-        $habitacion = htmlspecialchars($reservas[$i]);
+    foreach ($reservas as $habitacion) {
+        $habitacion = htmlspecialchars($habitacion);
 
-        $cookieIndex = $i + 1;
-
-        $entrada = isset($_COOKIE['entrada' . $cookieIndex]) ? htmlspecialchars($_COOKIE['entrada' . $cookieIndex]) : 'No definida';
-        $salida = isset($_COOKIE['salida' . $cookieIndex]) ? htmlspecialchars($_COOKIE['salida' . $cookieIndex]) : 'No definida';
-        $personas = isset($_COOKIE['personas' . $cookieIndex]) ? htmlspecialchars($_COOKIE['personas' . $cookieIndex]) : 'No definidas';
+        // Usamos el número de la habitación directamente para las cookies
+        $entrada = isset($_COOKIE['entrada' . $habitacion]) ? htmlspecialchars($_COOKIE['entrada' . $habitacion]) : 'No definida';
+        $salida = isset($_COOKIE['salida' . $habitacion]) ? htmlspecialchars($_COOKIE['salida' . $habitacion]) : 'No definida';
+        $personas = isset($_COOKIE['habitacion' . $habitacion]) ? htmlspecialchars($_COOKIE['habitacion' . $habitacion]) : 'No definidas';
+        $totalReserva = isset($_COOKIE['total' . $habitacion]) ? htmlspecialchars($_COOKIE['total' . $habitacion]) : 'No definidas';
         $idUsuario = $_SESSION['idUsuario'];
 
         $html .= "<div>";
-        $html .= '<input type="hidden" value= '.$idUsuario.'> id="idUsuario"';
+        $html .= '<input type="hidden" value=' . $idUsuario . ' id="idUsuario">';
         $html .= "<label>Habitación: $habitacion</label><br>";
         $html .= "<label>Entrada: $entrada</label><br>";
         $html .= "<label>Salida: $salida</label><br>";
         $html .= "<label>Personas: $personas</label><br>";
+        $html .= "<label>Total reservación $habitacion : $ $totalReserva</label><br>";
         $html .= "</div><hr>";
+
+        $intTotalReserva = is_numeric($totalReserva) ? (int)$totalReserva : 0;
+        $totalFinal += $intTotalReserva;
     }
 
+    $html .= "<p id=\"totalFinal\">Total final: $ $totalFinal</p>";
     return $html;
+
 }
 ?>
 
@@ -56,7 +63,6 @@ function reservar() {
             <h2>Reservaci&oacute;nes : </h2>
             <h3>
                 <?php echo reservar(); ?>
-                <p id="totalFinal">Total final: </p>
             </h3>
 
 
