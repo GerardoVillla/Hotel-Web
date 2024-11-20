@@ -15,7 +15,6 @@ validarSesion();
         <h1>Hotel ecologico Ek' Balam</h1>
     </header>
     <form id="grid" method="get" enctype="multipart/form-data" >
-        <input type="hidden" name="creaHabitacion" value="crearHabitacion">
         <div id="etiquetas">
             <p><b>Nombre:</b></p>
             <p><b>Categoria (tipo):</b></p>

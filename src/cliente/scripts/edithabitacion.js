@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 alert("Todos los campos deben tener valor");
             }else{
                 console.log("Creando cambio");
-                let img = document.getElementById('imagen-prev');
+                let img = document.getElementById('btn_cambiarimg');
                 const HabInformacionAEnviar = {
                     nombre: document.getElementById('txt_nombre').value,
                     categoria: document.getElementById('txt_categoria').value,
