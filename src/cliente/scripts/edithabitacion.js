@@ -34,17 +34,11 @@ document.addEventListener('DOMContentLoaded', () => {
         
     }
     if(modo ==='añadir'){
-        
+        const id_habitacion = document.getElementById('id_habitacion');
+        id_habitacion.style.display = 'none';
         console.log("Añadir");
-        const input = document.createElement('input');
-        input.type = 'text';
-        input.id = 'txt_categoria'; 
-        categoriaElemento.replaceWith(input);
-        const desc= document.getElementById('info_descripcion');
-        desc.textContent= " "
     }
-    console.log("GG");
-
+    
     const btnGuardar = document.getElementById('btn_guardar');
     const btnCancelar = document.getElementById('btn_cancelar');
 
@@ -52,7 +46,6 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log("Guardar");
         btnGuardar.addEventListener('click', () => {
             event.preventDefault();  // Prevenir el comportamiento de recarga
-
             const Habs = parseInt(document.getElementById("txt_habitaciones").value);
             const HabsDisp = parseInt(document.getElementById("txt_habdisponibles").value);
             const Categoria = document.getElementById("txt_categoria").value; 
@@ -63,39 +56,33 @@ document.addEventListener('DOMContentLoaded', () => {
                 alert("Todos los campos deben tener valor");
             }else{
                 console.log("Creando cambio");
-                const HabInformacion = {
-                    nombre: document.getElementById('txt_categoria').value,
-                    cantidad: document.getElementById('txt_habitaciones').value,
-                    cantidadDisponible: document.getElementById('txt_habdisponibles').value,
-                    costo: document.getElementById('txt_costo').value,
-                    imagen: document.getElementById('imagen-prev').src
-                    };
+                let img = document.getElementById('btn_cambiarimg').files[0];
+                const HabInformacionAEnviar = {
+                    nombre: document.getElementById('txt_nombre').value,
+                    categoria: document.getElementById('txt_categoria').value,
+                    descripcion: document.getElementById('t_area_descripcion').value,
+                    numHabitaciones: document.getElementById('txt_habitaciones').value,
+                    disponibles: document.getElementById('txt_habdisponibles').value,
+                    capacidadDePersonas: document.getElementById('txt_capacidad').value,
+                    costoPorNoche: document.getElementById('txt_costo').value,
+                    urlImagen: img.name,
+    
+                };
 
-                
-                localStorage.setItem('HabElegida', JSON.stringify(HabInformacion));
-                localStorage.setItem('ModoEdit', 'añadir');
-                
-                let listaHabitaciones = JSON.parse(localStorage.getItem('listaHabitaciones')) || [];
-                if (modo === 'editar') {
-                    listaHabitaciones = listaHabitaciones.map(hab => 
-                        hab.nombre === HabInfo.nombre ? { ...hab, ...HabInformacion } : hab
-                    );
-                } else {
-                    listaHabitaciones.push(HabInformacion);
-                }
+                    if(modo === 'añadir'){
+                        console.log("Creando habitacion");
+                        console.log(HabInformacionAEnviar);
+                        crearHabitacionEnServidor(HabInformacionAEnviar);
+                    }else{
+                        actualizarHabitacionEnServidor(HabInformacionAEnviar, HabInfo.codigo);
+                    }
+                    
 
-                localStorage.setItem('listaHabitaciones', JSON.stringify(listaHabitaciones));
-                let listaCategorias = JSON.parse(localStorage.getItem('listaCategorias')) || [];
-                if (!listaCategorias.includes(Categoria)) {
-                    listaCategorias.push(Categoria); // Añadir nueva categoría si no existe
-                    localStorage.setItem('listaCategorias', JSON.stringify(listaCategorias));
-                }
-
-                aAdmin();
             }
+            alert("Cambios guardados");
+            aAdmin();
         });
     }
-
     if (btnCancelar) {
         btnCancelar.addEventListener('click', () => {
             event.preventDefault();  // Prevenir el comportamiento de recarga
@@ -108,14 +95,60 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
+function actualizarHabitacionEnServidor(HabInformacionAEnviar, id) {
+    // Idenfiticar los campos que sufrieron cambios
+    console.log("Entrando a metodo para actualizar habitacion");
+    const datosIniciales = JSON.parse(localStorage.getItem('HabElegida'));
+    for (const key in HabInformacionAEnviar) {
+        if (HabInformacionAEnviar[key] !== datosIniciales[key]) {
+            console.log("Actualizando habitacion en servidor");
+            const argumentos = new URLSearchParams();
+            argumentos.append('action', 'actualizar');
+            argumentos.append('id', id);
+            argumentos.append("campo", key);
+            argumentos.append("valor", HabInformacionAEnviar[key]);
+            fetch('../../servidor/habitacion.php', {
+                method: 'POST',
+                body: argumentos
+            }).then(respuesta => respuesta.text())
+            .then(resultado => {
+                console.log(resultado);
+            })
+            console.log(argumentos);
+        }
+    }
+    
+
+
+}
+
+function crearHabitacionEnServidor(HabInformacionAEnviar){
+    const argumentos = new URLSearchParams();
+    argumentos.append('action', 'crear');
+    Object.keys(HabInformacionAEnviar).forEach(key => argumentos.append(key, HabInformacionAEnviar[key]));
+    fetch('../../servidor/habitacion.php', {
+        method: 'POST',
+        body: argumentos
+    }).then(respuesta =>respuesta.text())
+    .then(resultado => {
+
+    })
+    console.log(argumentos);
+}
 
 function obtenerDescripcion(id, HabInfo){
-    fetch(`../../servidor/habitacion.php?action=obtenerDescripcion&id=${id}`)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
+    const argumentos = new URLSearchParams();
+    argumentos.append('action', 'obtenerDescripcion');
+    argumentos.append('id', id);
+    fetch('../../servidor/habitacion.php', {
+        method: 'POST',
+        body: argumentos
+    })
+        .then(respuesta => {
+            if (!respuesta.ok) {
+                throw new Error('La respuesta no fue bien recibida');
             }
-            return response.text();
+            return respuesta.text();
         })
         .then(descripcion => {
             // Guardar la descripción en HabInfo

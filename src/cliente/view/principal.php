@@ -50,6 +50,7 @@ validarSesion();
 				< Nuestras habitaciones>
 			</h1>
 			<div class="carrusel">
+				
 				<a class="tarjeta-habitacion" href="#">
 					<img src="../recursos/img/principal/estandar.jpg" alt="img habitacion estandar">
 					<div class="descripcion-articulo">
