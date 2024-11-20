@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 alert("Todos los campos deben tener valor");
             }else{
                 console.log("Creando cambio");
-                let img = document.getElementById('btn_cambiarimg');
+                let img = document.getElementById('btn_cambiarimg').files[0];
                 const HabInformacionAEnviar = {
                     nombre: document.getElementById('txt_nombre').value,
                     categoria: document.getElementById('txt_categoria').value,
@@ -65,8 +65,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     disponibles: document.getElementById('txt_habdisponibles').value,
                     capacidadDePersonas: document.getElementById('txt_capacidad').value,
                     costoPorNoche: document.getElementById('txt_costo').value,
-                    btn_cambiarimg: img.files[0].name,
-                    //urlImagen: "cascada2.jpg"
+                    urlImagen: img.name,
     
                 };
 
@@ -80,7 +79,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     
 
             }
-            //aAdmin();
+            alert("Cambios guardados");
+            aAdmin();
         });
     }
     if (btnCancelar) {
