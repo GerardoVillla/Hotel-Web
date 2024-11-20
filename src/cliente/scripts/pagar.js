@@ -30,11 +30,11 @@ function pagar() {
 
     for (const idHabitacion of habitacionesReservaciones) {
         const idHab = idHabitacion;
-        const idCliente = 1; // Se asume un cliente predeterminado
+        const idCliente = document.getElementById('idUsuario').value;
         const fechaRes = new Date().toISOString().split('T')[0]; // Formato YYYY-MM-DD
         const inicioEstadia = cookiesCarrito.obtenerCookie('entrada' + idHabitacion);
         const finEstadia = cookiesCarrito.obtenerCookie('salida' + idHabitacion);
-        const subtotal = 1000;
+        const subtotal = cookiesCarrito.obtenerCookie('total' + idHabitacion);
         // Validar datos antes de continuar
         /*if (!inicioEstadia || !finEstadia) {
             console.error(`Faltan datos para la habitación ${idHab}`);

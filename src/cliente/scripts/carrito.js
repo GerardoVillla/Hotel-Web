@@ -8,11 +8,14 @@ function anadirReservaAlCarrito() {
     document.cookie = `entrada${habitacion}=${entrada}; expires=${cookiesCarrito.fechaExpiracionDefault()}; path=/`;
 
 
-    const salida = document.getElementById('salida').value; // Cambiado de vale a value
+    const salida = document.getElementById('salida').value;
     document.cookie = `salida${habitacion}=${salida}; expires=${cookiesCarrito.fechaExpiracionDefault()}; path=/`;
 
-    const numPersonas = document.getElementById('numPersonas').value; // Cambiado de vale a value
+    const numPersonas = document.getElementById('numPersonas').value;
     document.cookie = `habitacion${habitacion}=${numPersonas}; expires=${cookiesCarrito.fechaExpiracionDefault()}; path=/`;
+
+    const total = document.getElementById('total').textContent
+    document.cookie = `total${habitacion}=${total}; expires=${cookiesCarrito.fechaExpiracionDefault()}; path=/`;
 }
 
 function verificar() {
@@ -54,6 +57,35 @@ function verificar() {
 }
 
 document.addEventListener('DOMContentLoaded', function () {
+
+    const elements = {
+        entrada: document.getElementById('entrada'),
+        salida: document.getElementById('salida'),
+        numPersonas: document.getElementById('numPersonas'),
+        costoPorNoche: parseFloat("<?php echo $registro['costoPorNoche']; ?>"),
+        totalDiv: document.getElementById('total') // Cambió de etiqueta a un div
+    };
+
+    const calcularTotal = () => {
+        const fechaEntrada = new Date(elements.entrada.value);
+        const fechaSalida = new Date(elements.salida.value);
+        const personas = parseInt(elements.numPersonas.value) || 1;
+
+        if (fechaEntrada && fechaSalida && fechaSalida > fechaEntrada) {
+            const tiempoEstadia = Math.ceil((fechaSalida - fechaEntrada) / (1000 * 60 * 60 * 24)); // Días
+            const total = tiempoEstadia * elements.costoPorNoche * personas;
+            elements.totalDiv.textContent = `$${total.toFixed(2)}`; // Usa el div aquí
+        } else {
+            elements.totalDiv.textContent = "$0.00";
+        }
+    };
+
+    ['change', 'input'].forEach(evento => {
+        elements.entrada.addEventListener(evento, calcularTotal);
+        elements.salida.addEventListener(evento, calcularTotal);
+        elements.numPersonas.addEventListener(evento, calcularTotal);
+    });
+
 
     document.querySelector('#btn_anadir').onclick = function () {
         if (verificar()) { // Solo si pasa la verificación

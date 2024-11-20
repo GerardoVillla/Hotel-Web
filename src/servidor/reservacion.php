@@ -59,7 +59,7 @@ include_once "config/config.inc.php";
             $html .= '<label>Numero de personas:</label>';
             $html .= '<input type="number" min="1" max="10" maxlength="3" id="numPersonas">';
             $html .= '<label>Costo por noche: '.$registro['costoPorNoche'].'</label>';
-            $html .= '<label id="total">Total: </label>';
+            $html .= '<label>Total: <div id="total"></div></label>';
         }
         echo $html;
         return $html;
@@ -73,14 +73,14 @@ include_once "config/config.inc.php";
         $peticion = "SELECT urlImagen FROM habitaciones WHERE idhabitacion = $id";
         $resultado = $conexionSql->query($peticion);
 
-        if ($resultado && $fila = $resultado->fetch_assoc()) { // Verifica si hay resultados y extrae la fila
-            $urlImagen = $fila['urlImagen']; // Obtén el valor de la columna 'urlImagen'
+        if ($resultado && $fila = $resultado->fetch_assoc()) {
+            $urlImagen = $fila['urlImagen'];
             $imagenHtml = '<img src="../recursos/img/habitaciones/' . $urlImagen . '" alt="imagen de fondo" id="idImagenFondo">';
-            echo $imagenHtml; // Muestra el HTML generado
-            return $urlImagen; // Devuelve la URL como string si es necesario
+            echo $imagenHtml;
+            return $urlImagen;
         } else {
             echo "No se encontró la imagen.";
-            return null; // Devuelve null si no hay resultados
+            return null;
         }
 
     }

@@ -48,13 +48,6 @@ nav a:hover {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
-.aside {
-    grid-column: 1 / 2;
-    grid-row: 2 / 3;
-    background-color: #F1F1F1;
-    padding: 40px;
-}
-
 form {
     display:flex;
     flex-direction: column;
@@ -74,7 +67,7 @@ form input, form select {
 }
 
 .section {
-    grid-column: 3 / 4;
+    grid-column: 2 / 4;
     grid-row: 1 / 4;
     background-color: #F1F1F1;
     padding-right: 40px;

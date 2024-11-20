@@ -20,7 +20,18 @@ function agregarReservacionDB($idHabitacion, $idCliente, $fechaReservacion, $ini
     // Cierra la conexión
     $conexionSql->close();
 
+    actualizarDisponibilidad($idHabitacion);
+
     return $respuesta; // Devuelve el resultado
+}
+
+function actualizarDisponibilidad($idHabitacion){
+    //TODO
+    $conexionSql = new Conexiondb();
+    $conexionSql = $conexionSql->getConnection();
+
+    $peticion = "UPDATE idhabitacion ";
+
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {

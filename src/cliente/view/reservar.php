@@ -34,19 +34,6 @@ include_once("../../servidor/reservacion.php");
             </div>
         </section>
 
-        <aside class="aside">
-            <h1>Reservar</h1>
-            <form>
-                <label>Dia de entrada</label>
-                <input type="date">
-                <label>Dia de salida</label>
-                <input type="date">
-                <label>Numero de personas</label>
-                <input type="number" min="1" max="10" maxlength="3">
-            </form>
-            <input type="submit" value="actualizar búsqueda">
-        </aside>
-
         <footer>
             <p>&copy; Derechos reservados a un tal fulano</p>
         </footer>

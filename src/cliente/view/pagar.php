@@ -1,5 +1,8 @@
 <?php
+include_once("../servidor/sesion.php");
+
 function reservar() {
+    validarSesion();
     // Recuperar y convertir la cookie en un arreglo
     $cookieValue = isset($_COOKIE['carritoHabitaciones']) ? $_COOKIE['carritoHabitaciones'] : '';
     $reservas = explode(",", $cookieValue);
@@ -19,8 +22,10 @@ function reservar() {
         $entrada = isset($_COOKIE['entrada' . $cookieIndex]) ? htmlspecialchars($_COOKIE['entrada' . $cookieIndex]) : 'No definida';
         $salida = isset($_COOKIE['salida' . $cookieIndex]) ? htmlspecialchars($_COOKIE['salida' . $cookieIndex]) : 'No definida';
         $personas = isset($_COOKIE['personas' . $cookieIndex]) ? htmlspecialchars($_COOKIE['personas' . $cookieIndex]) : 'No definidas';
+        $idUsuario = $_SESSION['idUsuario'];
 
         $html .= "<div>";
+        $html .= '<input type="hidden" value= '.$idUsuario.'> id="idUsuario"';
         $html .= "<label>Habitación: $habitacion</label><br>";
         $html .= "<label>Entrada: $entrada</label><br>";
         $html .= "<label>Salida: $salida</label><br>";
