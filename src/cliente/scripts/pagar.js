@@ -35,12 +35,6 @@ function pagar() {
         const inicioEstadia = cookiesCarrito.obtenerCookie('entrada' + idHabitacion);
         const finEstadia = cookiesCarrito.obtenerCookie('salida' + idHabitacion);
         const subtotal = cookiesCarrito.obtenerCookie('total' + idHabitacion);
-        // Validar datos antes de continuar
-        /*if (!inicioEstadia || !finEstadia) {
-            console.error(`Faltan datos para la habitación ${idHab}`);
-            salioBien = false;
-            continue; // Pasar a la siguiente habitación
-        }*/
 
         // Llama a la función que procesa la reservación
         const resultado = agregarUnaReservacion(idHab, idCliente, fechaRes, inicioEstadia, finEstadia, subtotal);
@@ -48,8 +42,15 @@ function pagar() {
         if (!resultado) {
             console.error(`Error al procesar la reservación para la habitación ${idHab}`);
             salioBien = false;
+        }else{
+            cookiesCarrito.eliminarCookie('entrada' + idHabitacion);
+            cookiesCarrito.eliminarCookie('salida' + idHabitacion);
+            cookiesCarrito.eliminarCookie('total' + idHabitacion);
+            cookiesCarrito.eliminarCookie('habitacion' + idHabitacion);
         }
     }
+    cookiesCarrito.eliminarTodasabitacionesDelCarrito();
+    //cookiesCarrito.eliminarTodasLasCookies();
     return salioBien;
 }
 
@@ -87,6 +88,8 @@ document.addEventListener('DOMContentLoaded', function(){
             }else{
                 //alert("pago no completado correctamente, vuelva a intentar");
             }
+        }else{
+            window.location.replace("../view/principal.php");
         }
     })
 });

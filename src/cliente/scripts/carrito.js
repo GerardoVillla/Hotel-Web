@@ -21,7 +21,8 @@ function anadirReservaAlCarrito() {
 function verificar() {
     const entrada = document.getElementById('entrada').value;
     const salida = document.getElementById('salida').value;
-    const numPersonas = document.getElementById('numPersonas').value;
+    const numPersonas = parseInt(document.getElementById('numPersonas').value, 10);
+    const capacidad = parseInt(document.getElementById('capacidad').value, 10); 
 
     let mensajeError = '';
 
@@ -39,8 +40,10 @@ function verificar() {
         mensajeError += 'La fecha de salida no puede ser anterior a la fecha de entrada. <br>';
     }
 
-    if (!numPersonas || numPersonas < 1 || numPersonas > 10) {
-        mensajeError += 'El número de personas debe estar entre 1 y 10. <br>';
+    if (!numPersonas) {
+        mensajeError += 'ingrese una cantidad de personas';
+    } else if (numPersonas>capacidad){
+        mensajeError += 'la cantidad de personas supera la capacidad';
     }
 
     const mensajeDiv = document.getElementById('mensaje');
@@ -62,7 +65,7 @@ document.addEventListener('DOMContentLoaded', function () {
         entrada: document.getElementById('entrada'),
         salida: document.getElementById('salida'),
         numPersonas: document.getElementById('numPersonas'),
-        costoPorNoche: parseFloat("<?php echo $registro['costoPorNoche']; ?>"),
+        costoPorNoche: document.getElementById('costoPorNoche').textContent,
         totalDiv: document.getElementById('total') // Cambió de etiqueta a un div
     };
 
@@ -73,10 +76,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
         if (fechaEntrada && fechaSalida && fechaSalida > fechaEntrada) {
             const tiempoEstadia = Math.ceil((fechaSalida - fechaEntrada) / (1000 * 60 * 60 * 24)); // Días
-            const total = tiempoEstadia * elements.costoPorNoche * personas;
-            elements.totalDiv.textContent = `$${total.toFixed(2)}`; // Usa el div aquí
+            const total = tiempoEstadia * parseFloat(elements.costoPorNoche) ;
+            elements.totalDiv.textContent = `${total.toFixed(2)}`; // Usa el div aquí
         } else {
-            elements.totalDiv.textContent = "$0.00";
+            elements.totalDiv.textContent = "0.00";
         }
     };
 
@@ -90,6 +93,7 @@ document.addEventListener('DOMContentLoaded', function () {
     document.querySelector('#btn_anadir').onclick = function () {
         if (verificar()) { // Solo si pasa la verificación
             anadirReservaAlCarrito();
+            alert("reservacion agregada al carrito adecuadamente");
             window.location.replace("../view/principal.php");
         }
     }

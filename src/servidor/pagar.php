@@ -6,36 +6,56 @@ function agregarReservacionDB($idHabitacion, $idCliente, $fechaReservacion, $ini
     $conexionSql = new Conexiondb();
     $conexionSql = $conexionSql->getConnection();
 
-    // Crea la consulta SQL
     $peticion = "INSERT INTO reservaciones (idHabitacion, idCliente, fechaReservacion, inicioEstadia, finEstadia, subtotal) 
                  VALUES ('$idHabitacion', '$idCliente', '$fechaReservacion', '$inicioEstadia', '$finEstadia', '$subtotal')";
 
-    // Ejecuta la consulta
     if ($conexionSql->query($peticion) === TRUE) {
+        $idReserva = $conexionSql->insert_id;
         $respuesta = "Reservación agregada correctamente.";
     } else {
         $respuesta = "Error al agregar la reservación: " . $conexionSql->error;
+        $conexionSql->close();
+        return $respuesta;
     }
 
-    // Cierra la conexión
     $conexionSql->close();
 
-    actualizarDisponibilidad($idHabitacion);
+    actualizarDisponibilidad($idHabitacion, $idReserva, $subtotal);
 
-    return $respuesta; // Devuelve el resultado
+    return $respuesta;
 }
 
-function actualizarDisponibilidad($idHabitacion){
-    //TODO
+
+function actualizarDisponibilidad($idHabitacion, $idReserva, $subtotal) {
     $conexionSql = new Conexiondb();
     $conexionSql = $conexionSql->getConnection();
 
-    $peticion = "UPDATE idhabitacion ";
+    $peticion = "UPDATE habitaciones SET disponibles = disponibles - 1 WHERE idhabitacion = $idHabitacion";
 
+    if ($conexionSql->query($peticion) === TRUE) {
+        $respuesta = "Disponibilidad actualizada.";
+    } else {
+        $respuesta = "Error al actualizar disponibilidad: " . $conexionSql->error;
+        $conexionSql->close();
+        return $respuesta;
+    }
+
+    $peticion = "INSERT INTO detallesreservacion (idReserva, formaDePago, total) 
+                 VALUES ('$idReserva', 'credito', '$subtotal')";
+
+    if ($conexionSql->query($peticion) === TRUE) {
+        $respuesta .= " Detalles de la reservación agregados correctamente.";
+    } else {
+        $respuesta .= " Error al agregar detalles: " . $conexionSql->error;
+    }
+
+    $conexionSql->close();
+
+    return $respuesta;
 }
 
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Obtén el valor enviado desde JS
     $idHabitacion = $_POST['idHabitacion'];
     $idCliente = $_POST['idCliente'];
     $fechaReservacion = $_POST['fechaReservacion'];
@@ -43,10 +63,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $finEstadia = $_POST['finEstadia'];
     $subtotal = $_POST['subtotal'];
 
-    // Llama a la función y captura el resultado
     $resultado = agregarReservacionDB($idHabitacion, $idCliente, $fechaReservacion, $inicioEstadia, $finEstadia, $subtotal);
 
-    // Envía el resultado de vuelta al cliente en formato JSON
     echo json_encode(["mensaje" => $resultado]);
 }
 ?>

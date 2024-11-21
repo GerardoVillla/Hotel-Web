@@ -25,14 +25,14 @@ function reservar() {
         $totalReserva = isset($_COOKIE['total' . $habitacion]) ? htmlspecialchars($_COOKIE['total' . $habitacion]) : 'No definidas';
         $idUsuario = $_SESSION['idUsuario'];
 
-        $html .= "<div>";
-        $html .= '<input type="hidden" value=' . $idUsuario . ' id="idUsuario">';
-        $html .= "<label>Habitación: $habitacion</label><br>";
-        $html .= "<label>Entrada: $entrada</label><br>";
-        $html .= "<label>Salida: $salida</label><br>";
-        $html .= "<label>Personas: $personas</label><br>";
-        $html .= "<label>Total reservación $habitacion : $ $totalReserva</label><br>";
-        $html .= "</div><hr>";
+        $html .= "<div id=\"tabla\"><table>";
+        $html .= '<tr> <input type="hidden" value=' . $idUsuario . ' id="idUsuario"> </tr>';
+        $html .= "<tr> <td><label>Habitación: </label></td> <td>$habitacion</td> </tr>";
+        $html .= "<tr> <td><label>Entrada: </label></td> <td>$entrada</td> </tr>";
+        $html .= "<tr> <td><label>Salida: </label></td> <td>$salida</td> </tr>";
+        $html .= "<tr> <td><label>Personas: </label></td> <td>$personas</td> </tr>";
+        $html .= "<tr> <td><label>Total reservación $habitacion: </label></td> <td>$ $totalReserva</td> </tr>";
+        $html .= "</table></div><hr>";
 
         $intTotalReserva = is_numeric($totalReserva) ? (int)$totalReserva : 0;
         $totalFinal += $intTotalReserva;
@@ -65,24 +65,26 @@ function reservar() {
                 <?php echo reservar(); ?>
             </h3>
 
-
-            <form>
-                <h2>Detalles del pago: </h2>
-                <label>
-                    <p>Titular</p><input type="text" id="titular">
-                </label>
-                <label>
-                    <p>Numero de tarjeta:</p><input type="number" maxlength="22" id="numeroTarjeta">
-                </label>
-                <label>
-                    <p>Mes de vencimiento:</p><input type="month">
-                </label>
-                <label>
-                    <p>CVV</p><input type="number" min="000" maxlength="3" max="999" id="cvv">
-                </label>
-            </form>
-
+                <form>
+                    <h2>Detalles del pago: </h2>
+                        <table>
+                        <tr>
+                            <td><p>Titular</p></td><td><input type="text" id="titular"><td>
+                        <tr>
+                        <tr>
+                            <td><p>Numero de tarjeta:</p></td><td><input type="number" maxlength="22" id="numeroTarjeta"></td>
+                        </tr>
+                        <tr>
+                            <td><p>Mes de vencimiento:</p></td><td><input type="month"></td>
+                        <tr>
+                        <tr>
+                            <td><p>CVV</p></td><td><input type="number" min="000" maxlength="3" max="999" id="cvv"><td>
+                        </tr>
+                        </table>
+                </form>
+            <br><br>
             <a class="boton" id="btnPagar">Pagar</a>
+            <br><br>
         </section>
 
         <footer>

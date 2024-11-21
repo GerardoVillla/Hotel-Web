@@ -54,6 +54,25 @@ export const cookiesCarrito = {
     },
     obtenerNumeroHabitacionesTipo(idHabitacion){
         return obtenerCookie(`habitacion${idHabitacion}`);
-    }
+    },
     
+    eliminarCookie(nombre) {
+        document.cookie = `${nombre}=; path=/; expires=Thu, 01 Jan 1970 00:00:00 UTC;`;
+    },
+
+    eliminarTodasLasCookies() {
+        // Obtener todas las cookies del documento
+        const cookies = document.cookie.split(";");
+    
+        // Recorrer todas las cookies y eliminarlas
+        for (const cookie of cookies) {
+            // Obtener el nombre de la cookie
+            const nombre = cookie.split("=")[0].trim();
+    
+            // Establecer la cookie con una fecha pasada para eliminarla
+            document.cookie = `${nombre}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+        }
+    
+        console.log("Todas las cookies han sido eliminadas.");
+    }
 }
