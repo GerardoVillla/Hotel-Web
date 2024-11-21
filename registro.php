@@ -16,7 +16,7 @@
             <input type="button"name="iniciosesion" value="Registrarse" id="btn_RegistrarsePag">
         </div>
         <div id="formulario-contenedor">
-            <form method="post" enctype="application/x-www-form-urlencoded" action="/ecologico/src/servidor/autenticacion.php">
+            <form id="formulario-registro" method="post" enctype="application/x-www-form-urlencoded" action="/ecologico/src/servidor/autenticacion.php">
             <input type="hidden" name="action" value="registrarUsuario">
                 Nombre:
                 <br><br><br>
@@ -35,6 +35,6 @@
             </form>
         </div>
     </div>
-    <script src="/ecologico/src/cliente/scripts/index.js"></script>
+    <script src="/ecologico/src/cliente/scripts/registro.js"></script>
 </body>
 </html>
