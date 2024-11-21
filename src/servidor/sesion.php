@@ -1,7 +1,7 @@
 <?php
 require_once ("config/conexiondb.php");
+
 function iniciarSesion($usuario, $contrasena): void{
-		
 	$conexionSql = new conexiondb();
 	$conexionSql = $conexionSql->getConnection();
 
@@ -13,7 +13,7 @@ function iniciarSesion($usuario, $contrasena): void{
 
 	if($resultado->num_rows > 0){
 		$usuario = $resultado->fetch_assoc();
-		if($contrasena == $usuario["contraseña"]){
+		if($contrasena === $usuario["contraseña"]){
 			//Iniciamos sesion del servidor
 			session_start();
 			$_SESSION["idUsuario"] = $usuario["idCliente"];
@@ -26,11 +26,12 @@ function iniciarSesion($usuario, $contrasena): void{
 			}
 			exit();
 		}
-	}else{
-		echo"Usuario o contraseña incorrectos";
 	}
-
 	$stmt->close();
+	// Redirigir a la página de inicio de sesión con un mensaje de error en post
+	header("Location: ../../index.php?error=1");
+	exit();
+
 }
 
 
@@ -48,19 +49,35 @@ function registrarUsuario($usuario, $contrasena): void{
 	// Redirigir a la página de inicio de sesión con un mensaje de éxito
     header("Location: ../../index.php?registro_exitoso=1");
     exit();
-	
-	//echo "Usuario registrado";
+
 }
 
-function validarSesion(){
+function validarSesionPantallaPrincipal(){
 	session_start();
-	if(!isset($_SESSION["idUsuario"])){
+	if(!isset($_SESSION["idUsuario"])|| $_SESSION["rol"] == "administrador"){
 		$cdestino = "Location: ../../../index.php";
 		header($cdestino);
 		exit();
 	}
 }
 
+function validarSesionCliente(){
+	session_start();
+	if(!isset($_SESSION["idUsuario"])|| $_SESSION["rol"] != "cliente"){
+		$cdestino = "Location: ../../../index.php";
+		header($cdestino);
+		exit();
+	}
+}
+
+function validarSesionAdministrador(){
+	session_start();
+	if(!isset($_SESSION["idUsuario"])|| $_SESSION["rol"] != "administrador"){
+		$cdestino = "Location: ../../../index.php";
+		header($cdestino);
+		exit();
+	}
+}
 
 function cerrarSesion(){
 	session_start();

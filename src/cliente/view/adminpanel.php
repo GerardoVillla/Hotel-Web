@@ -1,6 +1,6 @@
 <?php
 require_once ("../../servidor/sesion.php");
-validarSesion();
+validarSesionAdministrador();
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -45,7 +45,7 @@ validarSesion();
 		</div>
 	</section>
 	<footer>
-		<p>&copy; Derechos reservados a un tal fulano</p>
+		<p>&copy; Todos los derechos reservados</p>
 	</footer>
 	<script src="../scripts/adminpanel.js"></script>
 </body>

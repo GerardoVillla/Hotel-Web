@@ -1,6 +1,6 @@
 <?php
 require_once ("../../servidor/sesion.php");
-validarSesion();
+validarSesionAdministrador();
 ?>
 <!DOCTYPE html>
 <html lang="es">
