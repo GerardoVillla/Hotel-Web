@@ -111,6 +111,7 @@ body{
     box-shadow: 0 4px 0 rgba(0, 0, 0, 0.3);
 }
 
+
 #formulario-contenedor #btn_inicioS:hover{
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     
@@ -132,4 +133,14 @@ body{
         opacity: 1;
         transform: translateY(0);
     }
+}
+
+#invitado{
+    font-size: small;
+}
+#invitado:visited{
+    color: black;
+}
+#invitado:hover{
+    color: #fcfcfc;
 }

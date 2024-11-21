@@ -24,7 +24,9 @@
                 <h3>Contraseña:</h3>
                 <br><br>
                 <input type="password" maxlength="35" size="35" name="pass_contraseña" id="pass_contraseña">
-                <br><br><br>
+                <br><br>
+                <a href="/ecologico/src/servidor/invitado.php" id="invitado">Acceder como invitado</a>
+                <br><br>
                 <input type="submit" name="iniciosesion" value="Iniciar sesi&oacute;n" id="btn_inicioS">
                 <br><br>
                 <?php
