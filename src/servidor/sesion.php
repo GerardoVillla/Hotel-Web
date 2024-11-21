@@ -52,15 +52,32 @@ function registrarUsuario($usuario, $contrasena): void{
 
 }
 
-function validarSesion(){
+function validarSesionPantallaPrincipal(){
 	session_start();
-	if(!isset($_SESSION["idUsuario"])){
+	if(!isset($_SESSION["idUsuario"])|| $_SESSION["rol"] == "administrador"){
 		$cdestino = "Location: ../../../index.php";
 		header($cdestino);
 		exit();
 	}
 }
 
+function validarSesionCliente(){
+	session_start();
+	if(!isset($_SESSION["idUsuario"])|| $_SESSION["rol"] != "cliente"){
+		$cdestino = "Location: ../../../index.php";
+		header($cdestino);
+		exit();
+	}
+}
+
+function validarSesionAdministrador(){
+	session_start();
+	if(!isset($_SESSION["idUsuario"])|| $_SESSION["rol"] != "administrador"){
+		$cdestino = "Location: ../../../index.php";
+		header($cdestino);
+		exit();
+	}
+}
 
 function cerrarSesion(){
 	session_start();
