@@ -1,6 +1,9 @@
+<?php
+require_once ("../../servidor/sesion.php");
+validarSesionPantallaPrincipal();
+?>
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -24,7 +27,7 @@
 	<!-- Contenido de la pagina -->
 	<div class="contenido">
 		<div id="img-home">
-			<img src="/assets/img/home/home.png" alt="img de bienvenida">
+			<img src="../recursos/img/principal/home.png" alt="img de bienvenida">
 		</div>
 		<section id="bienvenida-tarjeta">
 			<div class="articulo">
@@ -40,15 +43,16 @@
 					especiales.
 				</p>
 			</div>
-			<img src="/assets/img/home/bienvenida.png" alt="img ek' balam">
+			<img src="../recursos/img/principal/bienvenida.png" alt="img ek' balam">
 		</section>
 		<section id="desglose-habitaciones">
 			<h1>
 				< Nuestras habitaciones>
 			</h1>
 			<div class="carrusel">
+				
 				<a class="tarjeta-habitacion" href="#">
-					<img src="/assets/img/home/estandar.jpg" alt="img habitacion estandar">
+					<img src="../recursos/img/principal/estandar.jpg" alt="img habitacion estandar">
 					<div class="descripcion-articulo">
 						<h2>Estandar</h2>
 						<p>Espacio confortable, decorado con materiales sostenibles, iluminación natural, sistema de
@@ -57,7 +61,7 @@
 					</div>
 				</a>
 				<a class="tarjeta-habitacion" href="#">
-					<img src="/assets/img/home/deluxe.jpg" alt="img habitacion deluxe">
+					<img src="../recursos/img/principal/deluxe.jpg" alt="img habitacion deluxe">
 					<div class="descripcion-articulo">
 						<h2>Deluxe</h2>
 						<p>Espacio confortable, decorado con materiales sostenibles, iluminación natural, sistema de
@@ -66,7 +70,7 @@
 					</div>
 				</a>
 				<a class="tarjeta-habitacion" href="#">
-					<img src="/assets/img/home/suite.jpg" alt="img habitacion suite">
+					<img src="../recursos/img/principal/suite.jpg" alt="img habitacion suite">
 					<div class="descripcion-articulo">
 						<h2>Suite</h2>
 						<p>Espacio confortable, decorado con materiales sostenibles, iluminación natural, sistema de
@@ -78,7 +82,7 @@
 		</section>
 		<section id="nosotros-tarjeta">
 			<div id="articulo-nosotros">
-				<img src="/assets/img/home/bienvenida.png" alt="img ek' balam">
+				<img src="../recursos/img/principal/bienvenida.png" alt="img ek' balam">
 				<div id="descripcion-nosotros">
 					<h2>Acerca de nosotros</h2>
 					<p>Somos un refugio ecológico situado en el corazón de la selva maya, donde la naturaleza y la
