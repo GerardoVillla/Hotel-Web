@@ -14,5 +14,5 @@ formularioInicioSesion.addEventListener('submit', function(event){
 });
 
 document.getElementById('btn_RegistrarsePag').onclick = function(){
-	window.location.href = 'registro.php';
+	window.location.href = '/ecologico/src/cliente/view/registro.php';
 }
