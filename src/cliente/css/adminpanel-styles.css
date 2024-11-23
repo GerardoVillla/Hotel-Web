@@ -36,17 +36,16 @@ header nav ul{
 	gap: 2em;
 }
 
-header nav ul li{
-	list-style: none;
+header nav ul form input{
+	font-size: 1.5rem;
+	background-color: #191f04;
+	color: #ffffff;
+	padding: .5rem;
+
 }
 
-header nav ul li a{
-	font-size: 1.5rem;
-	text-decoration: none;
-	color: #000;
-}
 #btn-menu{
-	background-color: #A30350;
+	background-color: #191f04;
 	padding: 0.5rem 2rem;
 	border-radius: 5px;
 	box-shadow: 0 4px 0 rgba(0, 0, 0, 0.2); /* Sombra solo en la parte inferior */
@@ -65,10 +64,13 @@ header nav ul li a{
 
 
 #barra-editor{
-	grid-column: 2 / span 14;
-	grid-row: 1;
-	align-content: center;
-	margin: 3rem 0;
+    grid-column: 2 / span 14;
+    grid-row: 1;
+    align-content: center;
+    margin: 1rem 0;
+    z-index: 10; /* Asegúrate de que esté por encima de otros elementos */
+    background-color: #fff; /* Asegura que tenga un fondo */
+    padding: 1rem; /* Añade padding para el contenido */
 }
 
 #barra-editor form{
@@ -82,7 +84,7 @@ header nav ul li a{
 	width: 10rem;
 	height: 2rem;
 	border-radius: 5px;
-	border: none;
+	border: #bababa solid 2px;
 }
 
 
@@ -116,29 +118,38 @@ header nav ul li a{
 #seccion-habitaciones{
 	grid-column: 2 / span 14;
 	grid-row: 2;
+	overflow-y: auto;
+	max-height: 75vh;
 }
 
+#seccion-habitaciones::-webkit-scrollbar {
+    display: none;
+}
+
+
 #seccion-habitaciones ul li img{
-	width: 30vh;
-	height: 25vh;
+	width: 20vh;
+	height: 30vh;
 }
 .habitacion-propiedades {
-	background-color: #eadbc8;
+	background-color: #ffffff;
     display: flex;
     align-items: flex-start; /* Alinea la imagen y el texto en la parte superior */
-    border: 1px solid #ddd;
+    border: 2px solid #bababa;
     padding: 15px;
-    margin-bottom: 15px;
+	margin: 15px 40px 20px 40px;
 }
 /*Habitacion seleccionada*/
 .habitacion-propiedades.selected{
 	transform: scale(1.05);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+	background-color: #afc5b3;
 }
 
 .habitacion-propiedades img {
     width: 10vh; /* Ajusta el tamaño de la imagen */
     height: auto;
+	object-fit: cover;
     margin-right: 20px; /* Espacio entre la imagen y los detalles */
     border-radius: 5px; /* Opcional: bordes redondeados */
 }
@@ -172,4 +183,9 @@ header nav ul li a{
 footer{
 	height: 100%;
 	background-color: #C7B7A3;
+}
+
+#seccion-habitaciones ul li.habitacion-propiedades:hover {
+    cursor: pointer;
+    background-color: beige; /* Cambia el color de fondo */
 }

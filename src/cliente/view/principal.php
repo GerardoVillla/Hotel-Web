@@ -1,6 +1,9 @@
+<?php
+require_once ("../../servidor/sesion.php");
+validarSesionPantallaPrincipal();
+?>
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,19 +16,21 @@
 		<h1>Hotel ecológico</h1>
 		<nav>
 			<ul>
-				<li><a href="index.html">Carrito</a></li>
+				<li><a href="pagar.php">Carrito</a></li>
 				<li><a href="#nosotros-tarjeta">Nosotros</a></li>
-				<li><a href="#desglose-habitaciones">Habitaciones</a></li>
-				<!--Este es el boton de reservar-->
-				<li id="btn-reservar"><a href="reservar.html">Reservar</a></li>
+				<li><a href="buscar.html">Buscar</a></li>
+				<li id="btn-reservar"><a href="reservar.php">Reservar</a></li>
 			</ul>
 		</nav>
 	</header>
 	<!-- Contenido de la pagina -->
 	<div class="contenido">
 		<div id="img-home">
-			<img src="/assets/img/home/home.png" alt="img de bienvenida">
+			<img src="../recursos/img/principal/home.png" alt="img de bienvenida">
 		</div>
+
+
+
 		<section id="bienvenida-tarjeta">
 			<div class="articulo">
 				<h1>Bienvenido a <span>Hotel Ek' Balam</span></h1>
@@ -40,45 +45,23 @@
 					especiales.
 				</p>
 			</div>
-			<img src="/assets/img/home/bienvenida.png" alt="img ek' balam">
+			<img src="../recursos/img/principal/bienvenida.png" alt="img ek' balam">
 		</section>
 		<section id="desglose-habitaciones">
 			<h1>
 				< Nuestras habitaciones>
 			</h1>
-			<div class="carrusel">
-				<a class="tarjeta-habitacion" href="#">
-					<img src="/assets/img/home/estandar.jpg" alt="img habitacion estandar">
-					<div class="descripcion-articulo">
-						<h2>Estandar</h2>
-						<p>Espacio confortable, decorado con materiales sostenibles, iluminación natural, sistema de
-							reciclaje, y productos orgánicos para una experiencia armoniosa.</>
-						<h3>MXN 1100</h3>
-					</div>
-				</a>
-				<a class="tarjeta-habitacion" href="#">
-					<img src="/assets/img/home/deluxe.jpg" alt="img habitacion deluxe">
-					<div class="descripcion-articulo">
-						<h2>Deluxe</h2>
-						<p>Espacio confortable, decorado con materiales sostenibles, iluminación natural, sistema de
-							reciclaje, y productos orgánicos para una experiencia armoniosa.</p>
-						<h3>MXN 1700</h3>
-					</div>
-				</a>
-				<a class="tarjeta-habitacion" href="#">
-					<img src="/assets/img/home/suite.jpg" alt="img habitacion suite">
-					<div class="descripcion-articulo">
-						<h2>Suite</h2>
-						<p>Espacio confortable, decorado con materiales sostenibles, iluminación natural, sistema de
-							reciclaje, y productos orgánicos para una experiencia armoniosa.</p>
-						<h3>MXN 2500</h3>
-					</div>
-				</a>
+			<div class="carrusel-container">
+			    <button id="prev" class="carrusel-btn">‹</button>
+			    <div class="carrusel" id="carrusel">
+			        <!-- Las tarjetas de habitaciones se llenarán dinámicamente con JavaScript -->
+			    </div>
+			    <button id="next" class="carrusel-btn">›</button>
 			</div>
 		</section>
 		<section id="nosotros-tarjeta">
 			<div id="articulo-nosotros">
-				<img src="/assets/img/home/bienvenida.png" alt="img ek' balam">
+				<img src="../recursos/img/principal/bienvenida.png" alt="img ek' balam">
 				<div id="descripcion-nosotros">
 					<h2>Acerca de nosotros</h2>
 					<p>Somos un refugio ecológico situado en el corazón de la selva maya, donde la naturaleza y la
@@ -97,7 +80,7 @@
 	<footer>
 		<p>&copy; Derechos reservados a un tal fulano</p>
 	</footer>
-
+	<script src="../scripts/principal.js"></script>
 </body>
 
 </html>

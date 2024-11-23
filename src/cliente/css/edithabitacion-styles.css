@@ -67,6 +67,10 @@ footer{
     grid-row: 3/4;
     background-color: black;
 }
+#imagen-prev{
+    width: 50vh;
+    height: 40vh;
+}
 
 #vista_previa{
     grid-column: 3/8;
@@ -93,11 +97,28 @@ footer{
     border-radius: 8px;
 }
 
+
 #entradas input{
     background-color: #EADBC8;
     height: 18px;
     border: none;
     border-radius: 4px;
+    display: block;
+    margin: 15px 0 15px 0;
+}
+
+
+#entradas select{
+    background-color: #EADBC8;
+    height: 18px;
+    border: none;
+    margin: 15px 0 15px 0;
+    border-radius: 4px;
+    display: block;
+}
+
+#entradas, #etiquetas, #descripcion{
+    margin-top: 10px;
 }
 
 .btn:hover, #entradas input:hover, #descripcion textarea:hover{
@@ -135,6 +156,7 @@ footer{
 #btn_cancelar{
     background-color: #ae0003;
 }
+
 
 @media (max-width: 780px){
 

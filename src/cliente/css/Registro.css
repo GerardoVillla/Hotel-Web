@@ -18,7 +18,7 @@ body{
 
 #imagen-seccion{
     flex:1;
-    background-image: url('../assets/img/Registro/VilladelCarbon_Registro.jpg');
+    background-image: url('../recursos/img/Registro/VilladelCarbon_Registro.jpg');
     background-size: cover;
     background-position: center;
 }
