@@ -17,13 +17,13 @@ class Conexiondb{
 
 	public function __construct(){
 		$this->servidor = $GLOBALS["servidor"];
-		$this->usuario = $GLOBALS["servidor"];
-		$this->contrasena = $GLOBALS["servidor"];
-		$this->db = $GLOBALS["servidor"];
+		$this->usuario = $GLOBALS["usuario"];
+		$this->contrasena = $GLOBALS["contrasena"];
+		$this->db = $GLOBALS["base_datos"];
 	}
 
 	public function getConnection(){
-		$this->conexion = new mysqli($this->servidor, $this->user, $this->pass, $this->db);
+		$this->conexion = new mysqli($this->servidor, $this->usuario, $this->contrasena, $this->db);
 		if($this->conexion->connect_error){
 			die("Conexion fallida: " . $this->conexion->connect_error);
 		}
