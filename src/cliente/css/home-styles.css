@@ -58,6 +58,7 @@ header nav ul li a{
 	padding: 0.5rem 2rem;
 	border-radius: 5px;
 	box-shadow: 0 4px 0 rgba(0, 0, 0, 0.2); /* Sombra solo en la parte inferior */
+	color: aliceblue;
 }
 #btn-reservar a{
 	color: aliceblue;
@@ -133,14 +134,20 @@ header nav ul li a{
 	margin: 2rem;
 }
 
-.carrusel{
-	width: 100%;
-	display: inline-flex;
-	justify-content:space-evenly;
-	align-items: center;
+.carrusel-container {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
 }
 
-.tarjeta-habitacion{
+.carrusel {
+    display: flex;
+    gap: 1rem;
+    transition: transform 0.4s ease-in-out;
+    width: fit-content;
+}
+
+.tarjeta-habitacion {
 	background-color: #FFFFFF;
 	border-radius: 0 0 10px 10px;
 	width: 25%;
@@ -148,7 +155,40 @@ header nav ul li a{
 	margin-bottom: 5rem;
 	text-decoration: none;
 	color: #000;
+    flex: 0 0 calc(25% - 2rem); /* Tres elementos visibles */
+    margin: 0 0.5rem;
+	padding: 2%;
 }
+
+.carrusel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    z-index: 10;
+}
+
+#prev {
+    left: 0;
+}
+
+#next {
+    right: 0;
+}
+
+/*.tarjeta-habitacion{
+	background-color: #FFFFFF;
+	border-radius: 0 0 10px 10px;
+	width: 25%;
+	text-align: center;
+	margin-bottom: 5rem;
+	text-decoration: none;
+	color: #000;
+}*/
 
 .descripcion-articulo{
 	margin: 0 1.5rem 1.5rem 1.5rem;
