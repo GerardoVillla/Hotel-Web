@@ -20,7 +20,7 @@ validarSesionPantallaPrincipal();
 				<li><a href="#nosotros-tarjeta">Nosotros</a></li>
 				<li><a href="#desglose-habitaciones">Habitaciones</a></li>
 				<!--Este es el boton de reservar-->
-				<li id="btn-reservar"><a href="reservar.html">Reservar</a></li>
+				<li id="btn-reservar"><a id="btnReservar" href="">Reservar</a></li>
 			</ul>
 		</nav>
 	</header>
@@ -49,35 +49,12 @@ validarSesionPantallaPrincipal();
 			<h1>
 				< Nuestras habitaciones>
 			</h1>
-			<div class="carrusel">
-				
-				<a class="tarjeta-habitacion" href="#">
-					<img src="../recursos/img/principal/estandar.jpg" alt="img habitacion estandar">
-					<div class="descripcion-articulo">
-						<h2>Estandar</h2>
-						<p>Espacio confortable, decorado con materiales sostenibles, iluminación natural, sistema de
-							reciclaje, y productos orgánicos para una experiencia armoniosa.</>
-						<h3>MXN 1100</h3>
-					</div>
-				</a>
-				<a class="tarjeta-habitacion" href="#">
-					<img src="../recursos/img/principal/deluxe.jpg" alt="img habitacion deluxe">
-					<div class="descripcion-articulo">
-						<h2>Deluxe</h2>
-						<p>Espacio confortable, decorado con materiales sostenibles, iluminación natural, sistema de
-							reciclaje, y productos orgánicos para una experiencia armoniosa.</p>
-						<h3>MXN 1700</h3>
-					</div>
-				</a>
-				<a class="tarjeta-habitacion" href="#">
-					<img src="../recursos/img/principal/suite.jpg" alt="img habitacion suite">
-					<div class="descripcion-articulo">
-						<h2>Suite</h2>
-						<p>Espacio confortable, decorado con materiales sostenibles, iluminación natural, sistema de
-							reciclaje, y productos orgánicos para una experiencia armoniosa.</p>
-						<h3>MXN 2500</h3>
-					</div>
-				</a>
+			<div class="carrusel-container">
+			    <button id="prev" class="carrusel-btn">‹</button>
+			    <div class="carrusel" id="carrusel">
+			        <!-- Las tarjetas de habitaciones se llenarán dinámicamente con JavaScript -->
+			    </div>
+			    <button id="next" class="carrusel-btn">›</button>
 			</div>
 		</section>
 		<section id="nosotros-tarjeta">
@@ -101,7 +78,7 @@ validarSesionPantallaPrincipal();
 	<footer>
 		<p>&copy; Derechos reservados a un tal fulano</p>
 	</footer>
-
+	<script src="../scripts/principal.js"></script>
 </body>
 
 </html>
