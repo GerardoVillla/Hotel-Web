@@ -144,7 +144,7 @@ header nav ul li a{
 .habitacion-propiedades.selected{
 	transform: scale(1.05);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-	background-color: beige;
+	background-color: #afc5b3;
 }
 
 .habitacion-propiedades img {
@@ -184,4 +184,9 @@ header nav ul li a{
 footer{
 	height: 100%;
 	background-color: #C7B7A3;
+}
+
+#seccion-habitaciones ul li.habitacion-propiedades:hover {
+    cursor: pointer;
+    background-color: beige; /* Cambia el color de fondo */
 }
