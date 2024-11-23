@@ -1,9 +1,11 @@
 <?php
 include_once("../../servidor/reservacion.php");
+
+$orden = isset($_GET['orden']) ? $_GET['orden'] : "";
 ?>
 <html>
     <head>
-        <title>Reservar habitaci&oacute;n</title>
+        <title>Reservar habitación</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">  
         <link href="../css/reservar.css" rel="stylesheet" type="text/css">
@@ -17,20 +19,21 @@ include_once("../../servidor/reservacion.php");
 
         <section class="section">
             <div class="lista_habitaciones">
-                    <ul>
-                        <li>
-                            <p>ordenar por:</p>
-                            <select>
-                                <option>precio: mayor-menor</option>
-                                <option>precio: menor-mayor</option>
-                                <option>alfabetico</option>
-                            </select>
-                        </li>
-                        <li>
-                            <h1>Habitaci&oacute;nes disponibles: </h1>
-                        </li>
-                        <?php echo listar();?>
-                    </ul>
+                <form method="GET" action="reservar.php">
+                    <label for="orden">Ordenar por:</label>
+                    <select name="orden" id="orden" onchange="this.form.submit()">
+                        <option value="">Seleccione</option>
+                        <option value="precioMayor" <?= $orden == "precioMayor" ? "selected" : "" ?>>Precio: mayor a menor</option>
+                        <option value="precioMenor" <?= $orden == "precioMenor" ? "selected" : "" ?>>Precio: menor a mayor</option>
+                        <option value="alfabetico" <?= $orden == "alfabetico" ? "selected" : "" ?>>Alfabético</option>
+                    </select>
+                </form>
+                <ul>
+                    <li>
+                        <h1>Habitaciones disponibles:</h1>
+                    </li>
+                    <?php echo listar($orden); ?>
+                </ul>
             </div>
         </section>
 

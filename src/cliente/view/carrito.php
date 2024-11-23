@@ -1,4 +1,20 @@
 <?php
+    $entradaRecibida = isset($_GET['entrada']);
+    $salidaRecibida = isset($_GET['salida']);
+    $personasRecibida = isset($_GET['personas']);
+
+    if($entradaRecibida && $salidaRecibida && $personasRecibida){
+        $entrada = $_GET['entrada'];
+        $salida = $_GET['salida'];
+        $personas = $_GET['personas'];
+    }else{
+        $entrada = 0;
+        $salida = 0;
+        $personas = 0;
+    }
+
+
+
     if(isset($_GET['id'])){
         include_once("../../servidor/reservacion.php");
     }else{
@@ -30,7 +46,7 @@
         <section class="section">
             <h2>Añadir al carrito</h2><br>
             <form id="reservaForm">
-                <?php reservar($_GET['id']) ?>
+                <?php reservar($_GET['id'], $entrada, $salida, $personas) ?>
                 <input type="button" value="añadir" id="btn_anadir">
             </form>
             <div id="mensaje"></div>
