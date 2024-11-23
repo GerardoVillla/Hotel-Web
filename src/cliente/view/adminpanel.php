@@ -1,6 +1,6 @@
 <?php
 require_once ("../../servidor/sesion.php");
-validarSesion();
+validarSesionAdministrador();
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -15,7 +15,11 @@ validarSesion();
 		<h1>Hotel ecológico</h1>
 		<nav>
 			<ul>
-				<li id="btn-menu"><a href="#">Menu</a></li>
+				<form action="../../servidor/autenticacion.php" method="post" >
+				<input type="hidden" name="action" value="cerrarsesion">
+				<input type="submit" value="Salir">
+				<!--<li id="btn-menu"><a href="../../servidor/autenticacion.php?action=cerrarsesion">Salir</a></li>-->
+				</form>
 			</ul>
 		</nav>
 	</header>
@@ -45,7 +49,7 @@ validarSesion();
 		</div>
 	</section>
 	<footer>
-		<p>&copy; Derechos reservados a un tal fulano</p>
+		<p>&copy; Todos los derechos reservados</p>
 	</footer>
 	<script src="../scripts/adminpanel.js"></script>
 </body>
