@@ -69,7 +69,7 @@ validarSesionAdministrador();
         </div>
     </form>
     <footer>
-        <p>@todos los derechos reservados</p>
+        <p>&copy; Todos los derechos reservados</p>
     </footer>
     <script src="../scripts/edithabitacion.js"></script>
 </body>
