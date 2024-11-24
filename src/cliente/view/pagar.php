@@ -2,7 +2,7 @@
 include_once("../../servidor/sesion.php");
 
 function reservar() {
-    validarSesion();
+    validarSesionCliente();
     // Recuperar y convertir la cookie en un arreglo
     $cookieValue = isset($_COOKIE['carritoHabitaciones']) ? $_COOKIE['carritoHabitaciones'] : '';
     $reservas = explode(",", $cookieValue);
