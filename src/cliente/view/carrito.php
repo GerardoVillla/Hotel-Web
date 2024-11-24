@@ -53,7 +53,7 @@
         </section>
 
         <footer>
-            <p>&copy; Derechos reservados a un tal fulano</p>
+            <p>&copy; Todos los derechos reservados</p>
         </footer>
     </div>
     <script type="module" src="../scripts/carrito.js"></script>

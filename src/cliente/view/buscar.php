@@ -132,7 +132,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </section>            
 
         <footer>
-            <p>&copy; Derechos reservados a un tal fulano</p>
+            <p>&copy; Todos los derechos reservados</p>
         </footer>
         <script src="../../client/scripts">
     </body>

@@ -38,7 +38,7 @@ $orden = isset($_GET['orden']) ? $_GET['orden'] : "";
         </section>
 
         <footer>
-            <p>&copy; Derechos reservados a un tal fulano</p>
+            <p>&copy; Todos los derechos reservados</p>
         </footer>
     </div>
     </body>
