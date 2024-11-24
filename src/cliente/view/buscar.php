@@ -9,7 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $personas = (int)($_POST['Personas'] ?? 0);
 
     if (empty($fecha_entrada) || empty($fecha_salida) || empty($tipo_habitacion) || empty($personas)) {
-        $errorMsj = 'Por favor, ingresa tanto la fecha de entrada como la fecha de salida.';
+        $errorMsj = 'Por favor, ingresa  datos';
     }elseif(strtotime($fecha_entrada) >= strtotime($fecha_salida)){
         $errorMsj = 'La fecha de entrada debe ser anterior a la fecha de salida.';
     }else{
@@ -25,9 +25,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
 
             $query = "
-            SELECT h.idhabitacion, h.nombre, h.descripcion, h.urlImagen, h.costoPorNoche, h.capacidadDePersonas 
+            SELECT h.idhabitacion, h.nombre, h.descripcion, h.urlImagen, h.costoPorNoche, h.capacidadDePersonas, h.disponibles 
             FROM habitaciones AS h
-            WHERE h.disponibilidad = 1
+            WHERE h.disponibles >= 1
             ";
         
             // Filtrar por tipo de habitación
@@ -45,11 +45,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
 
             $result = mysqli_query($conexion, $query);
-            if ($result->num_rows > 0) {
+            if ($result && $result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
                     $habitaciones[] = $row;
                 }
-            }else{
+            } else {
                 $errorMsj = 'No se encontraron habitaciones disponibles con los filtros seleccionados.';
             }
             mysqli_close($conexion);
@@ -83,10 +83,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <label>Elige una habitaci&oacute;n</label>
                 <select name="TipoHab">
                     <option value="" disabled selected>Selecciona una opción</option>
-                    <option value="estandar">Est&aacute;ndar</option>
-                    <option value="suite">Suite</option>
-                    <option value="lujo">Lujo</option>
-                    <option value="verde">Verde</option>
+                    <option value="Estandar">Est&aacute;ndar</option>
+                    <option value="Suite">Suite</option>
+                    <option value="Deluxe">Deluxe</option>
                 </select>
                 <label>Dia de entrada</label>
                 <input type="date" name="FechaEntrada">
@@ -116,6 +115,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                         <p><?php echo $habitacion['descripcion']; ?></p>
                                         <p>N&uacute;mero de personas: <?php echo $habitacion['capacidadDePersonas'];?> </p>
                                         <p><strong>Precio por noche:</strong> $<?php echo $habitacion['costoPorNoche']; ?>  <!--Cambiar a php si es necesario--></p> 
+                                        <p>Disponibles: <?php echo $habitacion['disponibles']?></p> 
                                         <b>
                                         <a href="reservar.php?id=<?php echo $habitacion['idhabitacion']; ?>&personas=<?php echo $personas; ?>&entrada=<?php echo $fecha_entrada; ?>&salida=<?php echo $fecha_salida; ?>">
                                             Reservar
