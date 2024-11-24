@@ -8,7 +8,7 @@ $conexiondb = new Conexiondb();
 $conn = $conexiondb->getConnection();
 
 // Consulta para obtener las habitaciones
-$sql = "SELECT nombre, descripcion, costoPorNoche, URLImagen FROM habitaciones";
+$sql = "SELECT idhabitacion, nombre, categoria, disponibles, numHabitaciones, descripcion, costoPorNoche, capacidadDePersonas, URLImagen FROM habitaciones";
 $result = $conn->query($sql);
 
 // Verificar si hay resultados
