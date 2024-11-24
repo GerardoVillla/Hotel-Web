@@ -1,6 +1,5 @@
 <?php
 include_once("../../servidor/sesion.php");
-include_once("../../servidor/sesion.php");
 validarSesionCliente();
 function reservar() {
     validarSesionCliente();
