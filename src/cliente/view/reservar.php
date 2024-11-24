@@ -1,5 +1,7 @@
 <?php
 include_once("../../servidor/reservacion.php");
+include_once("../../servidor/sesion.php");
+validarSesionCliente();
 
 $orden = isset($_GET['orden']) ? $_GET['orden'] : "";
 ?>
@@ -14,7 +16,7 @@ $orden = isset($_GET['orden']) ? $_GET['orden'] : "";
     <body>
     <div class="grid">
         <nav class="nav">
-            <a href="principal.php">regresar</a>
+            <a href="principal.php">Regresar</a>
         </nav>
 
         <section class="section">
@@ -38,7 +40,7 @@ $orden = isset($_GET['orden']) ? $_GET['orden'] : "";
         </section>
 
         <footer>
-            <p>&copy; Derechos reservados a un tal fulano</p>
+            <p>&copy; Todos los derechos reservados</p>
         </footer>
     </div>
     </body>

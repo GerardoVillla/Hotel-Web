@@ -1,4 +1,8 @@
 <?php
+include_once("../../servidor/sesion.php");
+validarSesionCliente();
+
+
     $entradaRecibida = isset($_GET['entrada']);
     $salidaRecibida = isset($_GET['salida']);
     $personasRecibida = isset($_GET['personas']);
@@ -35,7 +39,7 @@
     <body>
     <div class="grid">
         <nav class="nav">
-            <a href="reservar.php">regresar</a>
+            <a href="reservar.php">Regresar</a>
         </nav>
 
         <aside class="aside">
@@ -53,7 +57,7 @@
         </section>
 
         <footer>
-            <p>&copy; Derechos reservados a un tal fulano</p>
+            <p>&copy; Todos los derechos reservados</p>
         </footer>
     </div>
     <script type="module" src="../scripts/carrito.js"></script>

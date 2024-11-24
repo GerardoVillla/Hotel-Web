@@ -1,8 +1,9 @@
 <?php
 include_once("../../servidor/sesion.php");
-
+include_once("../../servidor/sesion.php");
+validarSesionCliente();
 function reservar() {
-    validarSesion();
+    validarSesionCliente();
     // Recuperar y convertir la cookie en un arreglo
     $cookieValue = isset($_COOKIE['carritoHabitaciones']) ? $_COOKIE['carritoHabitaciones'] : '';
     $reservas = explode(",", $cookieValue);
@@ -56,7 +57,7 @@ function reservar() {
     <body>
     <div class="grid">
         <nav>
-            <a href="principal.php">regresar</a>
+            <a href="principal.php">Regresar</a>
         </nav>
 
         <section>
@@ -88,7 +89,7 @@ function reservar() {
         </section>
 
         <footer>
-            <p>&copy; Derechos reservados a un tal fulano</p>
+            <p>&copy; Todos los derechos reservados</p>
         </footer>
     </div>
     <script type="module" src="../scripts/pagar.js"></script>
