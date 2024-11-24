@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
         reservarBtn.addEventListener("click", (e) => {
             e.preventDefault();
             console.log("Evento detectado.");
-            if (1 == 2) {
+            if (1 == 1) {
                 window.location.href = "reservar.html";
             } else {
                 window.location.href = "../../../index.php"; // Redirige al usuario al inicio de sesión
@@ -42,7 +42,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function mostrarHabitacion(id) {
     
-        fetch("../../servidor/carrusel.php")
+    fetch("../../servidor/carrusel.php")
     .then(response => response.json())
     .then(data => {
         data.forEach((habitacion) => {
