@@ -56,7 +56,7 @@ function reservar() {
     <body>
     <div class="grid">
         <nav>
-            <a href="principal.php">regresar</a>
+            <a href="principal.php">Regresar</a>
         </nav>
 
         <section>

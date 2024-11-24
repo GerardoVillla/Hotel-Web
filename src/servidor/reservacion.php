@@ -35,7 +35,7 @@ function listar($orden = "") {
             $html .= '<p><strong>Cap. personas:</strong> <span id="cantidad-personas">' . $registro['capacidadDePersonas'] . '</span></p>';
             $html .= '<p><strong>Costo:</strong> <span id="costo-habitacion">' . $registro['costoPorNoche'] . '</span></p>';
             $html .= '<p><strong>Descripcion: </strong> <span id="descripcion"> ' . $registro['descripcion'] . ' <span></p> <br>';
-            $html .= '<a href="' . $GLOBALS["raiz_sitio"] . '/src/cliente/view/carrito.php?id=' . $registro['idhabitacion'] . '">reservar esta habitacion</a>';
+            $html .= '<a href="' . $GLOBALS["raiz_sitio"] . '/src/cliente/view/carrito.php?id=' . $registro['idhabitacion'] . '">Reservar esta habitacion</a>';
             $html .= '</div>';
             $html .= '</li>';
         } else {

@@ -14,7 +14,7 @@ $orden = isset($_GET['orden']) ? $_GET['orden'] : "";
     <body>
     <div class="grid">
         <nav class="nav">
-            <a href="principal.php">regresar</a>
+            <a href="principal.php">Regresar</a>
         </nav>
 
         <section class="section">

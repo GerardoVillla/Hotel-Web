@@ -35,7 +35,7 @@
     <body>
     <div class="grid">
         <nav class="nav">
-            <a href="reservar.php">regresar</a>
+            <a href="reservar.php">Regresar</a>
         </nav>
 
         <aside class="aside">
