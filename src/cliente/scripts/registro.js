@@ -4,7 +4,7 @@ document.getElementById('btn_RegistrarsePag').onclick = function(){
 }
 
 document.getElementById('btn_iniciarSPag').onclick = function(){
-	window.location.href = 'index.php';
+	window.location.href = '../../../index.php';
 }
 
 

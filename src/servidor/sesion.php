@@ -1,25 +1,25 @@
 <?php
 require_once ("config/conexiondb.php");
 
-function iniciarSesion($usuario, $contrasena): void{
+function iniciarSesion($nombreUsuario, $contrasenaUsuario): void{
 	$conexionSql = new conexiondb();
 	$conexionSql = $conexionSql->getConnection();
 
 	$consulta = "SELECT idCliente, contraseña, rol FROM clientes WHERE user = ?";
 	$stmt = $conexionSql->prepare($consulta);
-	$stmt->bind_param("s", $usuario);
+	$stmt->bind_param("s", $nombreUsuario);
 	$stmt->execute();
 	$resultado = $stmt->get_result();
 
 	if($resultado->num_rows > 0){
-		$usuario = $resultado->fetch_assoc();
-		if($contrasena === $usuario["contraseña"]){
+		$nombreUsuario = $resultado->fetch_assoc();
+		if($contrasenaUsuario === $nombreUsuario["contraseña"]){
 			//Iniciamos sesion del servidor
 			session_start();
-			$_SESSION["idUsuario"] = $usuario["idCliente"];
-			$_SESSION["rol"] = $usuario["rol"];
+			$_SESSION["idUsuario"] = $nombreUsuario["idCliente"];
+			$_SESSION["rol"] = $nombreUsuario["rol"];
 		
-			if($usuario["rol"] == "cliente"){
+			if($nombreUsuario["rol"] == "cliente"){
 				header("Location: ../cliente/view/principal.php");
 			}else{
 				header("Location: ../cliente/view/adminpanel.php");
@@ -35,14 +35,14 @@ function iniciarSesion($usuario, $contrasena): void{
 }
 
 
-function registrarUsuario($usuario, $contrasena): void{
+function registrarUsuario($usuarnombreUsuarioio, $contrasenaUsuario): void{
 	$conexionSql = new conexiondb();
 	$conexionSql = $conexionSql->getConnection();
 
 	$consulta = "INSERT INTO clientes(user, contraseña, rol) VALUES(?,?,?)";
 	$stmt = $conexionSql->prepare($consulta);
 	$rol = "cliente";
-	$stmt->bind_param("sss", $usuario, $contrasena, $rol);
+	$stmt->bind_param("sss", $nombreUsuario, $contrasenaUsuario, $rol);
 	$stmt->execute();
 	$stmt->close();
 	
@@ -83,5 +83,7 @@ function cerrarSesion(){
 	session_start();
 	session_unset();
 	session_destroy();
+	header("Location: ../../index.php");
+	exit();
 }
 
