@@ -56,7 +56,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 alert("Todos los campos deben tener valor");
             }else{
                 console.log("Creando cambio");
+
+                //Consulta para verificar si se cambio la imagen
                 let img = document.getElementById('btn_cambiarimg').files[0];
+                let urlImagen = '';
+                if(!img){
+                    urlImagen = HabInfo.imagen;
+                    urlImagen = urlImagen.replace('http://localhost/ecologico/src/cliente/recursos/img/habitaciones/', '');
+                }else{
+                    urlImagen = img.name;
+                }
+                
                 const HabInformacionAEnviar = {
                     nombre: document.getElementById('txt_nombre').value,
                     categoria: document.getElementById('txt_categoria').value,
@@ -65,7 +75,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     disponibles: document.getElementById('txt_habdisponibles').value,
                     capacidadDePersonas: document.getElementById('txt_capacidad').value,
                     costoPorNoche: document.getElementById('txt_costo').value,
-                    urlImagen: img.name,
+                    urlImagen: urlImagen,
     
                 };
 

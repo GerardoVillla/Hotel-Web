@@ -16,11 +16,10 @@ validarSesionPantallaPrincipal();
 		<h1>Hotel ecológico</h1>
 		<nav>
 			<ul>
-				<li><a href="index.html">Carrito</a></li>
+				<li><a href="pagar.php">Carrito</a></li>
 				<li><a href="#nosotros-tarjeta">Nosotros</a></li>
-				<li><a href="#desglose-habitaciones">Habitaciones</a></li>
-				<!--Este es el boton de reservar-->
-				<li id="btn-reservar"><a id="btnReservar" href="">Reservar</a></li>
+				<li><a href="buscar.php">Buscar</a></li>
+				<li id="btn-reservar"><a href="reservar.php">Reservar</a></li>
 			</ul>
 		</nav>
 	</header>
@@ -29,6 +28,9 @@ validarSesionPantallaPrincipal();
 		<div id="img-home">
 			<img src="../recursos/img/principal/home.png" alt="img de bienvenida">
 		</div>
+
+
+
 		<section id="bienvenida-tarjeta">
 			<div class="articulo">
 				<h1>Bienvenido a <span>Hotel Ek' Balam</span></h1>
@@ -76,7 +78,7 @@ validarSesionPantallaPrincipal();
 		</section>
 	</div>
 	<footer>
-		<p>&copy; Derechos reservados a un tal fulano</p>
+		<p>&copy; Todos los derechos reservados</p>
 	</footer>
 	<script src="../scripts/principal.js"></script>
 </body>

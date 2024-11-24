@@ -1,5 +1,5 @@
 <?php
-include_once "config/conexiondb.php";
+require_once (__DIR__."/../../config.inc.php");
 
 header('Content-Type: application/json');
 
