@@ -134,6 +134,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <footer>
             <p>&copy; Todos los derechos reservados</p>
         </footer>
-        <script src="../../client/scripts">
+        <script src="../../cliente/scripts/buscar.js"></script>
     </body>
 </html>

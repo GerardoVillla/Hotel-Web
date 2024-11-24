@@ -18,7 +18,7 @@ validarSesionPantallaPrincipal();
 			<ul>
 				<li><a href="pagar.php">Carrito</a></li>
 				<li><a href="#nosotros-tarjeta">Nosotros</a></li>
-				<li><a href="buscar.html">Buscar</a></li>
+				<li><a href="buscar.php">Buscar</a></li>
 				<li id="btn-reservar"><a href="reservar.php">Reservar</a></li>
 			</ul>
 		</nav>
