@@ -1,6 +1,6 @@
 <?php
 header('Content-Type: text/plain'); // Cambiamos el tipo de contenido a texto plano
-include_once "config/conexiondb.php";
+require_once (__DIR__."/../../config.inc.php");
 
 $idImagen = isset($_GET['idImagen']) ? intval($_GET['idImagen']) : null;
 

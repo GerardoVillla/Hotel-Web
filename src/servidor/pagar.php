@@ -1,5 +1,5 @@
 <?php
-include_once "config/conexiondb.php";
+require_once (__DIR__."/../../config.inc.php");
 include_once "config/config.inc.php";
 
 function agregarReservacionDB($idHabitacion, $idCliente, $fechaReservacion, $inicioEstadia, $finEstadia, $subtotal) {
