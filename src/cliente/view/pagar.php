@@ -1,6 +1,7 @@
 <?php
 include_once("../../servidor/sesion.php");
-
+include_once("../../servidor/sesion.php");
+validarSesionCliente();
 function reservar() {
     validarSesionCliente();
     // Recuperar y convertir la cookie en un arreglo

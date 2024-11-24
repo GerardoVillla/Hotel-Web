@@ -1,5 +1,7 @@
 <?php
 include_once("../../servidor/reservacion.php");
+include_once("../../servidor/sesion.php");
+validarSesionCliente();
 
 $orden = isset($_GET['orden']) ? $_GET['orden'] : "";
 ?>

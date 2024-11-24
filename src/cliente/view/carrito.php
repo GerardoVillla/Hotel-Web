@@ -1,4 +1,8 @@
 <?php
+include_once("../../servidor/sesion.php");
+validarSesionCliente();
+
+
     $entradaRecibida = isset($_GET['entrada']);
     $salidaRecibida = isset($_GET['salida']);
     $personasRecibida = isset($_GET['personas']);
