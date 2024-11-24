@@ -40,27 +40,87 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     };
 
+    function mostrarHabitacion(id) {
+    
+        fetch("../../servidor/carrusel.php")
+    .then(response => response.json())
+    .then(data => {
+        data.forEach((habitacion) => {
+            if(habitacion.idhabitacion == id){
+                // Crear el contenedor flotante
+                const contenedor = document.createElement("div");
+                contenedor.className = "contenedor";
+                // Crear la tabla con la información
+                const tabla = document.createElement("table");
+                tabla.innerHTML = `
+                    <tr>
+                        <td id="imgsection">
+                            <img class="imgHab" src="../recursos/img/habitaciones/${habitacion.URLImagen}" alt="Imagen de la habitación">
+                        </td>
+                        <td id="infosection">
+                            <h1>${habitacion.nombre}</h1>
+                            <p>${habitacion.descripcion}</p>
+                            <h5>
+                                Categoria: ${habitacion.categoria}<br>
+                                Capacidad de personas: ${habitacion.capacidadDePersonas}<br>
+                                Numero de habitaciones: ${habitacion.numHabitaciones}<br>
+                                Disponibles: ${habitacion.disponibles}<br>
+                                Costo por noche: ${habitacion.costoPorNoche}<br>
+                            </h5>
+                        </td>
+                    </tr>
+                `;
+                // Crear el botón de cerrar
+                const cerrarBtn = document.createElement("button");
+                cerrarBtn.innerHTML = `
+                    <img src="../recursos/img/infohab/cerrarInformacion.png" alt="Cerrar">
+                `;
+                cerrarBtn.addEventListener("click", () => {
+                    // Eliminar el contenedor flotante al cerrar
+                    document.body.removeChild(contenedor);
+                });
+                // Agregar la tabla y el botón al contenedor
+                contenedor.appendChild(tabla);
+                contenedor.appendChild(cerrarBtn);
+                // Añadir el contenedor al cuerpo del documento
+                document.body.appendChild(contenedor);
+            }
+        });
+    })
+    .catch(error => console.error("Error al cargar la habitacion:", error));
+    }
+    
+
     // Cargar datos del carrusel dinámicamente
     fetch("../../servidor/carrusel.php")
         .then(response => response.json())
         .then(data => {
-            contador = 0;
-            data.forEach(habitacion => {
-                carrusel.innerHTML += `
-                    <a class="tarjeta-habitacion" href="#" id="hab${contador+1}">
-                        <img src="../recursos/img/habitaciones/${habitacion.URLImagen}" alt="img ${habitacion.nombre}">
-                        <div class="descripcion-articulo">
-                            <h2>${habitacion.nombre}</h2>
-                            <p>${habitacion.descripcion}</p>
-                            <h3>MXN ${habitacion.costoPorNoche}</h3>
-                        </div>
-                    </a>
+            data.forEach((habitacion) => {
+                // Crear cada tarjeta de habitación
+                const tarjeta = document.createElement("a");
+                tarjeta.className = "tarjeta-habitacion";
+                tarjeta.id = `${habitacion.idhabitacion}`;
+                tarjeta.href = "#";
+                tarjeta.innerHTML = `
+                    <img src="../recursos/img/habitaciones/${habitacion.URLImagen}" alt="img ${habitacion.nombre}">
+                    <div class="descripcion-articulo">
+                        <h2>${habitacion.nombre}</h2>
+                        <p>${habitacion.descripcion}</p>
+                        <h3>MXN ${habitacion.costoPorNoche}</h3>
+                    </div>
                 `;
-                contador++;
+                // Agregar el evento de clic directamente
+                tarjeta.addEventListener("click", (e) => {
+                    e.preventDefault();
+                    mostrarHabitacion(habitacion.idhabitacion);
+                });
+
+                // Insertar en el carrusel
+                carrusel.appendChild(tarjeta);
             });
 
             // Inicializar el carrusel después de cargar los datos
             inicializarCarrusel();
         })
-    .catch(error => console.error("Error al cargar las habitaciones:", error));
+        .catch(error => console.error("Error al cargar las habitaciones:", error));
 });
