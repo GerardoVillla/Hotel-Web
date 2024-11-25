@@ -16,6 +16,7 @@ validarSesionPantallaPrincipal();
 		<h1>Hotel ecológico</h1>
 		<nav>
 			<ul>
+				<li id="cerrarSesion"><a href="#">Cerrar sesion</a></li>
 				<li><a href="pagar.php">Carrito</a></li>
 				<li><a href="misReservaciones.php">Ver mis reservaciones</a></li>
 				<li><a href="#nosotros-tarjeta">Nosotros</a></li>
@@ -81,7 +82,7 @@ validarSesionPantallaPrincipal();
 	<footer>
 		<p>&copy; Todos los derechos reservados</p>
 	</footer>
-	<script src="../scripts/principal.js"></script>
+	<script type="module" src="../scripts/principal.js"></script>
 </body>
 
 </html>

@@ -117,7 +117,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                         <p><?php echo $habitacion['descripcion']; ?></p>
                                         <p>N&uacute;mero de personas: <?php echo $habitacion['capacidadDePersonas'];?> </p>
                                         <p><strong>Precio por noche:</strong> $<?php echo $habitacion['costoPorNoche']; ?>  <!--Cambiar a php si es necesario--></p> 
-                                        <p>Disponibles: <b><?php echo $habitacion['disponibles']?> </b></p> <a href="reservar.php?id=<?php echo $habitacion['idhabitacion']; ?>&personas=<?php echo $personas; ?>&entrada=<?php echo $fecha_entrada; ?>&salida=<?php echo $fecha_salida; ?>">
+                                        <p>Disponibles: <b><?php echo $habitacion['disponibles']?> </b></p> <a href="carrito.php?id=<?php echo $habitacion['idhabitacion']; ?>&entrada=<?php echo $fecha_entrada; ?>&salida=<?php echo $fecha_salida; ?>&personas=<?php echo $personas; ?>">
                                             Reservar
                                         </a>       
                                     </div>
