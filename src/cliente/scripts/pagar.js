@@ -80,16 +80,18 @@ function agregarUnaReservacion(idHab,idCliente,fecharRes,inicioEstadia,finEstadi
 }
 
 document.addEventListener('DOMContentLoaded', function(){
+    document.getElementById("vaciarCarrito").addEventListener('click' ,function(){
+        cookiesCarrito.eliminarTodasabitacionesDelCarrito();
+        window.location.reload();
+
+    });
     document.getElementById("btnPagar").addEventListener("click", function(){
         if(verificarCampos()){
             if(pagar()){
-                //alert("pago completado");
-                window.location.replace("../view/principal.php");
+                document.location = "../view/principal.php";
             }else{
-                //alert("pago no completado correctamente, vuelva a intentar");
             }
         }else{
-            window.location.replace("../view/principal.php");
         }
     })
 });

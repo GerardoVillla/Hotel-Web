@@ -12,6 +12,7 @@ function reservar() {
     }
 
     $html = "<h2>Detalles de la reserva:</h2>";
+    $html .= "<input type=\"button\" id=\"vaciarCarrito\" value=\"vaciar carrito\">";
     $totalFinal = 0;
 
     foreach ($reservas as $habitacion) {

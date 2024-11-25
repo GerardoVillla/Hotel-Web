@@ -63,6 +63,9 @@ header nav ul li a{
 #btn-reservar a{
 	color: aliceblue;
 }
+#btn-reservar:hover{
+	background-color: #2f3a0d;
+}
 
 
 .contenido{
