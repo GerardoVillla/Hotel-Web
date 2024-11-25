@@ -1,17 +1,17 @@
 <?php
 $habitaciones = [];
-$errorMsj = "";
+$errorM = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $tipo_habitacion = $_POST['TipoHab'] ?? '';
     $fecha_entrada = $_POST['FechaEntrada'] ?? '';
     $fecha_salida = $_POST['FechaSalida'] ?? '';
     $personas = (int)($_POST['Personas'] ?? 0);
-
-    if (empty($fecha_entrada) || empty($fecha_salida) || empty($tipo_habitacion) || empty($personas)) {
-        $errorMsj = 'Por favor, ingresa  datos';
+    
+    if(empty($fecha_entrada) || empty($fecha_salida) || empty($tipo_habitacion) || empty($personas)) {
+        $errorM = 'Por favor, ingresa todos los datos';
     }elseif(strtotime($fecha_entrada) >= strtotime($fecha_salida)){
-        $errorMsj = 'La fecha de entrada debe ser anterior a la fecha de salida.';
+        $errorM = 'La fecha de entrada debe ser anterior a la fecha de salida';
     }else{
         include '../../servidor/config/config.inc.php';
         $conexion = mysqli_connect(
@@ -31,17 +31,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             ";
         
             // Filtrar por tipo de habitación
-            if (!empty($tipo_habitacion)) {
+            if(!empty($tipo_habitacion)) {
                 $query .= " AND h.categoria = '$tipo_habitacion'";
             }else{
-                $errorMsj="Faltan datos";
+                $errorM='Faltan datos';
             }
 
             // Filtrar por capacidad de personas
-            if ($personas > 0) {
+            if($personas > 0) {
                 $query .= " AND h.capacidadDePersonas >= $personas";
             }else{
-                $errorMsj="Faltan datos";
+                $errorM='Faltan datos';
             }
 
             $result = mysqli_query($conexion, $query);
@@ -50,7 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $habitaciones[] = $row;
                 }
             } else {
-                $errorMsj = 'No se encontraron habitaciones disponibles con los filtros seleccionados.';
+                $errorM='No se encontraron habitaciones disponibles con los filtros seleccionados';
             }
             mysqli_close($conexion);
     }
@@ -79,7 +79,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         <section class="section">
             <h2>Buscar</h2><br>
-            <form action="" method="post" onsubmit="Submit(event)">
+            <form action="" method="post" id="Form">
                 <label>Elige una habitaci&oacute;n</label>
                 <select name="TipoHab">
                     <option value="" disabled selected>Selecciona una opción</option>
@@ -95,13 +95,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <input type="number" min="1" max="10" maxlength="3" name="Personas">
                 <input type="submit" value="buscar" name="Buscar">
             </form>
-            <!--MENSAJE DE ERROR-->
-            <?php if (!empty($errorMsj)): ?>
-            <div class="error-mensaje">
-                <p><?php echo $errorMsj; ?></p>
-            </div>
-            <?php endif; ?>
-            <!------------------>
+
+            <?php if (!empty($errorM)): ?>
+                    <div class="error-mensaje">
+                    <p><?php echo $errorM; ?></p>
+                    </div>
+                <?php endif; ?>
+           
         </section>
         <section class="resultados">
             <div class="habitacionesscroller">
@@ -109,31 +109,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <?php if (!empty($habitaciones)): ?>
                         <?php foreach ($habitaciones as $habitacion): ?>
                             <div class="habitacion">
-                                <img src="<?php echo $habitacion['urlImagen']; ?>" alt="Imagen de <?php echo $habitacion['nombre']; ?>" class="Imghab">
+                                <img src="<?php echo "../recursos/img/habitaciones/" . $habitacion['urlImagen']; ?>" alt="Imagen de <?php echo "../recursos/img/habitaciones/" . $habitacion['urlImagen']; ?>" class="Imghab">
                                     <div class="HabCarac">
-                                        <h4><?php echo $habitacion['nombre']; ?></h4>
+                                        <h2><?php echo $habitacion['nombre']; ?></h2>
                                         <p><?php echo $habitacion['descripcion']; ?></p>
                                         <p>N&uacute;mero de personas: <?php echo $habitacion['capacidadDePersonas'];?> </p>
                                         <p><strong>Precio por noche:</strong> $<?php echo $habitacion['costoPorNoche']; ?>  <!--Cambiar a php si es necesario--></p> 
-                                        <p>Disponibles: <?php echo $habitacion['disponibles']?></p> 
-                                        <b>
-                                        <a href="reservar.php?id=<?php echo $habitacion['idhabitacion']; ?>&personas=<?php echo $personas; ?>&entrada=<?php echo $fecha_entrada; ?>&salida=<?php echo $fecha_salida; ?>">
+                                        <p>Disponibles: <b><?php echo $habitacion['disponibles']?> </b></p> <a href="reservar.php?id=<?php echo $habitacion['idhabitacion']; ?>&personas=<?php echo $personas; ?>&entrada=<?php echo $fecha_entrada; ?>&salida=<?php echo $fecha_salida; ?>">
                                             Reservar
-                                        </a>
-                                        </b>
+                                        </a>       
                                     </div>
                             </div>
                         <?php endforeach; ?>
                     <?php else: ?>
                         <p class="Noresultados">Sin resultados... </p>
                     <?php endif; ?>
-                
             </div>
-        </section>            
-
+        </section>       
         <footer>
             <p>&copy; Todos los derechos reservados</p>
         </footer>
-        <script src="../../cliente/scripts/buscar.js"></script>
+        <script src="/ecologico/src/cliente/scripts/buscar.js"></script>
     </body>
 </html>
