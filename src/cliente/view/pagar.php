@@ -1,9 +1,7 @@
 <?php
 include_once("../../servidor/sesion.php");
-include_once("../../servidor/sesion.php");
 validarSesionCliente();
 function reservar() {
-    validarSesionCliente();
     // Recuperar y convertir la cookie en un arreglo
     $cookieValue = isset($_COOKIE['carritoHabitaciones']) ? $_COOKIE['carritoHabitaciones'] : '';
     $reservas = explode(",", $cookieValue);
@@ -14,6 +12,7 @@ function reservar() {
     }
 
     $html = "<h2>Detalles de la reserva:</h2>";
+    $html .= "<input type=\"button\" id=\"vaciarCarrito\" value=\"vaciar carrito\">";
     $totalFinal = 0;
 
     foreach ($reservas as $habitacion) {

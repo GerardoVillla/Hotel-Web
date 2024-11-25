@@ -98,64 +98,6 @@ section {
     align-self: center;
 }
 
-.habitacionesscroller{
-    max-height: 100%; 
-    overflow-y: auto; 
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-.habitacion{
-    display: flex; 
-    flex-direction: row; 
-    align-items: center; 
-    gap: 15px; 
-    padding: 20px;
-    
-    
-    
-    /*
-    border: 1px solid #ccc; 
-    border-radius: 5px; 
-    background-color: #fff;
-    */
-}
-
-.HabCarac a{
-    text-decoration: none;
-    color: #A30350;
-}
-
-.habitacion div{
-    white-space: normal; /* Permite que el texto haga saltos de línea automáticamente */
-    word-wrap: break-word; /* Fuerza el salto de línea si hay palabras muy largas */
-    overflow: hidden; /* Oculta cualquier contenido que exceda el contenedor */
-    text-overflow: ellipsis; /* Opcional: agrega "..." al final si el texto se recorta */
-}
-
-.ImgHab{
-    width: 200px;
-    height: 125px;
-}
-
-.habitacion{
-    flex: 1;
-}
-
-.habitacionesscroller::-webkit-scrollbar {
-    width: 10px; /* Ancho de la barra */
-}
-
-.habitacionesscroller::-webkit-scrollbar-thumb {
-    background-color: #c2bebd;
-    border-radius: 10px;
-}
-
-.habitacionesscroller::-webkit-scrollbar-track {
-    background: #f1f1f1; /* Fondo de la barra */
-}
-
 h3{
     margin: 0;
 }
@@ -185,3 +127,19 @@ footer{
 	background-color: #C7B7A3;
 }
 
+#btn_anadir{
+    font-size: 1.5rem;
+	text-decoration: none;
+	color: aliceblue;
+    background-color: #A30350;
+	padding: 0.5rem 2rem;
+	border-radius: 5px;
+	box-shadow: 0 4px 0 rgba(88, 5, 5, 0.37);
+
+}
+
+#btn_anadir:hover{
+    border: 2px solid #B5C18E;
+    color: #235235;
+    background: #B5C18E;
+}

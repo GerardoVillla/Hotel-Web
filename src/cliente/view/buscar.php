@@ -70,7 +70,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <body>
     <div class="grid">
         <nav class="nav">
-            <a href="home.html">regresar</a>
+            <a href="principal.php">Regresar</a>
         </nav>
 
         <aside class="aside">
@@ -109,7 +109,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <?php if (!empty($habitaciones)): ?>
                         <?php foreach ($habitaciones as $habitacion): ?>
                             <div class="habitacion">
-                                <img src="<?php echo "../recursos/img/habitaciones/" . $habitacion['urlImagen']; ?>" alt="Imagen de <?php echo "../recursos/img/habitaciones/" . $habitacion['urlImagen']; ?>" class="Imghab">
+
+                                <img src="<?php echo "../recursos/img/habitaciones/".$habitacion['urlImagen']; ?>" alt="Imagen de <?php echo $habitacion['nombre']; ?>" class="Imghab">
+
                                     <div class="HabCarac">
                                         <h2><?php echo $habitacion['nombre']; ?></h2>
                                         <p><?php echo $habitacion['descripcion']; ?></p>

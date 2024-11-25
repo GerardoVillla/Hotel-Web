@@ -80,6 +80,40 @@ function listar($orden = "") {
 
     }
 
+    function misReservaciones($idUsuario){
+        $conexionSql = new Conexiondb();
+        $conexionSql = $conexionSql->getConnection();
+
+        $peticion = "SELECT habitaciones.nombre AS nombreHabitacion, 
+                    reservaciones.inicioEstadia AS inicioEstadia, 
+                    reservaciones.finEstadia AS finEstadia,
+                    reservaciones.fechaReservacion AS fechaReservacion, 
+                    reservaciones.subtotal AS subtotal
+             FROM reservaciones
+             JOIN habitaciones ON reservaciones.idHabitacion = habitaciones.idHabitacion
+             WHERE reservaciones.idCliente = $idUsuario";
+        $resultado = $conexionSql->query($peticion);
+
+        if (!$resultado) {
+            die("Error en la consulta: " . $conexionSql->error);
+        }
+        if ($resultado->num_rows === 0) {
+            return "<p>No hay reservaciones disponibles.</p>";
+        }        
+
+        $html = '';
+        while($registro = $resultado->fetch_assoc()){
+            $html .= "<div id=\"tabla\"><table>";
+            $html .= "<tr> <td><label>Habitación: </label></td> <td> ".$registro['nombreHabitacion']." </td> </tr>";
+            $html .= "<tr> <td><label>Entrada: </label></td> <td> ".$registro['inicioEstadia']." </td> </tr>";
+            $html .= "<tr> <td><label>Salida: </label></td> <td> ".$registro['finEstadia']." </td> </tr>";
+            $html .= "<tr> <td><label>Fecha de reservacion: </label></td> <td> ".$registro['fechaReservacion']." </td> </tr>";
+            $html .= "<tr> <td><label>Total reservación: </label></td> <td>$ ".$registro['subtotal']."</td> </tr>";
+            $html .= "</table></div><hr>";
+        }
+        return $html;
+    }
+
     function obtenerImagen($id){
         $conexionSql = new Conexiondb();
         $conexionSql = $conexionSql->getConnection();
