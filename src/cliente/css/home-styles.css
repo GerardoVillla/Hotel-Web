@@ -1,10 +1,33 @@
-@import url('https://fonts.googleapis.com/css2?family=Domine:wght@400..700&family=Quicksand&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+
+.playfair-display-titulo {
+	font-family: "Playfair Display", serif;
+	font-optical-sizing: auto;
+	font-weight: 700; /* Negrita */
+	font-style: normal; /* No itálico */
+}
+  
+.playfair-display-subtitulo {
+	font-family: "Playfair Display", serif;
+	font-optical-sizing: auto;
+	font-weight: 600; /* Normal */
+	font-style: normal; /* Itálico */
+}
+
+.playfair-display-parrafo {
+	font-family: "Playfair Display", serif;
+	font-optical-sizing: auto;
+	font-weight: 500; /* Negrita */
+	font-style: normal; /* No itálico */
+  }
 
 
 *{
 	margin: 0;
 	padding: 0;
-	font-family: "Domine", serif;
+	font-family: "Playfair Display", serif;
+	font-optical-sizing: auto;
 }
 
 body{
@@ -20,15 +43,16 @@ body{
 }
 
 header{
-	background-color: #B5C18E;
+	/*background-color: #B5C18E;*/
+	background-color: #A5D16C;
 	padding: 1rem 1.25rem;
 	display: inline-flex;
 	justify-content:space-between;/*Investigar sobre porque funciono con este*/
 	align-items: center; /*Centra verticalmente el header*/
-
 	position: sticky; /* Hacer que el header sea sticky */
 	top: 0; /* Pegar en la parte superior */
 	z-index: 1000; /* Asegúrate de que esté por encima de otros elementos */
+	
 }
 
 
@@ -40,7 +64,7 @@ header nav ul{
 	display: inline-flex;
 	justify-content: space-between;
 	align-items: center;
-	gap: 2em;
+	gap: 3em;
 }
 
 header nav ul li{
@@ -53,10 +77,21 @@ header nav ul li a{
 	color: #000;
 }
 
+.icono-encabezado{
+	max-width: 30px;
+	padding: 0;;
+	transition: transform 0.3s ease; /* Efecto de transición en el hover */
+}
+
+.icono-encabezado:hover{
+	transform: scale(1.2);
+}
 #btn-reservar{
 	background-color: #A30350;
 	padding: 0.5rem 2rem;
+	padding-bottom: .5rem;
 	border-radius: 5px;
+	margin-bottom: 6px;
 	box-shadow: 0 4px 0 rgba(0, 0, 0, 0.2); /* Sombra solo en la parte inferior */
 	color: aliceblue;
 }
@@ -72,19 +107,31 @@ header nav ul li a{
 	display: grid;
 	grid-template-columns: repeat(16, 1fr);
 	grid-template-rows: repeat(4, minmax(100px, auto));
-	row-gap: 2rem;
 }	
+#logo{
+	max-width: 90px;
+}
 
+header h1{
+	font-size: 2.5rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 1rem;
+}
 #img-home{
 	grid-column: 1 / -1;
 	grid-row: 1;
+	background-color: #000000;
 }
 
 #img-home img{
+	display: block;
 	width: 100%;
-	height: 517px; /*Se puede cambiar por unidad mas relativa*/ 
+	height: 755px; /*Se puede cambiar por unidad mas relativa*/ 
 	object-fit: cover;
 	overflow: hidden;
+	opacity: 0.8;
 }
 
 #bienvenida-tarjeta{
@@ -101,6 +148,7 @@ header nav ul li a{
 	flex-direction: column;
 	padding-bottom: 6rem;
 	width: 85%;
+	margin-top: 3rem;
 }
 .articulo h1{
 	margin-bottom: 2rem;
@@ -121,7 +169,7 @@ header nav ul li a{
 #bienvenida-tarjeta img{
 	width: 235px;
 	height: 303px;
-	border-radius: 37px;
+	border-radius: 20px 20px 0 20px;
 }
 
 #desglose-habitaciones{
@@ -182,6 +230,7 @@ header nav ul li a{
 #next {
     right: 0;
 }
+
 
 .descripcion-articulo{
 	margin: 0 1.5rem 1.5rem 1.5rem;
@@ -300,6 +349,7 @@ table {
 #nosotros-tarjeta{
 	grid-column: 1 / -1;
 	grid-row: 4;
+	background-color: #E5DCDD;
 }
 
 #nosotros-tarjeta img{
@@ -309,6 +359,7 @@ table {
 	
 }
 #articulo-nosotros{
+	margin: 4rem 0;
 	padding: 0 2.5rem;
 	display: inline-flex;
 	flex-direction: row;
