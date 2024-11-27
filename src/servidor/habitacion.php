@@ -106,7 +106,9 @@ function listar(){
 	while($registro = $resultado->fetch_assoc()){
 		$html .= '<li class="habitacion-propiedades" onClick="selecc_cuarto(this)" data-tipo="' . $registro['categoria'] . '">';
 		$rutaImg = "../recursos/img/habitaciones/".$registro['urlImagen'];
+		$html .= '<div class="contenedor-img">';
         $html .= '<img src="' . $rutaImg . '" alt="">';
+		$html .= '</div>';
         $html .= '<div class="detalles-habitacion">';
 		$html .= '<h2 id="codigo-habitacion">' .$registro['idhabitacion'] . '</h2>';
         $html .= '<h2 id="nombre-habitacion">' . $registro['nombre'] . '</h2>';
