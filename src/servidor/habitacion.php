@@ -124,7 +124,7 @@ function filtrarPorCategoria($categoria){
         $html .= '<h2 id="nombre-habitacion">' . $registro['nombre'] . '</h2>';
         $html .= '<p><strong>Categoría:</strong> <span id="categoria-habitacion">' . $registro['categoria'] . '</span></p>';
         $html .= '<p><strong>Cap. personas:</strong> <span id="cantidad-personas">' . $registro['capacidadDePersonas'] . '</span></p>';
-		$html .= '<p><strong>Total habitaciones:</strong> <span id="total-habitacion">' . $registro['numHabitaciones'] . '</span></p>';
+		$html .= '<p><strong>Total habitaciones:</strong> <span id="total-habitaciones">' . $registro['numHabitaciones'] . '</span></p>';
         $html .= '<p><strong>Hab. disponibles:</strong> <span id="cantidad-disponible">' . $registro['disponibles'] . '</span></p>';
         $html .= '<p><strong>Costo:</strong> <span id="costo-habitacion">' . $registro['costoPorNoche'] . '</span></p>';
         $html .= '</div>';

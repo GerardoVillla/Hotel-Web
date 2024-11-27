@@ -7,6 +7,73 @@ body{
     background-color: transparent;
 }
 
+header{
+	/*background-color: #B5C18E;*/
+	background-color: #A5D16C;
+	padding: .5rem 1rem;
+	display: inline-flex;
+	justify-content:space-between;/*Investigar sobre porque funciono con este*/
+	align-items: center; /*Centra verticalmente el header*/
+	position: sticky; /* Hacer que el header sea sticky */
+	top: 0; /* Pegar en la parte superior */
+	z-index: 1000; /* Asegúrate de que esté por encima de otros elementos */
+	max-height: 70px;
+}
+
+header nav ul{
+	display: inline-flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 3em;
+}
+
+header nav ul li{
+	list-style: none;
+}
+
+header nav ul li a{
+	font-size: 1.5rem;
+	text-decoration: none;
+	color: #000;
+}
+
+.icono-encabezado{
+	max-width: 30px;
+	padding: 0;;
+	transition: transform 0.3s ease; /* Efecto de transición en el hover */
+}
+
+.icono-encabezado:hover{
+	transform: scale(1.2);
+}
+#btn-reservar{
+	background-color: #A30350;
+	padding: 0.5rem 2rem;
+	padding-bottom: .5rem;
+	border-radius: 5px;
+	margin-bottom: 6px;
+	box-shadow: 0 4px 0 rgba(0, 0, 0, 0.2); /* Sombra solo en la parte inferior */
+	color: aliceblue;
+}
+#btn-reservar a{
+	color: aliceblue;
+}
+#btn-reservar:hover{
+	background-color: #2f3a0d;
+}
+
+
+#logo{
+	max-width: 50px;
+}
+
+header h1{
+	font-size: 2.5rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 1rem;
+}
 button{
     width: 5%;
     height: 5%;
