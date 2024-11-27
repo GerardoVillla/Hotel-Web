@@ -13,7 +13,7 @@ validarSesionPantallaPrincipal();
 
 <body>
 	<header>
-		<h1><img id="logo" src="../recursos/img/iconos/logopng.png" alt="">Ek' Balam</h1>
+		<h1 class="playfair-display-titulo"><img id="logo" src="../recursos/img/iconos/logopng.png" alt="">Ek' Balam</h1>
 		<nav>
 			<ul>
 				<li><a href="pagar.php"><img class="icono-encabezado" src="../recursos/img/iconos/carrito-de-compras.png"></a></li>
