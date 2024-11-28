@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 20-11-2024 a las 06:41:32
+-- Tiempo de generación: 27-11-2024 a las 06:56:38
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `hotelecologico`
+-- Base de datos: `ecologico`
 --
 
 -- --------------------------------------------------------
@@ -90,18 +90,6 @@ INSERT INTO `habitaciones` (`idhabitacion`, `nombre`, `categoria`, `disponibles`
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `hotel`
---
-
-CREATE TABLE `hotel` (
-  `idHabitacion` int(11) NOT NULL,
-  `capacidadCuartos` int(11) DEFAULT NULL,
-  `cuartosDisponibles` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
 -- Estructura de tabla para la tabla `reservaciones`
 --
 
@@ -140,16 +128,10 @@ ALTER TABLE `habitaciones`
   ADD UNIQUE KEY `idhabitacion_UNIQUE` (`idhabitacion`);
 
 --
--- Indices de la tabla `hotel`
---
-ALTER TABLE `hotel`
-  ADD KEY `idHabitacion_idx` (`idHabitacion`),
-  ADD KEY `idHabitacion_idx_hotel` (`idHabitacion`);
-
---
 -- Indices de la tabla `reservaciones`
 --
 ALTER TABLE `reservaciones`
+  ADD PRIMARY KEY (`idReservacion`),
   ADD KEY `idCliente_idx` (`idCliente`),
   ADD KEY `idHabitacion_idx` (`idHabitacion`),
   ADD KEY `idreservaciones_UNIQUE` (`idReservacion`) USING BTREE,
@@ -170,6 +152,12 @@ ALTER TABLE `clientes`
 --
 ALTER TABLE `habitaciones`
   MODIFY `idhabitacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT de la tabla `reservaciones`
+--
+ALTER TABLE `reservaciones`
+  MODIFY `idReservacion` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- Restricciones para tablas volcadas

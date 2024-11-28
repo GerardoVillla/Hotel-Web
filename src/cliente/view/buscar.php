@@ -152,6 +152,7 @@ function generarOpcionesFiltroSecundario($filtroPrincipal, $filtroSecundario) {
                     <?php endforeach; ?>
                     <?php elseif ($busquedaRealizada): ?>
                         <b><p class="Noresultados">No se encontraron coincidencias, ¡Prueba con otros terminos o filtros!</p></b>
+
                     <?php else: ?>
                         <b><p class="Noresultados">Aun sin resultados, ¿Por qué no pruebas buscar algo?</p></b>
                 <?php endif; ?>

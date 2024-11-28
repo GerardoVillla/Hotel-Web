@@ -1,3 +1,5 @@
+import { cookiesCarrito } from './cookiesCarrito.js';
+
 document.addEventListener("DOMContentLoaded", () => {
     const carrusel = document.getElementById("carrusel");
     const prevBtn = document.getElementById("prev");
@@ -26,17 +28,6 @@ document.addEventListener("DOMContentLoaded", () => {
             const maxScroll = -(carrusel.scrollWidth - carrusel.parentElement.offsetWidth);
             currentPosition = Math.max(currentPosition - cardWidth, maxScroll);
             carrusel.style.transform = `translateX(${currentPosition}px)`;
-        });
-
-        reservarBtn.addEventListener("click", (e) => {
-            e.preventDefault();
-            console.log("Evento detectado.");
-            if (1 == 1) {
-                window.location.href = "reservar.html";
-            } else {
-                window.location.href = "../../../index.php"; // Redirige al usuario al inicio de sesión
-                alert("Inicia sesión para poder reservar"); // Opcional: mensaje de alerta
-            }
         });
     };
 
@@ -123,4 +114,9 @@ document.addEventListener("DOMContentLoaded", () => {
             inicializarCarrusel();
         })
         .catch(error => console.error("Error al cargar las habitaciones:", error));
+
+    document.getElementById('cerrarSesion').addEventListener('click', function(){
+        cookiesCarrito.eliminarTodasLasCookies();
+        window.location.reload();
+    });
 });

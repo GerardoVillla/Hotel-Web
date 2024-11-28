@@ -38,7 +38,7 @@ function iniciarSesion($nombreUsuario, $contrasenaUsuario): void{
 }
 
 
-function registrarUsuario($usuarnombreUsuarioio, $contrasenaUsuario): void{
+function registrarUsuario($nombreUsuario, $contrasenaUsuario): void{
 	$conexionSql = new conexiondb();
 	$conexionSql = $conexionSql->getConnection();
 
