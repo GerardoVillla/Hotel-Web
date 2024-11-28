@@ -4,7 +4,19 @@ document.addEventListener("DOMContentLoaded", () => {
     const carrusel = document.getElementById("carrusel");
     const prevBtn = document.getElementById("prev");
     const nextBtn = document.getElementById("next");
+    const btnReservar = document.getElementById("reserv");
     let currentPosition = 0;
+
+    btnReservar.addEventListener("click", (e) => {
+        deseaContinuar(e);  
+    });
+
+    function deseaContinuar(e){
+        e.preventDefault();
+        const deseaContinuar = confirm("Para resevar debe tener una sesión iniciada o iniciar una.¿Desea continuar?");
+        if (!deseaContinuar) return;
+        window.location.href = "reservar.php";
+    }
 
     // Función para inicializar el carrusel después de cargar los datos
     const inicializarCarrusel = () => {
@@ -76,8 +88,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 });
     
                 const reservarBtn = tabla.querySelector("#btnReservar");
-                reservarBtn.addEventListener("click", () => {
-                    window.location.href = "reservar.php";
+                reservarBtn.addEventListener("click", (e) => {
+                    deseaContinuar(e);
                 });
     
                 // Agregar la tabla al contenedor
