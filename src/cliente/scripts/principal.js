@@ -5,7 +5,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const prevBtn = document.getElementById("prev");
     const nextBtn = document.getElementById("next");
     let currentPosition = 0;
-    const reservarBtn = document.getElementById("btnReservar");
 
     // Función para inicializar el carrusel después de cargar los datos
     const inicializarCarrusel = () => {
@@ -32,15 +31,19 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     function mostrarHabitacion(id) {
+        fetch("../../servidor/carrusel.php")
+            .then(response => response.json())
+            .then(data => {
+                const habitacion = data.find(h => h.idhabitacion === id);
+                if (!habitacion) {
+                    console.error("Habitación no encontrada.");
+                    return;
+                }
     
-    fetch("../../servidor/carrusel.php")
-    .then(response => response.json())
-    .then(data => {
-        data.forEach((habitacion) => {
-            if(habitacion.idhabitacion == id){
                 // Crear el contenedor flotante
                 const contenedor = document.createElement("div");
                 contenedor.className = "contenedor";
+    
                 // Crear la tabla con la información
                 const tabla = document.createElement("table");
                 tabla.innerHTML = `
@@ -49,36 +52,41 @@ document.addEventListener("DOMContentLoaded", () => {
                             <img class="imgHab" src="../recursos/img/habitaciones/${habitacion.URLImagen}" alt="Imagen de la habitación">
                         </td>
                         <td id="infosection">
-                            <h1>${habitacion.nombre}</h1>
-                            <p>${habitacion.descripcion}</p>
-                            <h5>
-                                Categoria: ${habitacion.categoria}<br>
+                            <button id="btnCerrarInfo" class="cerrar-btn">
+                                <img src="../recursos/img/iconos/cerrarInformacion.png" alt="Cerrar">
+                            </button>
+                            <h1 class="playfair-display-titulo">${habitacion.nombre}</h1>
+                            <p class="playfair-display-parrafo">${habitacion.descripcion}</p>
+                            <h5 class="playfair-display-subtitulo">
+                                Categoría: ${habitacion.categoria}<br>
                                 Capacidad de personas: ${habitacion.capacidadDePersonas}<br>
-                                Numero de habitaciones: ${habitacion.numHabitaciones}<br>
+                                Número de habitaciones: ${habitacion.numHabitaciones}<br>
                                 Disponibles: ${habitacion.disponibles}<br>
                                 Costo por noche: ${habitacion.costoPorNoche}<br>
                             </h5>
+                            <button id="btnReservar">Reservar</button>
                         </td>
                     </tr>
                 `;
-                // Crear el botón de cerrar
-                const cerrarBtn = document.createElement("button");
-                cerrarBtn.innerHTML = `
-                    <img src="../recursos/img/infohab/cerrarInformacion.png" alt="Cerrar">
-                `;
+    
+                // Agregar eventos a los botones
+                const cerrarBtn = tabla.querySelector("#btnCerrarInfo");
                 cerrarBtn.addEventListener("click", () => {
-                    // Eliminar el contenedor flotante al cerrar
                     document.body.removeChild(contenedor);
                 });
-                // Agregar la tabla y el botón al contenedor
+    
+                const reservarBtn = tabla.querySelector("#btnReservar");
+                reservarBtn.addEventListener("click", () => {
+                    window.location.href = "reservar.php";
+                });
+    
+                // Agregar la tabla al contenedor
                 contenedor.appendChild(tabla);
-                contenedor.appendChild(cerrarBtn);
+    
                 // Añadir el contenedor al cuerpo del documento
                 document.body.appendChild(contenedor);
-            }
-        });
-    })
-    .catch(error => console.error("Error al cargar la habitacion:", error));
+            })
+            .catch(error => console.error("Error al cargar la habitación:", error));
     }
     
 
@@ -95,9 +103,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 tarjeta.innerHTML = `
                     <img src="../recursos/img/habitaciones/${habitacion.URLImagen}" alt="img ${habitacion.nombre}">
                     <div class="descripcion-articulo">
-                        <h2>${habitacion.nombre}</h2>
-                        <p>${habitacion.descripcion}</p>
-                        <h3>MXN ${habitacion.costoPorNoche}</h3>
+                        <h2 class="playfair-display-titulo">${habitacion.nombre}</h2>
+                        <p class="playfair-display-parrafo">${habitacion.descripcion}</p>
+                        <h3 class="playfair-display-subtitulo">MXN ${habitacion.costoPorNoche}</h3>
                     </div>
                 `;
                 // Agregar el evento de clic directamente

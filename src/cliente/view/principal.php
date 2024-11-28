@@ -48,9 +48,9 @@ validarSesionPantallaPrincipal();
 		</section>
 		<section id="desglose-habitaciones">
 			<h1>
-				< Nuestras habitaciones>
+				Nuestras habitaciones
 			</h1>
-			<div class="carrusel-container">
+			<div id="carrusel-container">
 			    <button id="prev" class="carrusel-btn">‹</button>
 			    <div class="carrusel" id="carrusel">
 			        <!-- Las tarjetas de habitaciones se llenarán dinámicamente con JavaScript -->
