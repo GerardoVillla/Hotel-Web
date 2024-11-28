@@ -134,7 +134,7 @@ function generarOpcionesFiltroSecundario($filtroPrincipal, $filtroSecundario) {
                         <?php foreach ($habitaciones as $habitacion): ?>
                 <div class="habitacion">
                     <img src="<?php echo "../recursos/img/habitaciones/" . $habitacion['urlImagen']; ?>" class="ImgHab">
-                    <div class="HabCarac">
+                <div class="HabCarac">
                             <h2><?php echo $habitacion['nombre']; ?></h2>
                             <p><?php echo $habitacion['descripcion']; ?></p>
                             <p>N&uacute;mero de personas: <?php echo $habitacion['capacidadDePersonas'];?> </p>
@@ -156,6 +156,7 @@ function generarOpcionesFiltroSecundario($filtroPrincipal, $filtroSecundario) {
                     <?php else: ?>
                         <b><p class="Noresultados">Aun sin resultados, ¿Por qué no pruebas buscar algo?</p></b>
                 <?php endif; ?>
+
             </div>
         </div>
     </div>     
