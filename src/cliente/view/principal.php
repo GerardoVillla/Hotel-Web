@@ -21,7 +21,7 @@ validarSesionPantallaPrincipal();
 				<li><a href="misReservaciones.php"><img class="icono-encabezado" src="../recursos/img/iconos/avatar.png"></a></li>
 				<li><a href="#nosotros-tarjeta"><img class="icono-encabezado" src="../recursos/img/iconos/informacion.png" alt=""></a></li>
 				<li id="cerrarSesion"><a href="#"><img class="icono-encabezado" src="../recursos/img/iconos/cerrar-sesion.png"></a></li>
-				<li id="btn-reservar"><a href="reservar.php">Reservar</a></li>
+				<li id="btn-reservar"><a id="reserv" href="">Reservar</a></li>
 			</ul>
 		</nav>
 	</header>
@@ -48,9 +48,9 @@ validarSesionPantallaPrincipal();
 		</section>
 		<section id="desglose-habitaciones">
 			<h1>
-				< Nuestras habitaciones>
+				Nuestras habitaciones
 			</h1>
-			<div class="carrusel-container">
+			<div id="carrusel-container">
 			    <button id="prev" class="carrusel-btn">‹</button>
 			    <div class="carrusel" id="carrusel">
 			        <!-- Las tarjetas de habitaciones se llenarán dinámicamente con JavaScript -->
