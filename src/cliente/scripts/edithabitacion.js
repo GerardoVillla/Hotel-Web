@@ -56,8 +56,21 @@ document.addEventListener('DOMContentLoaded', () => {
                 alert("Todos los campos deben tener valor");
             }else{
                 console.log("Creando cambio");
+
+                //Consulta para verificar si se cambio la imagen
                 let img = document.getElementById('btn_cambiarimg').files[0];
+                let urlImagen = '';
+                if(!img){
+                    urlImagen = HabInfo.imagen;
+                    urlImagen = urlImagen.replace('http://localhost/ecologico/src/cliente/recursos/img/habitaciones/', '');
+                }else{
+                    //const formData = new FormData();
+                    //formData.append('imagen', img);                    
+                    urlImagen = img;
+                }
+                
                 const HabInformacionAEnviar = {
+                    urlImagen: urlImagen,
                     nombre: document.getElementById('txt_nombre').value,
                     categoria: document.getElementById('txt_categoria').value,
                     descripcion: document.getElementById('t_area_descripcion').value,
@@ -65,8 +78,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     disponibles: document.getElementById('txt_habdisponibles').value,
                     capacidadDePersonas: document.getElementById('txt_capacidad').value,
                     costoPorNoche: document.getElementById('txt_costo').value,
-                    urlImagen: img.name,
-    
                 };
 
                     if(modo === 'añadir'){
@@ -102,7 +113,7 @@ function actualizarHabitacionEnServidor(HabInformacionAEnviar, id) {
     for (const key in HabInformacionAEnviar) {
         if (HabInformacionAEnviar[key] !== datosIniciales[key]) {
             console.log("Actualizando habitacion en servidor");
-            const argumentos = new URLSearchParams();
+            const argumentos = new FormData();
             argumentos.append('action', 'actualizar');
             argumentos.append('id', id);
             argumentos.append("campo", key);

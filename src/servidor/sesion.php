@@ -1,5 +1,8 @@
 <?php
-require_once ("config/conexiondb.php");
+
+require_once (__DIR__."/../../config.inc.php");
+
+
 
 function iniciarSesion($nombreUsuario, $contrasenaUsuario): void{
 	$conexionSql = new conexiondb();
@@ -35,7 +38,7 @@ function iniciarSesion($nombreUsuario, $contrasenaUsuario): void{
 }
 
 
-function registrarUsuario($usuarnombreUsuarioio, $contrasenaUsuario): void{
+function registrarUsuario($nombreUsuario, $contrasenaUsuario): void{
 	$conexionSql = new conexiondb();
 	$conexionSql = $conexionSql->getConnection();
 

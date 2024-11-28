@@ -8,18 +8,20 @@ validarSesionAdministrador();
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="../css/adminpanel-styles.css">
+	<link rel="stylesheet" href="../css/home-styles.css">
 	<title>Panel Administrador</title>
 </head>
 <body>
 	<header>
-		<h1>Hotel ecológico</h1>
+		<h1><img id="logo" src="../recursos/img/iconos/logopng.png" alt="">Ek' Balam</h1>
 		<nav>
 			<ul>
-				<form action="../../servidor/autenticacion.php" method="post" >
-				<input type="hidden" name="action" value="cerrarsesion">
-				<input type="submit" value="Salir">
-				<!--<li id="btn-menu"><a href="../../servidor/autenticacion.php?action=cerrarsesion">Salir</a></li>-->
-				</form>
+				<li><a href="pagar.php"><img class="icono-encabezado" src="../recursos/img/iconos/carrito-de-compras.png"></a></li>
+				<li><a href="buscar.php"><img class="icono-encabezado" src="../recursos/img/iconos/lupa.png"></a></li>
+				<li><a href="misReservaciones.php"><img class="icono-encabezado" src="../recursos/img/iconos/avatar.png"></a></li>
+				<li><a href="#nosotros-tarjeta"><img class="icono-encabezado" src="../recursos/img/iconos/informacion.png" alt=""></a></li>
+				<li id="cerrarSesion"><a href="#"><img class="icono-encabezado" src="../recursos/img/iconos/cerrar-sesion.png"></a></li>
+				<li id="btn-reservar"><a href="reservar.php">Reservar</a></li>
 			</ul>
 		</nav>
 	</header>

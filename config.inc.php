@@ -5,6 +5,8 @@ $GLOBALS["usuario"] = "root";
 $GLOBALS["contrasena"] = "";
 $GLOBALS["base_datos"] = "ecologico";
 $GLOBALS["raiz_sitio"] = "http://localhost/ecologico/";
+
+
 class Conexiondb{
 	private $servidor;
 	private $usuario;

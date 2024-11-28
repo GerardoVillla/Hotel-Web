@@ -1,5 +1,5 @@
 <?php
-include_once "config/conexiondb.php";
+require_once (__DIR__."/../../config.inc.php");
 
 if(isset($_POST["action"])){
 	$peticion = $_POST["action"];
@@ -39,11 +39,28 @@ if(isset($_POST["action"])){
 	}
 }
 
-
+function guardarImagenEnServidor($imagen){
+	$valor = $_FILES["valor"];
+	$nombreImagen = $valor["name"];
+	$tipoImagen = $valor["type"];
+	$tamanoImagen = $valor["size"];
+	$carpetaDestino = "C:/xampp/htdocs/ecologico/src/cliente/recursos/img/habitaciones/";
+	$rutaImagen = $carpetaDestino . $nombreImagen;
+	$imagenSubida = move_uploaded_file($valor["tmp_name"], $rutaImagen);
+	if($imagenSubida){
+		return $nombreImagen;
+	}else{
+		return "error";
+	}
+}
 
 function actualizarHabitacion($idHabitacion, $campo, $valorActualizado){
 	$conexionSql = new Conexiondb();
 	$conexionSql = $conexionSql->getConnection();
+
+	if($campo == "urlImagen"){
+		$valorActualizado = guardarImagenEnServidor($valorActualizado);
+	}
 	$peticion = "UPDATE habitaciones SET $campo = ? WHERE idhabitacion = ?";
 	$stmt = $conexionSql->prepare($peticion);
 	if(in_array($campo, ["numHabitaciones", "disponibles", "capacidadDePersonas", "costoPorNoche"])){
@@ -124,7 +141,7 @@ function filtrarPorCategoria($categoria){
         $html .= '<h2 id="nombre-habitacion">' . $registro['nombre'] . '</h2>';
         $html .= '<p><strong>Categoría:</strong> <span id="categoria-habitacion">' . $registro['categoria'] . '</span></p>';
         $html .= '<p><strong>Cap. personas:</strong> <span id="cantidad-personas">' . $registro['capacidadDePersonas'] . '</span></p>';
-		$html .= '<p><strong>Total habitaciones:</strong> <span id="total-habitacion">' . $registro['numHabitaciones'] . '</span></p>';
+		$html .= '<p><strong>Total habitaciones:</strong> <span id="total-habitaciones">' . $registro['numHabitaciones'] . '</span></p>';
         $html .= '<p><strong>Hab. disponibles:</strong> <span id="cantidad-disponible">' . $registro['disponibles'] . '</span></p>';
         $html .= '<p><strong>Costo:</strong> <span id="costo-habitacion">' . $registro['costoPorNoche'] . '</span></p>';
         $html .= '</div>';
