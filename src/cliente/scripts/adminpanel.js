@@ -47,7 +47,6 @@ function cargarTodasHabitaciones(){
         .then(response => response.text())
         .then(html => {
             listaCuartos.innerHTML = html;
-            console.log(html);
             console.log("Insertando habitaciones desde la base de datos")
         })
         .catch(error => console.error('Error al cargar habitaciones:', error));
