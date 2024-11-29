@@ -2,7 +2,7 @@
 require_once (__DIR__."/../../config.inc.php");
 include_once "config/config.inc.php";
 
-function listar($orden = "") {
+function listar($orden) {
     $conexionSql = new Conexiondb();
     $conexionSql = $conexionSql->getConnection();
 
@@ -19,6 +19,17 @@ function listar($orden = "") {
         case "alfabetico":
             $peticion .= " ORDER BY nombre ASC";
             break;
+        case "Estandar":
+            $peticion .= " WHERE categoria = \"Estandar\"";
+            break;
+        case "Deluxe":
+            $peticion .= " WHERE categoria = \"Deluxe\"";
+            break;
+        case "Suite":
+            $peticion .= " WHERE categoria = \"Suite\"";
+            break;
+        default:
+            $peticion .= " WHERE 1 ORDER BY categoria ASC";
     }
 
     $resultado = $conexionSql->query($peticion);
@@ -64,7 +75,7 @@ function listar($orden = "") {
         $html = '';
         while($registro = $resultado->fetch_assoc()){
             $html .= '<input type="hidden" id="idhabitacion" value="'.$registro['idhabitacion'].'">';
-            $html .= '<h3><label>Habitacion: '.$registro['nombre'].'</label></h3> <br><br>';
+            $html .= '<h3><label>Habitacion: '.$registro['nombre'].'</label></h3> <br>';
             $html .= '<label>Dia de entrada: </label>';
             $html .= '<input type="date" id="entrada" value='.$entrada.'>';
             $html .= '<label>Dia de salida: </label>';
