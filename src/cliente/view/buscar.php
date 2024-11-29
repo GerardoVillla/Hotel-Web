@@ -3,7 +3,7 @@ $busqueda = '';
 $filtroPrincipal = 'todo';
 $filtroSecundario = '';
 $habitaciones = [];
-$errorMsj = "";
+$error = false;
 $busquedaRealizada = false;
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -24,13 +24,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         die("Error de conexión: " . $conexion->connect_error);
     }
 
+    $palabras_vacias= file('../recursos/palabras_vacias.txt', FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+    $palabras_vacias = array_map('trim', $palabras_vacias);
     // Inicializar consulta base
     $query = "SELECT * FROM habitaciones WHERE disponibles >= 1";
 
     // Filtrar por palabras clave de al menos 3 caracteres
     $busquedaPalabras = array_filter(
         explode(' ', $busqueda),
-        fn($palabra) => strlen($palabra) >= 2
+        fn($palabra) => strlen($palabra) >= 2 && !in_array(strtolower($palabra), $palabras_vacias)
     );
 
     if (!empty($busquedaPalabras)) {
@@ -39,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $query .= " AND (nombre LIKE '%$palabra%' OR descripcion LIKE '%$palabra%')";
         }
     } else {
-        $errorMsj = 'Por favor, escribe palabras de al menos 2 caracteres.';
+        $errorMsj = true;
     }
 
     // Aplicar filtros
