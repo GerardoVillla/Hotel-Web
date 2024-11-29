@@ -11,8 +11,7 @@ function reservar() {
         return "<p>No hay habitaciones en el carrito.</p>";
     }
 
-    $html = "<h2>Detalles de la reserva:</h2>";
-    $html .= "<input type=\"button\" id=\"vaciarCarrito\" value=\"vaciar carrito\">";
+    $html = "";
     $totalFinal = 0;
 
     foreach ($reservas as $habitacion) {
@@ -25,13 +24,18 @@ function reservar() {
         $totalReserva = isset($_COOKIE['total' . $habitacion]) ? htmlspecialchars($_COOKIE['total' . $habitacion]) : 'No definidas';
         $idUsuario = $_SESSION['idUsuario'];
 
+        $html .= "<h2>Reservacion: </h2>";
+
+        $html .= "<button class=\"eliminar\" id=\"$habitacion\" value=\"eliminarReservacion\">  eliminar </button>   ";
+        $html .= "<button class=\"editar\" id=\"$habitacion\" value=\"editarReservacion\"> editar </button>";
+
         $html .= "<div id=\"tabla\"><table>";
         $html .= '<tr> <input type="hidden" value=' . $idUsuario . ' id="idUsuario"> </tr>';
         $html .= "<tr> <td><label>Habitación: </label></td> <td>$habitacion</td> </tr>";
         $html .= "<tr> <td><label>Entrada: </label></td> <td>$entrada</td> </tr>";
         $html .= "<tr> <td><label>Salida: </label></td> <td>$salida</td> </tr>";
         $html .= "<tr> <td><label>Personas: </label></td> <td>$personas</td> </tr>";
-        $html .= "<tr> <td><label>Total reservación $habitacion: </label></td> <td>$ $totalReserva</td> </tr>";
+        $html .= "<tr> <td><label>Total reservación : </label></td> <td>$ $totalReserva</td> </tr>";
         $html .= "</table></div><hr>";
 
         $intTotalReserva = is_numeric($totalReserva) ? (int)$totalReserva : 0;
@@ -55,12 +59,22 @@ function reservar() {
 
     <body>
     <div class="grid">
-        <nav>
-            <a href="principal.php">Regresar</a>
-        </nav>
+        <header>
+            <h1 class="playfair-display-titulo"><img id="logo" src="../recursos/img/iconos/logopng.png" alt="">Ek' Balam</h1>
+            <nav>
+                <ul>
+                    <li><a href="pagar.php"><img class="icono-encabezado" src="../recursos/img/iconos/carrito-de-compras.png"></a></li>
+                    <li><a href="buscar.php"><img class="icono-encabezado" src="../recursos/img/iconos/lupa.png"></a></li>
+                    <li><a href="misReservaciones.php"><img class="icono-encabezado" src="../recursos/img/iconos/avatar.png"></a></li>
+                    <li><a href="#nosotros-tarjeta"><img class="icono-encabezado" src="../recursos/img/iconos/informacion.png" alt=""></a></li>
+                    <li id="cerrarSesion"><a href="#"><img class="icono-encabezado" src="../recursos/img/iconos/cerrar-sesion.png"></a></li>
+                    <li id="btn-reservar"><a href="reservar.php">Reservar</a></li>
+                </ul>
+            </nav>
+        </header>
 
         <section>
-            <h2>Reservaci&oacute;nes : </h2>
+            <h2>Carrito de reservaci&oacute;nes : </h2> <hr>
             <h3>
                 <?php echo reservar(); ?>
             </h3>

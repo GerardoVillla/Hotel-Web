@@ -38,9 +38,19 @@ validarSesionCliente();
 
     <body>
     <div class="grid">
-        <nav class="nav">
-            <a href="reservar.php">Regresar</a>
-        </nav>
+        <header>
+            <h1 class="playfair-display-titulo"><img id="logo" src="../recursos/img/iconos/logopng.png" alt="">Ek' Balam</h1>
+            <nav>
+                <ul>
+                    <li><a href="pagar.php"><img class="icono-encabezado" src="../recursos/img/iconos/carrito-de-compras.png"></a></li>
+                    <li><a href="buscar.php"><img class="icono-encabezado" src="../recursos/img/iconos/lupa.png"></a></li>
+                    <li><a href="misReservaciones.php"><img class="icono-encabezado" src="../recursos/img/iconos/avatar.png"></a></li>
+                    <li><a href="#nosotros-tarjeta"><img class="icono-encabezado" src="../recursos/img/iconos/informacion.png" alt=""></a></li>
+                    <li id="cerrarSesion"><a href="#"><img class="icono-encabezado" src="../recursos/img/iconos/cerrar-sesion.png"></a></li>
+                    <li id="btn-reservar"><a href="reservar.php">Reservar</a></li>
+                </ul>
+            </nav>
+        </header>
 
         <aside class="aside">
         <?php obtenerImagen($_GET['id']) ?>    
@@ -51,7 +61,7 @@ validarSesionCliente();
             <h2>Añadir al carrito</h2><br>
             <form id="reservaForm">
                 <?php reservar($_GET['id'], $entrada, $salida, $personas) ?>
-                <input type="button" value="añadir" id="btn_anadir">
+                <br><input type="button" value="añadir" id="btn_anadir"><br>
             </form>
             <div id="mensaje"></div>
         </section>

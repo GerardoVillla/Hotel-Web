@@ -80,11 +80,29 @@ function agregarUnaReservacion(idHab,idCliente,fecharRes,inicioEstadia,finEstadi
 }
 
 document.addEventListener('DOMContentLoaded', function(){
-    document.getElementById("vaciarCarrito").addEventListener('click' ,function(){
-        cookiesCarrito.eliminarTodasabitacionesDelCarrito();
-        window.location.reload();
-
+    const botonesEliminar = document.querySelectorAll('.eliminar');
+    botonesEliminar.forEach(eliminar => {
+        eliminar.addEventListener('click', (event) => {
+            const id = event.target.id;
+            cookiesCarrito.eliminarHabitacionDelCarrito(id);
+            window.location.reload();
+        });
     });
+
+    const botonesEditar = document.querySelectorAll('.editar');
+    botonesEditar.forEach(editar => {
+        editar.addEventListener('click', (event) => {
+            const id = event.target.id;
+            const entrada = cookiesCarrito.obtenerCookie('entrada' + id);
+            if(entrada == undefined){
+                window.location.reload();
+            }else{
+                const salida = cookiesCarrito.obtenerCookie('salida' + id);
+                const personas = cookiesCarrito.obtenerCookie('habitacion' + id);
+                document.location = `../view/carrito.php?id=${id}&entrada=${entrada}&salida=${salida}&personas=${personas}`;}
+        });
+    });
+
     document.getElementById("btnPagar").addEventListener("click", function(){
         if(verificarCampos()){
             if(pagar()){
