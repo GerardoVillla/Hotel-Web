@@ -22,7 +22,10 @@ body {
     grid-template-columns: 20% 60% 20%;
     grid-template-rows: 80px auto auto 40px;
 }
-
+header a{
+    text-decoration: none;
+    color: inherit;
+}
 header{
 	grid-column: 1 / 5;
     grid-row: 1 / 2;
