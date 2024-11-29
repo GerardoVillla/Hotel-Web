@@ -2,8 +2,27 @@
 require_once (__DIR__."/../../config.inc.php");
 
 if(isset($_POST["action"])){
-	$peticion = $_POST["action"];
+			$peticion = $_POST["action"];
 	switch($peticion){
+		case "crearVacia";
+			crearHabitacionVacia();
+			break;
+		case "predeterminarImagen";
+			$idImg = $_POST["idImagen"];
+			cambiarImagenPredeterminada($idImg);
+			break;
+		case "eliminarImagen";
+			$idImagen = $_POST["idImagen"];
+			eliminarImagen($idImagen);
+			break;
+		case "actualizarImagenes";
+			$idHabitacion = $_POST["id"];
+			actualizarImagenes($idHabitacion);
+			break;
+		case "obtenerImagenes";
+			$idUsuario = $_POST["id"];
+			obtenerRutasImagenesDECliente($idUsuario);
+			break;
 		case "obtenerDescripcion";
 			$idHabitacion = $_POST["id"];
 			obtenerDescripcion($idHabitacion);
@@ -39,19 +58,52 @@ if(isset($_POST["action"])){
 	}
 }
 
-function guardarImagenEnServidor($imagen){
-	$valor = $_FILES["valor"];
-	$nombreImagen = $valor["name"];
-	$tipoImagen = $valor["type"];
-	$tamanoImagen = $valor["size"];
-	$carpetaDestino = "C:/xampp/htdocs/ecologico/src/cliente/recursos/img/habitaciones/";
-	$rutaImagen = $carpetaDestino . $nombreImagen;
-	$imagenSubida = move_uploaded_file($valor["tmp_name"], $rutaImagen);
-	if($imagenSubida){
-		return $nombreImagen;
-	}else{
-		return "error";
+
+function crearHabitacionVacia(){
+	$conexionSql = new Conexiondb();
+	$conexionSql = $conexionSql->getConnection();
+	$peticion = "INSERT INTO habitaciones (nombre, categoria, descripcion, numHabitaciones, disponibles, capacidadDePersonas, costoPorNoche, urlImagen) VALUES ('', '', '', 0, 0, 0, 0, '')";
+	$stmt = $conexionSql->prepare($peticion);
+	$stmt->execute();
+	$idHabitacion = $stmt->insert_id;
+	$conexionSql->close();
+	echo $idHabitacion;
+	return;
+}
+function cambiarImagenPredeterminada($idImg){
+	$conexionSql = new Conexiondb();
+	$conexionSql = $conexionSql->getConnection();
+	$peticion = "UPDATE habitaciones h
+ 	JOIN imageneshabitaciones i ON h.idhabitacion = i.idHabitacion
+	SET h.urlImagen = i.urlImagen
+	WHERE i.idImg = ?";
+	$stmt = $conexionSql->prepare($peticion);
+	$stmt->bind_param("i", $idImg);
+	$stmt->execute();
+	$stmt->close();
+	$conexionSql->close();
+	return;
+
+
+}
+function actualizarImagenes($idHabitacion){
+	$conexionSql = new Conexiondb();
+	$conexionSql = $conexionSql->getConnection();
+	$numImagenes = count($_FILES);
+	for($i=0; $i<$numImagenes; $i++){
+		$nombreImagen = $_FILES["imagen$i"]["name"];
+		$carpetaDestino = "C:/xampp/htdocs/ecologico/src/cliente/recursos/img/habitaciones/";
+		$rutaImagen = $carpetaDestino . $nombreImagen;
+		$imagenSubida = move_uploaded_file($_FILES["imagen$i"]["tmp_name"], $rutaImagen);
+		if(!$imagenSubida){
+			echo "Error al subir imagen";
+		}
+		$peticion = "INSERT INTO imageneshabitaciones (idHabitacion, urlImagen) VALUES (?, ?)";
+		$stmt = $conexionSql->prepare($peticion);
+		$stmt->bind_param("is", $idHabitacion, $nombreImagen);
+		$stmt->execute();
 	}
+
 }
 
 function actualizarHabitacion($idHabitacion, $campo, $valorActualizado){
@@ -94,19 +146,64 @@ function eliminarHabitacion($idHabitacion){
 }
 
 
+function obtenerRutasImagenesDeCliente($idHabitacion){
+	$conexionSql = new Conexiondb();
+	$conexionSql = $conexionSql->getConnection();
+	$consulta = "SELECT urlImagen, idImg FROM imageneshabitaciones WHERE idHabitacion = ?";
+	$stmt = $conexionSql->prepare($consulta);
+	$stmt->bind_param("i", $idHabitacion);
+	$stmt->execute();
+	$resultado = $stmt->get_result();
+	$html = '';
+	while($registro = $resultado->fetch_assoc()){
+		$urlImagen = $registro['urlImagen'];
+		$idImagen = $registro['idImg'];
+		$directorio = "../../cliente/recursos/img/habitaciones/".$urlImagen;
+			//<div class="swiper-slide"><img src="../recursos/img/habitaciones/artico-blanco.jpg" alt="Imagen 1"></div>;
+		$html .= '<div class="swiper-slide" data-idimagen="'.$idImagen.'"><img src="'.$directorio.'" alt="Imagen de Habitación"></div>';	
+	}
+
+	$stmt->close();
+	echo $html;
+	return $html;
+}
+
+
+function eliminarImagen($idImagen){
+	$conexionSql = new Conexiondb();
+	$conexionSql = $conexionSql->getConnection();
+	$peticion = "DELETE FROM imageneshabitaciones WHERE idImg = ?";
+	$stmt = $conexionSql->prepare($peticion);
+	$stmt->bind_param("i", $idImagen);
+	$stmt->execute();
+	$stmt->close();
+	$conexionSql->close();
+	return;
+}
+
+
+
+
 function listar(){
 	$conexionSql = new Conexiondb();
 	$conexionSql = $conexionSql->getConnection();
 
 	$peticion = "SELECT * FROM habitaciones";
-	$resultado = $conexionSql->query($peticion); 
-	
+	$resultado = $conexionSql->query($peticion);
+	$consultaImagenes = "SELECT h.*, MIN(img.urlImagen) AS urlImagen
+						FROM habitaciones h
+						LEFT JOIN imageneshabitaciones img ON h.idhabitacion = img.idHabitacion
+						GROUP BY h.idhabitacion;"; 
+	$resultadoImg = $conexionSql->query($consultaImagenes);
 	$html='';
 	//Generar array de habitaciones obtenidas de la BD
 	while($registro = $resultado->fetch_assoc()){
+		$img = $resultadoImg->fetch_assoc();
 		$html .= '<li class="habitacion-propiedades" onClick="selecc_cuarto(this)" data-tipo="' . $registro['categoria'] . '">';
 		$rutaImg = "../recursos/img/habitaciones/".$registro['urlImagen'];
+		$html .= '<div class="contenedor-img">';
         $html .= '<img src="' . $rutaImg . '" alt="">';
+		$html .= '</div>';
         $html .= '<div class="detalles-habitacion">';
 		$html .= '<h2 id="codigo-habitacion">' .$registro['idhabitacion'] . '</h2>';
         $html .= '<h2 id="nombre-habitacion">' . $registro['nombre'] . '</h2>';
@@ -129,13 +226,20 @@ function filtrarPorCategoria($categoria){
 
 	$peticion = "SELECT * FROM habitaciones WHERE categoria = '$categoria'";
 	$resultado = $conexionSql->query($peticion); 
-	
+	$consultaImagenes = "SELECT h.*, MIN(img.urlImagen) AS urlImagen
+	FROM habitaciones h
+	LEFT JOIN imageneshabitaciones img ON h.idhabitacion = img.idHabitacion
+	GROUP BY h.idhabitacion;"; 
+	$resultadoImg = $conexionSql->query($consultaImagenes);
 	$html='';
 	//Generar array de habitaciones obtenidas de la BD
 	while($registro = $resultado->fetch_assoc()){
+		$img = $resultadoImg->fetch_assoc();
 		$html .= '<li class="habitacion-propiedades" onClick="selecc_cuarto(this)" data-tipo="' . $registro['categoria'] . '">';
 		$rutaImg = "../recursos/img/habitaciones/".$registro['urlImagen'];
+		$html .= '<div class="contenedor-img">';
         $html .= '<img src="' . $rutaImg . '" alt="">';
+		$html .= '</div>';
         $html .= '<div class="detalles-habitacion">';
 		$html .= '<h2 id="codigo-habitacion">' .$registro['idhabitacion'] . '</h2>';
         $html .= '<h2 id="nombre-habitacion">' . $registro['nombre'] . '</h2>';
@@ -149,7 +253,7 @@ function filtrarPorCategoria($categoria){
 	}
 	$conexionSql->close();
 	echo $html;
-	return $html;
+	return;
 }
 
 

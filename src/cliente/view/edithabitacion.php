@@ -8,7 +8,7 @@ validarSesionAdministrador();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/edithabitacion-styles.css" type="text/css">
-
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
     <title>Editar habitacion</title>
 </head>
 <body>
@@ -55,10 +55,21 @@ validarSesionAdministrador();
             <textarea id="t_area_descripcion" onkeyup="mostrar(this.value,'info_descripcion')"></textarea>
         </div>
         <div id="btns_vista_prev">
-            <p><b>Cambiar imagen:   </b><input type="file" id="btn_cambiarimg" accept="image/*" onchange="PrevisualizarImagen(event)"></p>
+            <p><b>Cambiar imagen:   </b><input type="file" id="btn_cambiarimg" accept="image/*" multiple onchange="PrevisualizarImagen(event)"></p>
+            <input type="button" id="btn_eliminar_imagen" value="Eliminar imagen">
+            <input type="button" id="btn_predeterminada_imagen" value="Mostrar primero">
         </div>
         <div id="imagen">
-            <img id="imagen-prev" src="../assets/img/home/deluxe.jpg" alt="Previsualización de la Imagen" accept="image/*">
+            <!--<img id="imagen-prev" src="../assets/img/home/deluxe.jpg" alt="Previsualización de la Imagen" accept="image/*">
+-->
+            <div class="swiper">
+                <div class="swiper-wrapper">
+                </div>
+                <!-- Botones de navegación -->
+                <div class="swiper-pagination"></div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+            </div>
         </div>
         <div id="vista_previa">
             <h2 id="id_habitacion">ID</h2>
@@ -83,5 +94,6 @@ validarSesionAdministrador();
         <p>&copy; Todos los derechos reservados</p>
     </footer>
     <script src="../scripts/edithabitacion.js"></script>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 </body>
 </html>
