@@ -5,59 +5,64 @@ $filtroSecundario = '';
 $habitaciones = [];
 $errorMsj = "";
 $busquedaRealizada = false;
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $busquedaRealizada = true;
     $busqueda = $_POST['busqueda'] ?? '';
     $filtroPrincipal = $_POST['filtroPrincipal'] ?? 'todo';
     $filtroSecundario = $_POST['filtroSecundario'] ?? '';
 
-    if (empty(trim($busqueda))) {
-        $errorMsj = 'Por favor, escribe algo en la barra de búsqueda.';
-    } else {
-        include '../../servidor/config/config.inc.php';
-        $conexion = mysqli_connect(
-            $GLOBALS["servidor"],
-            $GLOBALS["usuario"],
-            $GLOBALS["contrasena"],
-            $GLOBALS["base_datos"]
-        );
+    include '../../servidor/config/config.inc.php';
+    $conexion = mysqli_connect(
+        $GLOBALS["servidor"],
+        $GLOBALS["usuario"],
+        $GLOBALS["contrasena"],
+        $GLOBALS["base_datos"]
+    );
 
-        if ($conexion->connect_error) {
-            die("Error de conexión: " . $conexion->connect_error);
-        }
+    if ($conexion->connect_error) {
+        die("Error de conexión: " . $conexion->connect_error);
+    }
 
-        // Construir consulta base
-        $query = "SELECT * FROM habitaciones WHERE disponibles >= 1";
+    // Inicializar consulta base
+    $query = "SELECT * FROM habitaciones WHERE disponibles >= 1";
 
-        // Filtrar por palabras clave en nombre o descripción
-        $busquedaPalabras = explode(' ', $busqueda);
+    // Filtrar por palabras clave de al menos 3 caracteres
+    $busquedaPalabras = array_filter(
+        explode(' ', $busqueda),
+        fn($palabra) => strlen($palabra) >= 2
+    );
+
+    if (!empty($busquedaPalabras)) {
         foreach ($busquedaPalabras as $palabra) {
             $palabra = mysqli_real_escape_string($conexion, $palabra);
             $query .= " AND (nombre LIKE '%$palabra%' OR descripcion LIKE '%$palabra%')";
         }
+    } else {
+        $errorMsj = 'Por favor, escribe palabras de al menos 2 caracteres.';
+    }
 
-        // Aplicar filtros
-        if ($filtroPrincipal === 'precio' && $filtroSecundario === 'asc') {
-            $query .= " ORDER BY costoPorNoche ASC";
-        } elseif ($filtroPrincipal === 'precio' && $filtroSecundario === 'desc') {
-            $query .= " ORDER BY costoPorNoche DESC";
-        } elseif ($filtroPrincipal === 'alfabetico' && $filtroSecundario === 'asc') {
-            $query .= " ORDER BY nombre ASC";
-        } elseif ($filtroPrincipal === 'alfabetico' && $filtroSecundario === 'desc') {
-            $query .= " ORDER BY nombre DESC";
-        } elseif ($filtroPrincipal === 'categoria' && !empty($filtroSecundario)) {
-            $query .= " AND categoria = '$filtroSecundario'";
-        }
+    // Aplicar filtros
+    if ($filtroPrincipal === 'precio' && $filtroSecundario === 'asc') {
+        $query .= " ORDER BY costoPorNoche ASC";
+    } elseif ($filtroPrincipal === 'precio' && $filtroSecundario === 'desc') {
+        $query .= " ORDER BY costoPorNoche DESC";
+    } elseif ($filtroPrincipal === 'alfabetico' && $filtroSecundario === 'asc') {
+        $query .= " ORDER BY nombre ASC";
+    } elseif ($filtroPrincipal === 'alfabetico' && $filtroSecundario === 'desc') {
+        $query .= " ORDER BY nombre DESC";
+    } elseif ($filtroPrincipal === 'categoria' && !empty($filtroSecundario)) {
+        $query .= " AND categoria = '$filtroSecundario'";
+    }
 
-        // Ejecutar consulta
+    // Ejecutar consulta solo si hay palabras válidas
+    if (empty($errorMsj)) {
         $result = mysqli_query($conexion, $query);
-        
+
         if ($result && mysqli_num_rows($result) > 0) {
             while ($row = mysqli_fetch_assoc($result)) {
                 $habitaciones[] = $row;
             }
-        } else {
-            $errorMsj = 'No se encontraron resultados.';
         }
         mysqli_close($conexion);
     }

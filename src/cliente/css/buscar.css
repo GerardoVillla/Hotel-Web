@@ -57,7 +57,7 @@ header{
 
 #busquedaentrada {
     width: 50%;
-    font-size: 3.5rem;
+    font-size: 2.5rem;
     background: transparent;
     border-bottom: 1px solid #000000;
     align-items: center;
@@ -219,11 +219,6 @@ header h1{
     border-radius: 5px;
     align-items: stretch; 
     min-height: auto; 
-    /*
-    border: 1px solid #ccc; 
-    border-radius: 5px; 
-    background-color: #fff;
-    */
 }
 
 .HabCarac a, p, h2{
@@ -249,7 +244,7 @@ header h1{
     white-space: normal; /* Permite que el texto haga saltos de línea automáticamente */
     word-wrap: break-word; /* Fuerza el salto de línea si hay palabras muy largas */
     overflow: hidden; /* Oculta cualquier contenido que exceda el contenedor */
-    text-overflow: ellipsis; /* Opcional: agrega "..." al final si el texto se recorta */
+    text-overflow: ellipsis; /* Agrega "..." al final si el texto se recorta */
 }
 
 .ImgHab{
