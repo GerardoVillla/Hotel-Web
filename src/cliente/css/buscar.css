@@ -13,6 +13,16 @@ html {
 }
 
 body {
+<<<<<<< HEAD
+=======
+    background-color: #EADBC8;
+	font-family: "Playfair Display", serif;
+    margin: 0;
+}
+
+.grid {
+    min-height: 100vh;
+>>>>>>> breindel
     display: grid;
 	min-height: 100vh;
 	grid-template-rows: auto 1fr auto;/*auto es el header, 1fr es el contenido y auto es el footer*/
