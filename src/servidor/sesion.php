@@ -3,6 +3,14 @@
 require_once (__DIR__."/../../config.inc.php");
 
 
+function cerrarSesion(){
+	session_start();
+	session_unset();
+	session_destroy();
+	header("Location: ../../index.php");
+	exit();
+}
+
 
 function iniciarSesion($nombreUsuario, $contrasenaUsuario): void{
 	$conexionSql = new conexiondb();
@@ -80,13 +88,5 @@ function validarSesionAdministrador(){
 		header($cdestino);
 		exit();
 	}
-}
-
-function cerrarSesion(){
-	session_start();
-	session_unset();
-	session_destroy();
-	header("Location: ../../index.php");
-	exit();
 }
 

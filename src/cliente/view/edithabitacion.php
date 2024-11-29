@@ -56,8 +56,10 @@ validarSesionAdministrador();
         </div>
         <div id="btns_vista_prev">
             <p><b>Cambiar imagen:   </b><input type="file" id="btn_cambiarimg" accept="image/*" multiple onchange="PrevisualizarImagen(event)"></p>
-            <input type="button" id="btn_eliminar_imagen" value="Eliminar imagen">
-            <input type="button" id="btn_predeterminada_imagen" value="Mostrar primero">
+            <div id="botones-imagen">
+                <input class="btn" type="button" id="btn_eliminar_imagen" value="Eliminar imagen">
+                <input class="btn" type="button" id="btn_predeterminada_imagen" value="Mostrar primero">
+            </div>
         </div>
         <div id="imagen">
             <!--<img id="imagen-prev" src="../assets/img/home/deluxe.jpg" alt="Previsualización de la Imagen" accept="image/*">
