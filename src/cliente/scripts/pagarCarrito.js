@@ -1,5 +1,9 @@
 import { cookiesCarrito } from './cookiesCarrito.js';
 
+document.getElementById('cerrarSesion').addEventListener('click', function(){
+    window.location.href = '../../../index.php';
+});
+
 function verificarCampos(){
     const titular = document.getElementById("titular").value.trim();
     const numeroTarjeta = document.getElementById("numeroTarjeta").value.trim();

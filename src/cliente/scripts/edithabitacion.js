@@ -282,6 +282,11 @@ function agregarImagenAlCarrusel(archivo) {
     reader.readAsDataURL(archivo);
 }
 
+document.getElementById('cerrarSesion').addEventListener('click', function(){
+    window.location.href = '../../../index.php';
+});
+
+
 async function crearHabitacionVacia(){
     try {
         const response = await fetch('../../servidor/habitacion.php', {
