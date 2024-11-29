@@ -55,7 +55,7 @@
             </div>
             <div class="form-group">
                 <label for="Total">Total: </label>
-                <input type="text" id="total" name="total" placeholder="$.00" maxlength="16" readonly>
+                <input type="text" id="total" name="total" value="" maxlength="16" readonly>
             </div>
             <div class="actions">
                 <button type="button" id="btnPagar">Pagar</button>

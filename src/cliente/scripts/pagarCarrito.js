@@ -79,7 +79,20 @@ function agregarUnaReservacion(idHab,idCliente,fecharRes,inicioEstadia,finEstadi
     });
 }
 
+function calcularTotal(){
+    const habitacionesReservaciones = cookiesCarrito.obtenerHabitacionesDelCarrito();
+    let total = 0.00;
+    for (const idHabitacion of habitacionesReservaciones) {
+        let totalPorHabitacion = parseFloat( cookiesCarrito.obtenerCookie('total'+idHabitacion) );
+        total += totalPorHabitacion;
+    }
+    return total+"";
+}
+
 document.addEventListener('DOMContentLoaded', function(){
+    const total = document.getElementById("total");
+    total.value = calcularTotal();
+
     document.getElementById("btnPagar").addEventListener("click", function(){
         if(verificarCampos()){
             if(pagar()){
