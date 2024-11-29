@@ -1,6 +1,8 @@
 @charset "UTF-8";
-
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
 /*general settings*/
+
+
 
 html {
     box-sizing: border-box;
@@ -11,6 +13,7 @@ html {
 }
 
 body {
+<<<<<<< HEAD
     background-color: #EADBC8;
 	font-family: "Playfair Display", serif;
     margin: 0;
@@ -18,124 +21,215 @@ body {
 
 .grid {
     min-height: 100vh;
+=======
+>>>>>>> c1321ca3b655fe1bf93bda50dec597086d287a77
     display: grid;
-    grid-template-columns: 35% 15% 10% 40%;
-    grid-template-rows: auto 1fr auto;
+	min-height: 100vh;
+	grid-template-rows: auto 1fr auto;/*auto es el header, 1fr es el contenido y auto es el footer*/
+	grid-template-areas: 
+	"header"
+	"contenido"
+	"footer";
+    background-color: #EADBC8;
+    font-family: "Playfair Display", serif;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    background-color: #f5f5f5;
+}
+header{
+	/*background-color: #B5C18E;*/
+    grid-area: header;
+	background-color: #A5D16C;
+	padding: .5rem 1rem;
+	display: inline-flex;
+	justify-content:space-between;/*Investigar sobre porque funciono con este*/
+	align-items: center; /*Centra verticalmente el header*/
+	position: sticky; /* Hacer que el header sea sticky */
+	top: 0; /* Pegar en la parte superior */
+	z-index: 1000; /* Asegúrate de que esté por encima de otros elementos */
+	max-height: 70px;
 }
 
-nav {
-    grid-column: 1 / 2;
-    grid-row: 1 / 2;
-    padding: 30px;
+.barra_busqueda {
+    grid-row: 1;
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 150px;
+  }
+
+.barra_busqueda.elevated {
+ /*Ver si usar*/
+}  
+
+#busquedaentrada {
+    width: 50%;
+    font-size: 2.5rem;
+    background: transparent;
+    border-bottom: 1px solid #000000;
+    align-items: center;
+    outline: none;
+    margin:0;
+    padding: 10px;
+  }
+  
+.enviar{
+    background-color: #A5D16C;
+    border: none;
+    padding: 10px;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+.enviar img{
+    width: 30px;
+    height: 30px;;
 }
 
-nav a{
+
+
+.resultados {
+    grid-row: 3;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    overflow-y: auto;
+    margin-top: 20px;
+    font-size: 18px;
+    padding: 20px;
+  }
+
+
+header nav ul{
+	display: inline-flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 3em;
+}
+
+header nav ul li{
+	list-style: none;
+}
+
+header nav ul li a{
 	font-size: 1.5rem;
 	text-decoration: none;
 	color: #000;
-    background-color: #C7B7A3;
-	padding: 0rem 2rem;
+}
+
+.icono-encabezado{
+	max-width: 30px;
+	padding: 0;;
+	transition: transform 0.3s ease; /* Efecto de transición en el hover */
+}
+
+.icono-encabezado:hover{
+	transform: scale(1.2);
+}
+#btn-reservar{
+	background-color: #A30350;
+	padding: 0.5rem 2rem;
+	padding-bottom: .5rem;
 	border-radius: 5px;
-	box-shadow: 0 4px 0 rgba(0, 0, 0, 0.2);
+	margin-bottom: 6px;
+	box-shadow: 0 4px 0 rgba(0, 0, 0, 0.2); /* Sombra solo en la parte inferior */
+	color: aliceblue;
+}
+#btn-reservar a{
+	color: aliceblue;
+}
+#btn-reservar:hover{
+	background-color: #2f3a0d;
 }
 
-aside {
-    grid-column: 2 / 5;
-    grid-row: 1 / 5;
+.contenido{
+    grid-area: contenido;
+	display: grid;
+    grid-template-rows: auto auto 1fr;
+    gap: 20px; /* Espaciado entre elementos */ /**/
+    grid-auto-rows: min-content; /* Altura ajustada al contenido */
+    padding: 20px;
+    background-color: #f4eadf;
+}	
+
+#logo{
+	max-width: 50px;
 }
 
-.ImgAside{
-    width: 100%;
-    height: 100%;
+header h1{
+	font-size: 2.5rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 1rem;
+}
+#img-home{
+	grid-column: 1 / -1;
+	grid-row: 1;
+	background-color: #000000;
 }
 
-.error-mensaje {
-    color: red;
-    font-size: 1.2rem;
-    background-color: #ffe6e6; /* Fondo suave */
-    border: 1px solid red; /* Borde */
-    border-radius: 5px; /* Bordes redondeados */
-    padding: 10px; /* Espaciado interno */
-    margin-top: 20px; /* Espaciado con el formulario */
-    text-align: center; /* Centra el texto dentro del mensaje */
-    width: fit-content; /* Se ajusta al contenido */
-    max-width: 90%; /* Limita el tamaño máximo */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra */
-    align-self: center;
-}
-.error-mensaje p{
-    color: #ff0000;
-}
-
-
-.section {
-    grid-column: 1 / 2;
-    grid-row: 2 / 3;
-    background-color: #F1F1F1;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    text-align: left;
-    padding: 30px;
-    margin: 0px 30px;
-    align-content: center;
-    height: 850px;
-}
-
-.section h2{
-    color: #000000;
-}
-
-.resultados{
-    grid-column: 2 / 5;
-    grid-row: 2 / 3;
-    background-color: #F1F1F1;
-    margin: 0px 50px;
-    align-items: flex-start;
-    align-content:baseline;
-    padding: 15px;
-    overflow-y: auto;
-    box-sizing: border-box;
-    height: 850px;
+#img-home img{
+	display: block;
+	width: 100%;
+	height: 555px; /*Se puede cambiar por unidad mas relativa*/ 
+	object-fit: cover;
+	overflow: hidden;
+	opacity: 0.8;
 }
 
 .Noresultados{
-    font-size: 1.2rem;
-    color: #999; 
-    margin: 0;
-    align-self: center;
+   color: #A30350;
+   font-family: "Playfair Display", serif; 
+   font-size: 1.5rem;
+   text-align: center;
 }
 
-.habitacionesscroller{
-    max-height: 100%; 
-    overflow-y: auto; 
+
+.resultadosScroller{
     display: flex;
-    flex-direction: column;
-    gap: 10px;
+    flex-direction: column; /* Resultados en columna */
+    gap: 20px; /* Espacio entre los resultados */
+    padding: 10px; /* Espaciado interno del contenedor */
+}
+
+.error-mensaje p{
+    color:#A30350;
 }
 
 .habitacion{
     display: flex; 
     flex-direction: row; 
-    align-items: flex-start; 
-    gap: 25px; 
-    padding: 20px;
+    align-content: center; 
+    gap: 30px; 
+    padding: 10px;
     border: none;
     background-color: #3f4d3e;
     border-radius: 5px;
     align-items: stretch; 
     min-height: auto; 
-    /*
-    border: 1px solid #ccc; 
-    border-radius: 5px; 
-    background-color: #fff;
-    */
 }
 
-.HabCarac a, p, h2{
-    text-decoration: none;
+.HabCarac{
+    line-height: 1.2;
     color: #FFFFFF;
+    text-decoration: none;
+}
+
+.HabCarac a, p{
+    
+    font-size: 1rem;
+    margin: 10px 0;
+}
+
+.HabCarac h2{
+    margin: 0;
 }
 
 .HabCarac a{
@@ -145,23 +239,25 @@ aside {
 	font-size: 1.5rem;
 	text-decoration: none;
 	color: #000;
+    font-weight: bold;
     background-color: #C7B7A3;
-	padding: 0.5rem 1rem;
+	padding: 0.5rem 1.5rem;
 	border-radius: 5px;
 	box-shadow: 0 4px 0 rgba(0, 0, 0, 0.2);
     justify-self: end;
+    
 }
 
 .habitacion div{
     white-space: normal; /* Permite que el texto haga saltos de línea automáticamente */
     word-wrap: break-word; /* Fuerza el salto de línea si hay palabras muy largas */
     overflow: hidden; /* Oculta cualquier contenido que exceda el contenedor */
-    text-overflow: ellipsis; /* Opcional: agrega "..." al final si el texto se recorta */
+    text-overflow: ellipsis; /* Agrega "..." al final si el texto se recorta */
 }
 
-.Imghab{
-    width: 40vh;
-    height: 30vh;
+.ImgHab{
+    width: 225px;
+    height: 225px;
     align-self: center;
 }
 
@@ -183,15 +279,22 @@ aside {
 }
 
 form {
+    grid-row: 1;
     display:flex;
     flex-direction: column;
+    justify-self: center;
+    align-items: center;
+}
+.barra{
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
 }
 
 form input, form select {
     margin: 10px auto 30px 0;
     appearance: none;
     margin-right: auto;
-    border: none;
     background: transparent;
     border-bottom: 2px solid #1E1E1E;
     font-size: 1.25rem;
@@ -200,11 +303,35 @@ form input, form select {
     outline: none;
     font-family: Georgia;
 }
-
+form input{
+    width: 120px;
+    border: none;
+}
+form select:disabled{
+    border:1px solid #ccc;
+}
 footer{
-    grid-column: 1 / 5;
-    grid-row: 4 / 5;
+    grid-area: footer;
+    text-align: center;
 	height: 100%;
 	background-color: #C7B7A3;
+    margin-top: auto;
+    padding: 10px;
 }
 
+.filtros{
+    grid-row: 2;
+    display: flex;
+    justify-content: center;
+    /*align.items: center*/
+    margin-top: 20px;
+    gap: 10px;
+}
+
+.filtros select{
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #000;
+    border-radius: 5px;
+    outline: none;
+}
