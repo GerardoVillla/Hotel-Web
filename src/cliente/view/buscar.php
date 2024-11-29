@@ -149,7 +149,7 @@ function generarOpcionesFiltroSecundario($filtroPrincipal, $filtroSecundario) {
                             <p>Disponibles: <b><?php echo $habitacion['disponibles']?> 
                             </b>
                             <p> 
-                            <a href="carrito.php?id=<?php echo $habitacion['idhabitacion'];?>">
+                            <a id="reserv" href="carrito.php?id=<?php echo $habitacion['idhabitacion'];?>">
                                     Reservar
                             </a>    
                             </p>
