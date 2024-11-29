@@ -1,4 +1,8 @@
 import { cookiesCarrito } from './cookiesCarrito.js';
+document.getElementById('cerrarSesion').addEventListener('click', function(){
+    window.location.href = '../../../index.php';
+});
+
 
 document.addEventListener('DOMContentLoaded', function(){
     const botonesEliminar = document.querySelectorAll('.eliminar');

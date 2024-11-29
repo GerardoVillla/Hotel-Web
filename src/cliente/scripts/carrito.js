@@ -1,5 +1,9 @@
 import { cookiesCarrito } from './cookiesCarrito.js';
 
+document.getElementById('cerrarSesion').addEventListener('click', function(){
+    window.location.href = '../../../index.php';
+});
+
 function anadirReservaAlCarrito() {
     const habitacion = document.getElementById('idhabitacion').value;
     cookiesCarrito.agregarHabitacionAlCarrito(habitacion);

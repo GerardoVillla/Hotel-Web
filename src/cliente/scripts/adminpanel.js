@@ -3,6 +3,10 @@ document.addEventListener('DOMContentLoaded', () => {
     cargarTodasHabitaciones();
 });
 
+document.getElementById('cerrarSesion').addEventListener('click', function(){
+    window.location.href = '../../../index.php';
+});
+
 //Filtra por categorias de habitaciones
 const contenedorCuartos = document.getElementById('seccion-habitaciones');
 const listaCuartos = contenedorCuartos.querySelector('#lista-cuartos');

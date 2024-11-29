@@ -105,8 +105,6 @@ document.addEventListener('DOMContentLoaded', () => {
                             }
                         })
                         .catch(error => {
-                            console.error('Error:', error);
-                            alert("Ocurrió un error al eliminar la imagen.");
                         });
                     }
                     aAdmin();
@@ -281,6 +279,11 @@ function agregarImagenAlCarrusel(archivo) {
 
     reader.readAsDataURL(archivo);
 }
+
+document.getElementById('cerrarSesion').addEventListener('click', function(){
+    window.location.href = '../../../index.php';
+});
+
 
 async function crearHabitacionVacia(){
     try {
