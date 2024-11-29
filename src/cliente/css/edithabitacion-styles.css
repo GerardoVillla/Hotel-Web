@@ -189,6 +189,8 @@ footer{
     background-color: #EADBC8;
     border: none;
     border-radius: 8px;
+    font-family: "Playfair Display", serif;
+    font-size: 1em;
 }
 
 
@@ -252,6 +254,9 @@ footer{
     background-color: #ae0003;
 }
 
+#btn_cambiarimg{
+    font-family: "Playfair Display", serif;
+}
 
 @media (max-width: 780px){
 
