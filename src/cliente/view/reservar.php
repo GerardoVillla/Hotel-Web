@@ -15,19 +15,29 @@ $orden = isset($_GET['orden']) ? $_GET['orden'] : "";
 
     <body>
     <div class="grid">
-        <nav class="nav">
-            <a href="principal.php">Regresar</a>
-        </nav>
+        <header>
+            <h1 class="playfair-display-titulo"><img id="logo" src="../recursos/img/iconos/logopng.png" alt="">Ek' Balam</h1>
+            <nav>
+                <ul>
+                    <li><a href="pagar.php"><img class="icono-encabezado" src="../recursos/img/iconos/carrito-de-compras.png"></a></li>
+                    <li><a href="buscar.php"><img class="icono-encabezado" src="../recursos/img/iconos/lupa.png"></a></li>
+                    <li><a href="misReservaciones.php"><img class="icono-encabezado" src="../recursos/img/iconos/avatar.png"></a></li>
+                    <li><a href="#nosotros-tarjeta"><img class="icono-encabezado" src="../recursos/img/iconos/informacion.png" alt=""></a></li>
+                    <li id="cerrarSesion"><a href="#"><img class="icono-encabezado" src="../recursos/img/iconos/cerrar-sesion.png"></a></li>
+                    <li id="btn-reservar"><a href="reservar.php">Reservar</a></li>
+                </ul>
+            </nav>
+        </header>
 
         <section class="section">
             <div class="lista_habitaciones">
                 <form method="GET" action="reservar.php">
-                    <label for="orden">Ordenar por:</label>
+                    <label for="orden"><b>Categoria: </b></label>
                     <select name="orden" id="orden" onchange="this.form.submit()">
-                        <option value="">Seleccione</option>
-                        <option value="precioMayor" <?= $orden == "precioMayor" ? "selected" : "" ?>>Precio: mayor a menor</option>
-                        <option value="precioMenor" <?= $orden == "precioMenor" ? "selected" : "" ?>>Precio: menor a mayor</option>
-                        <option value="alfabetico" <?= $orden == "alfabetico" ? "selected" : "" ?>>Alfabético</option>
+                        <option value="">Todas</option>
+                        <option value="Estandar" <?= $orden == "Estandar" ? "selected" : "" ?> >Estandar</option>
+                        <option value="Deluxe" <?= $orden == "Deluxe" ? "selected" : "" ?> >Deluxe</option>
+                        <option value="Suite" <?= $orden == "Suite" ? "selected" : "" ?> >Suite</option>
                     </select>
                 </form>
                 <ul>
