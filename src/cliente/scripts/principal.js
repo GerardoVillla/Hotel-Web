@@ -39,10 +39,10 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     function mostrarHabitacion(id) {
-        fetch("../../servidor/carrusel.php")
+        fetch(`../../servidor/carrusel.php?id=${id}`) // Filtrar en el servidor si es posible
             .then(response => response.json())
             .then(data => {
-                const habitacion = data.find(h => h.idhabitacion === id);
+                const habitacion = data[0]; // Asumiendo que el servidor devuelve una lista con una sola habitación.
                 if (!habitacion) {
                     console.error("Habitación no encontrada.");
                     return;
@@ -72,7 +72,7 @@ document.addEventListener("DOMContentLoaded", () => {
                                 Disponibles: ${habitacion.disponibles}<br>
                                 Costo por noche: ${habitacion.costoPorNoche}<br>
                             </h5>
-                            <button id="btnReservar">Reservar</button>
+                            <button id="btnReservar" data-id="${habitacion.idhabitacion}">Reservar</button>
                         </td>
                     </tr>
                 `;
@@ -82,32 +82,22 @@ document.addEventListener("DOMContentLoaded", () => {
                 cerrarBtn.addEventListener("click", () => {
                     document.body.removeChild(contenedor);
                 });
-
+    
+                const reservarBtn = tabla.querySelector("#btnReservar");
                 reservarBtn.addEventListener("click", (e) => {
-                    const verificarAccion = confirm("Para resevar debe tener una sesión iniciada o iniciar una.¿Desea continuar?");
+                    const verificarAccion = confirm("Para reservar debe tener una sesión iniciada o iniciar una. ¿Desea continuar?");
                     if (!verificarAccion) return;
-
                     e.preventDefault(); // Evita el comportamiento por defecto del enlace.
-                
-                    const idHabitacion = obtenerIdHabitacion(); // Llama a tu lógica para obtener el id.
-                    
+    
+                    const idHabitacion = reservarBtn.dataset.id; // Obtén el ID directamente del atributo data-id
                     if (!idHabitacion) {
                         alert("No se encontró el ID de la habitación.");
                         return;
                     }
-                
-                    // Construye la URL con el parámetro id
-                    const url = `carrito.php?id=${encodeURIComponent(idHabitacion)}`;
-                    
+    
                     // Redirige a la página construida
-                    window.location.href = url;
+                    window.location.href = `../view/carrito.php?id=${encodeURIComponent(idHabitacion)}`;
                 });
-                
-                // Función para obtener el ID de la habitación (puedes adaptarla según tu estructura)
-                function obtenerIdHabitacion() {
-                    // Ejemplo: busca el valor en un atributo data-id del botón
-                    return reservarBtn.dataset.id || null;
-                }
     
                 // Agregar la tabla al contenedor
                 contenedor.appendChild(tabla);
@@ -117,6 +107,7 @@ document.addEventListener("DOMContentLoaded", () => {
             })
             .catch(error => console.error("Error al cargar la habitación:", error));
     }
+    
     
 
     // Cargar datos del carrusel dinámicamente

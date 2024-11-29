@@ -8,7 +8,7 @@ function reservar() {
     $longitud = count($reservas);
 
     if ($longitud === 0) {
-        return "<p>No hay habitaciones en el carrito.</p>";
+        return "<p id=\"totalFinal\">No hay habitaciones en el carrito.</p>";
     }
 
 

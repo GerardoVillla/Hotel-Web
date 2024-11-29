@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', function(){
     document.getElementById("btnPagar").addEventListener("click", function(){
         const totalhtml = document.getElementById("totalFinal")
         const texto = totalhtml.innerHTML;
-        if(texto == "Total final: $ 0"){
+        if(texto == "No hay habitaciones en el carrito."){
             alert('el carrito esta vacio, agregue una habitacion');
         }else{
             window.location.replace("../view/pagarCarrito.php");

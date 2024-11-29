@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const filtroSecundario = document.getElementById('filtroSecundario');
     
     const btnReservar = document.getElementById('reservar');
+    const btnReserv = document.getElementById('reserv');
     document.getElementById('cerrarSesion').addEventListener('click', function(){
         window.location.href = '../../../index.php';
     });
@@ -20,6 +21,19 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+
+    if (btnReserv) {
+        btnReserv.addEventListener('click', (e) => {
+            e.preventDefault();
+            const deseaContinuar = confirm("Para reservar debe tener una sesión iniciada o iniciar una. ¿Desea continuar?");
+            console.log("Resultado del confirm:", deseaContinuar); 
+            if (deseaContinuar) {
+                console.log("Redirigiendo a:", btnReserv.href); 
+                window.location.href = btnReserv.href; // Redirige al enlace del botón
+            }
+        });
+    }
+    
     const actualizarFiltros = () => {
         const hayTexto = busquedaEntrada.value.trim().length > 0;
         filtroPrincipal.disabled = !hayTexto;
