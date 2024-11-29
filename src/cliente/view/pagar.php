@@ -4,12 +4,13 @@ validarSesionCliente();
 function reservar() {
     // Recuperar y convertir la cookie en un arreglo
     $cookieValue = isset($_COOKIE['carritoHabitaciones']) ? $_COOKIE['carritoHabitaciones'] : '';
-    $reservas = explode(",", $cookieValue);
-
+    $reservas = array_filter(explode(",", $cookieValue)); // Filtrar elementos vacíos
     $longitud = count($reservas);
+
     if ($longitud === 0) {
         return "<p>No hay habitaciones en el carrito.</p>";
     }
+
 
     $html = "";
     $totalFinal = 0;
@@ -78,24 +79,7 @@ function reservar() {
             <h3>
                 <?php echo reservar(); ?>
             </h3>
-
-                <form>
-                    <h2>Detalles del pago: </h2>
-                        <table>
-                        <tr>
-                            <td><p>Titular</p></td><td><input type="text" id="titular"><td>
-                        <tr>
-                        <tr>
-                            <td><p>Numero de tarjeta:</p></td><td><input type="number" maxlength="22" id="numeroTarjeta"></td>
-                        </tr>
-                        <tr>
-                            <td><p>Mes de vencimiento:</p></td><td><input type="month"></td>
-                        <tr>
-                        <tr>
-                            <td><p>CVV</p></td><td><input type="number" min="000" maxlength="3" max="999" id="cvv"><td>
-                        </tr>
-                        </table>
-                </form>
+            
             <br><br>
             <a class="boton" id="btnPagar">Pagar</a>
             <br><br>
