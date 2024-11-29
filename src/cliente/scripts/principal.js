@@ -8,15 +8,11 @@ document.addEventListener("DOMContentLoaded", () => {
     let currentPosition = 0;
 
     btnReservar.addEventListener("click", (e) => {
-        deseaContinuar(e);  
-    });
-
-    function deseaContinuar(e){
         e.preventDefault();
         const deseaContinuar = confirm("Para resevar debe tener una sesión iniciada o iniciar una.¿Desea continuar?");
         if (!deseaContinuar) return;
         window.location.href = "reservar.php";
-    }
+    });
 
     // Función para inicializar el carrusel después de cargar los datos
     const inicializarCarrusel = () => {
@@ -86,11 +82,33 @@ document.addEventListener("DOMContentLoaded", () => {
                 cerrarBtn.addEventListener("click", () => {
                     document.body.removeChild(contenedor);
                 });
-    
-                const reservarBtn = tabla.querySelector("#btnReservar");
+
                 reservarBtn.addEventListener("click", (e) => {
-                    deseaContinuar(e);
+                    const verificarAccion = confirm("Para resevar debe tener una sesión iniciada o iniciar una.¿Desea continuar?");
+                    if (!verificarAccion) return;
+                    validarSesionCliente();
+
+                    e.preventDefault(); // Evita el comportamiento por defecto del enlace.
+                
+                    const idHabitacion = obtenerIdHabitacion(); // Llama a tu lógica para obtener el id.
+                    
+                    if (!idHabitacion) {
+                        alert("No se encontró el ID de la habitación.");
+                        return;
+                    }
+                
+                    // Construye la URL con el parámetro id
+                    const url = `carrito.php?id=${encodeURIComponent(idHabitacion)}`;
+                    
+                    // Redirige a la página construida
+                    window.location.href = url;
                 });
+                
+                // Función para obtener el ID de la habitación (puedes adaptarla según tu estructura)
+                function obtenerIdHabitacion() {
+                    // Ejemplo: busca el valor en un atributo data-id del botón
+                    return reservarBtn.dataset.id || null;
+                }
     
                 // Agregar la tabla al contenedor
                 contenedor.appendChild(tabla);
