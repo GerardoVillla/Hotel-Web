@@ -105,8 +105,6 @@ document.addEventListener('DOMContentLoaded', () => {
                             }
                         })
                         .catch(error => {
-                            console.error('Error:', error);
-                            alert("Ocurrió un error al eliminar la imagen.");
                         });
                     }
                     aAdmin();
