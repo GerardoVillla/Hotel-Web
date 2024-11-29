@@ -3,12 +3,20 @@
 require_once (__DIR__."/../../config.inc.php");
 
 
+function cerrarSesion(){
+	session_start();
+	session_unset();
+	session_destroy();
+	header("Location: ../../index.php");
+	exit();
+}
+
 
 function iniciarSesion($nombreUsuario, $contrasenaUsuario): void{
 	$conexionSql = new conexiondb();
 	$conexionSql = $conexionSql->getConnection();
 
-	$consulta = "SELECT idCliente, contraseña, rol FROM clientes WHERE user = ?";
+	$consulta = "SELECT idCliente, user, contraseña, rol FROM clientes WHERE user = ?";
 	$stmt = $conexionSql->prepare($consulta);
 	$stmt->bind_param("s", $nombreUsuario);
 	$stmt->execute();
@@ -20,6 +28,7 @@ function iniciarSesion($nombreUsuario, $contrasenaUsuario): void{
 			//Iniciamos sesion del servidor
 			session_start();
 			$_SESSION["idUsuario"] = $nombreUsuario["idCliente"];
+			$_SESSION["user"] = $nombreUsuario["user"];
 			$_SESSION["rol"] = $nombreUsuario["rol"];
 		
 			if($nombreUsuario["rol"] == "cliente"){
@@ -80,13 +89,5 @@ function validarSesionAdministrador(){
 		header($cdestino);
 		exit();
 	}
-}
-
-function cerrarSesion(){
-	session_start();
-	session_unset();
-	session_destroy();
-	header("Location: ../../index.php");
-	exit();
 }
 

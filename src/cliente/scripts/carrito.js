@@ -1,5 +1,9 @@
 import { cookiesCarrito } from './cookiesCarrito.js';
 
+document.getElementById('cerrarSesion').addEventListener('click', function(){
+    window.location.href = '../../../index.php';
+});
+
 function anadirReservaAlCarrito() {
     const habitacion = document.getElementById('idhabitacion').value;
     cookiesCarrito.agregarHabitacionAlCarrito(habitacion);
@@ -60,7 +64,6 @@ function verificar() {
 }
 
 document.addEventListener('DOMContentLoaded', function () {
-
     const elements = {
         entrada: document.getElementById('entrada'),
         salida: document.getElementById('salida'),
@@ -68,6 +71,8 @@ document.addEventListener('DOMContentLoaded', function () {
         costoPorNoche: document.getElementById('costoPorNoche').textContent,
         totalDiv: document.getElementById('total') // Cambió de etiqueta a un div
     };
+
+    elements.totalDiv.textContent = "0.00";
 
     const calcularTotal = () => {
         const fechaEntrada = new Date(elements.entrada.value);
@@ -89,12 +94,13 @@ document.addEventListener('DOMContentLoaded', function () {
         elements.numPersonas.addEventListener(evento, calcularTotal);
     });
 
+    calcularTotal();
 
     document.querySelector('#btn_anadir').onclick = function () {
         if (verificar()) { // Solo si pasa la verificación
             anadirReservaAlCarrito();
             alert("reservacion agregada al carrito adecuadamente");
-            window.location.replace("../view/principal.php");
+            window.location.replace("../view/pagar.php");
         }
     }
 });

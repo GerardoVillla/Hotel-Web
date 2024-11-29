@@ -20,7 +20,7 @@ validarSesionPantallaPrincipal();
 				<li><a href="buscar.php"><img class="icono-encabezado" src="../recursos/img/iconos/lupa.png"></a></li>
 				<li><a href="misReservaciones.php"><img class="icono-encabezado" src="../recursos/img/iconos/avatar.png"></a></li>
 				<li><a href="#nosotros-tarjeta"><img class="icono-encabezado" src="../recursos/img/iconos/informacion.png" alt=""></a></li>
-				<li id="cerrarSesion"><a href="#"><img class="icono-encabezado" src="../recursos/img/iconos/cerrar-sesion.png"></a></li>
+				<li id="cerrarSesion"><a href=""><img class="icono-encabezado" src="../recursos/img/iconos/cerrar-sesion.png"></a></li>
 				<li id="btn-reservar"><a id="reserv" href="">Reservar</a></li>
 			</ul>
 		</nav>

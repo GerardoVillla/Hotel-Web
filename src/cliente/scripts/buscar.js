@@ -5,6 +5,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const filtroSecundario = document.getElementById('filtroSecundario');
     
     const btnReservar = document.getElementById('reservar');
+    document.getElementById('cerrarSesion').addEventListener('click', function(){
+        window.location.href = '../../../index.php';
+    });
 
     if (btnReservar) {
         btnReservar.addEventListener('click', (e) => {

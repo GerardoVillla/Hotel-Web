@@ -1,6 +1,4 @@
-h1, h2, p, input, textarea{
-    font-family: Arial, Helvetica, sans-serif;
-}
+
 
 body{
     margin: 0;
@@ -9,6 +7,7 @@ body{
     flex-direction: column;
     min-height: 100vh; /* Ocupa toda la altura de la pantalla */
     margin: 0;
+    font-family: "Playfair Display", serif;
 }
 
 
@@ -92,7 +91,7 @@ footer{
     flex: 1;
     display: grid;
     grid-template-columns: 10% 20% 10% 10% 10% 10% 20% 10%;
-    grid-template-rows: 220px 80px auto 60px;
+    grid-template-rows: 220px 80px 400px 60px;
     min-height: 620px;
     border: solid;
     border: 10px;
@@ -118,22 +117,55 @@ footer{
 }
 
 #btns_vista_prev{
-    grid-column: 1/8;
+    grid-column: 2/8;
     grid-row: 2/3;
-    text-align: right;
+    display: flex;
+    flex-direction: row-reverse;
+}
+#btns_vista_prev p{
+    justify-self: end;
 }
 
+#botones-imagen{
+    width: 100%;    
+    height: 100%;
+
+}
+
+#botones-imagen input{
+    width: 110px;
+    height: 25px;
+    margin-top: 20px;
+    color: rgb(0, 0, 0);
+    font-weight: 500;
+    font-family: "Playfair Display", serif;
+}
+
+
+#btn_predeterminada_imagen{
+    background-color: #AFD2E9;
+}
+
+#btn_eliminar_imagen{
+    background-color: #F78539;
+}
 #imagen{
     grid-column: 2/3;
     grid-row: 3/4;
     background-color: black;
+    overflow: hidden;
+}
+
+#imagen img{
+    width: 100%;
+    height:430px;
+    object-fit: cover;
 }
 #imagen-prev{
     display: block;
     width: 30vh;
     height: 40vh;
 }
-
 #vista_previa{
     grid-column: 3/8;
     grid-row: 3/4;
@@ -195,6 +227,7 @@ footer{
 .btn{
     border: none;
     border-radius: 5px;
+    font-family: "Playfair Display", serif;
 }
 
 #btn_vistprev{
