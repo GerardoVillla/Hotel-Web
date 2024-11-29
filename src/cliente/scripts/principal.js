@@ -39,10 +39,10 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     function mostrarHabitacion(id) {
-        fetch(`../../servidor/carrusel.php?id=${id}`) // Filtrar en el servidor si es posible
+        fetch(`../../servidor/carrusel.php`) // Filtrar en el servidor si es posible
             .then(response => response.json())
             .then(data => {
-                const habitacion = data[0]; // Asumiendo que el servidor devuelve una lista con una sola habitación.
+                const habitacion = data.find(h => h.idhabitacion === id);
                 if (!habitacion) {
                     console.error("Habitación no encontrada.");
                     return;
