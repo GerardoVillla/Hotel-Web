@@ -1,18 +1,4 @@
-<<<<<<< HEAD
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f5f5f5;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-}
 
-.container {
-=======
-<<<<<<< HEAD
 *{
 	margin: 0;
 	padding: 0;
@@ -41,7 +27,6 @@ body {
 
 .container {
     
->>>>>>> breindel
     background-color: #ffffff;
     padding: 20px;
     border-radius: 8px;
@@ -50,8 +35,6 @@ body {
     width: 100%;
 }
 
-<<<<<<< HEAD
-=======
 header{
     grid-row: 1 / 2;
     grid-column: 1 / 2;
@@ -127,7 +110,6 @@ header h1{
 	gap: 1rem;
 }
 
->>>>>>> breindel
 h1 {
     text-align: center;
     color: #333;
@@ -187,8 +169,4 @@ button {
 #btnCancelar {
     background-color: #dc3545;
     color: #fff;
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> breindel
