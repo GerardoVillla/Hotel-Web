@@ -86,7 +86,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 reservarBtn.addEventListener("click", (e) => {
                     const verificarAccion = confirm("Para resevar debe tener una sesión iniciada o iniciar una.¿Desea continuar?");
                     if (!verificarAccion) return;
-                    validarSesionCliente();
 
                     e.preventDefault(); // Evita el comportamiento por defecto del enlace.
                 
