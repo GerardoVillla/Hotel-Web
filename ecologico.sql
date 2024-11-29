@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 27-11-2024 a las 06:56:38
+-- Tiempo de generación: 29-11-2024 a las 06:47:56
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -77,15 +77,51 @@ CREATE TABLE `habitaciones` (
 --
 
 INSERT INTO `habitaciones` (`idhabitacion`, `nombre`, `categoria`, `disponibles`, `numHabitaciones`, `descripcion`, `costoPorNoche`, `capacidadDePersonas`, `urlImagen`) VALUES
-(1, 'Cascada Secreta', 'Deluxe', 10, 20, 'Habitación con ambiente de cascada, incluye sonidos relajantes de agua.', 2150, 3, 'cascada-secreta.jpg'),
-(2, 'Ártico Blanco', 'Suite', 1, 8, 'Suite ambientada en el Ártico, con efectos de iluminación y una decoración minimalista y fresca.', 3900, 4, 'artico-blanco.jpg'),
-(3, 'Santuario Marino', 'Estandar', 1, 4, 'Habitación con una decoración marina, con elementos de madera sostenible y vista a un estanque.', 1000, 1, 'santuario-marino.jpg'),
+(1, 'Cascada Secreta 2', 'Deluxe', 10, 20, 'Habitación con ambiente de cascada, incluye sonidos relajantes de agua.', 2150, 3, 'cascada-secreta.jpg'),
+(2, 'Ártico Blanco', 'Suite', 1, 8, 'Suite ambientada en el Ártico, con efectos de iluminación y una decoración minimalista y fresca.', 3900, 4, 'artico-blanco3.jpg'),
+(3, 'Santuario Marino', 'Estandar', 1, 4, 'Habitación con una decoración marina, con elementos de madera sostenible y vista a un estanque.', 1000, 1, 'santuario-marino2.jpg'),
 (4, 'Nido Tropical', 'Deluxe', 1, 5, 'Habitación de lujo con temática tropical, incluye jardín interior y plantas exóticas.', 1900, 2, 'nido-tropical.jpg'),
 (5, 'Fuego Vivo', 'Suite', 1, 5, 'Suite inspirada en un volcán, con tonos cálidos y decoración con rocas naturales.', 4200, 4, 'fuego-vivo.jpg'),
 (6, 'Desierto Vivo', 'Deluxe', 1, 3, 'Habitación con decoración inspirada en el desierto, con colores cálidos y plantas del clima árido.', 2000, 3, 'desierto-vivo.jpg'),
 (7, 'Selva Mística', 'Suite', 1, 8, 'Suite con inspiración amazónica, amplio espacio verde y decoración temática de jungla.', 3500, 4, 'selva-mistica.jpg'),
-(8, 'Refugio Verde', 'Suite', 0, 3, 'Refugio Verde es un espacio único diseñado para aquellos que buscan lujo y tranquilidad en un entorno completamente natural. Esta suite combina un diseño ecológico con materiales sostenibles y una distribución espaciosa que incluye áreas de descanso.', 3400, 10, 'refugio-verde.jpg'),
-(9, 'Bambú Natura', 'Deluxe', 1, 3, 'Ubicada en un entorno rodeado de la belleza natural del bambú, esta habitación ofrece un ambiente cálido y relajante ideal para desconectarse del ajetreo diario. Con grandes ventanales y una decoración minimalista inspirada en la naturaleza, Bambú Na', 2400, 2, 'bambu-natural.jpg');
+(8, 'Refugio Verde', 'Suite', 1, 3, 'Refugio Verde es un espacio único diseñado para aquellos que buscan lujo y tranquilidad en un entorno completamente natural. Esta suite combina un diseño ecológico con materiales sostenibles y una distribución espaciosa que incluye áreas de descanso.', 3400, 10, 'refugio-verde2.jpg'),
+(9, 'Bambú Natura', 'Deluxe', 1, 3, 'Ubicada en un entorno rodeado de la belleza natural del bambú, esta habitación ofrece un ambiente cálido y relajante ideal para desconectarse del ajetreo diario. Con grandes ventanales y una decoración minimalista inspirada en la naturaleza, Bambú Na', 2400, 2, 'bambu-natural2.jpg');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `imageneshabitaciones`
+--
+
+CREATE TABLE `imageneshabitaciones` (
+  `idImg` int(11) NOT NULL,
+  `idHabitacion` int(11) NOT NULL,
+  `urlImagen` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `imageneshabitaciones`
+--
+
+INSERT INTO `imageneshabitaciones` (`idImg`, `idHabitacion`, `urlImagen`) VALUES
+(1, 4, 'nido-tropical.jpg'),
+(2, 1, 'cascada-secreta.jpg'),
+(3, 2, 'artico-blanco.jpg'),
+(4, 3, 'santuario-marino.jpg'),
+(5, 5, 'fuego-vivo.jpg'),
+(6, 6, 'desierto-vivo.jpg'),
+(7, 7, 'selva-mistica.jpg'),
+(8, 8, 'refugio-verde.jpg'),
+(9, 9, 'bambu-natural.jpg'),
+(10, 1, 'cascada-secreta2.jpg'),
+(11, 2, 'artico-blanco2.jpg'),
+(12, 2, 'artico-blanco3.jpg'),
+(13, 3, 'santuario-marino2.jpg'),
+(14, 4, 'nido-tropical2.jpg'),
+(15, 4, 'nido-tropical3.jpg'),
+(16, 8, 'refugio-verde2.jpg'),
+(17, 9, 'bambu-natural2.jpg'),
+(18, 9, 'artico-blanco2.jpg');
 
 -- --------------------------------------------------------
 
@@ -128,6 +164,12 @@ ALTER TABLE `habitaciones`
   ADD UNIQUE KEY `idhabitacion_UNIQUE` (`idhabitacion`);
 
 --
+-- Indices de la tabla `imageneshabitaciones`
+--
+ALTER TABLE `imageneshabitaciones`
+  ADD PRIMARY KEY (`idImg`);
+
+--
 -- Indices de la tabla `reservaciones`
 --
 ALTER TABLE `reservaciones`
@@ -151,7 +193,13 @@ ALTER TABLE `clientes`
 -- AUTO_INCREMENT de la tabla `habitaciones`
 --
 ALTER TABLE `habitaciones`
-  MODIFY `idhabitacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `idhabitacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+
+--
+-- AUTO_INCREMENT de la tabla `imageneshabitaciones`
+--
+ALTER TABLE `imageneshabitaciones`
+  MODIFY `idImg` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT de la tabla `reservaciones`
