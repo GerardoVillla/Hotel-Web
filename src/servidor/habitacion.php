@@ -92,7 +92,7 @@ function actualizarImagenes($idHabitacion){
 	$numImagenes = count($_FILES);
 	for($i=0; $i<$numImagenes; $i++){
 		$nombreImagen = $_FILES["imagen$i"]["name"];
-		$carpetaDestino = "C:/xampp/htdocs/ecologico/src/cliente/recursos/img/habitaciones/";
+		$carpetaDestino = "../cliente/recursos/img/habitaciones";
 		$rutaImagen = $carpetaDestino . $nombreImagen;
 		$imagenSubida = move_uploaded_file($_FILES["imagen$i"]["tmp_name"], $rutaImagen);
 		if(!$imagenSubida){
