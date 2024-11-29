@@ -55,7 +55,11 @@ header{
 	max-height: 70px;
 }
 
-
+header a{
+    text-decoration: none;
+	color: inherit;
+}
+header
 header nav{
 	/* TODO: REVISAR SI SE PUEDE HACER ALGO CON ESTA ETIQUETA */
 }

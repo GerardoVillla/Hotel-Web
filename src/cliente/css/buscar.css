@@ -95,7 +95,10 @@ header{
     padding: 20px;
   }
 
-
+  header a{
+    text-decoration: none;
+    color: inherit;
+}
 header nav ul{
 	display: inline-flex;
 	justify-content: space-between;

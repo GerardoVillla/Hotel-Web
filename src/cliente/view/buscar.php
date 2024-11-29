@@ -100,8 +100,8 @@ function generarOpcionesFiltroSecundario($filtroPrincipal, $filtroSecundario) {
 </head>
 <body>
     <header>
-    <h1 class="playfair-display-titulo"><img id="logo" src="../recursos/img/iconos/logopng.png" alt="">Ek' Balam</h1>
-		<nav>
+    <a href="principal.php"><h1 class="playfair-display-titulo"><img id="logo" src="../recursos/img/iconos/logopng.png" alt="">Ek' Balam</h1></a>
+        <nav>
 			<ul>
 				<li><a href="pagar.php"><img class="icono-encabezado" src="../recursos/img/iconos/carrito-de-compras.png"></a></li>
 				<li><a href="buscar.php"><img class="icono-encabezado" src="../recursos/img/iconos/lupa.png"></a></li>
@@ -149,7 +149,7 @@ function generarOpcionesFiltroSecundario($filtroPrincipal, $filtroSecundario) {
                             <p>Disponibles: <b><?php echo $habitacion['disponibles']?> 
                             </b>
                             <p> 
-                            <a href="reservar.php?id=<?php echo $habitacion['idhabitacion']; ?>&personas=<?php echo $habitacion['capacidadDePersonas']; ?>">
+                            <a href="carrito.php?id=<?php echo $habitacion['idhabitacion'];?>">
                                     Reservar
                             </a>    
                             </p>
