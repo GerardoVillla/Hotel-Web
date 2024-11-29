@@ -108,7 +108,7 @@ function generarOpcionesFiltroSecundario($filtroPrincipal, $filtroSecundario) {
 				<li><a href="misReservaciones.php"><img class="icono-encabezado" src="../recursos/img/iconos/avatar.png"></a></li>
 				<li><a href="principal.php#nosotros-tarjeta"><img class="icono-encabezado" src="../recursos/img/iconos/informacion.png" alt=""></a></li>
 				<li id="cerrarSesion"><a href="#"><img class="icono-encabezado" src="../recursos/img/iconos/cerrar-sesion.png"></a></li>
-				<li id="btn-reservar"><a href="reservar.php">Reservar</a></li>
+				<li id="btn-reservar"><a id="reservar" href="reservar.php">Reservar</a></li>
 			</ul>
 		</nav>
     </header>
