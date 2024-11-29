@@ -14,6 +14,7 @@ html {
 
 body {
 <<<<<<< HEAD
+=======
     background-color: #EADBC8;
 	font-family: "Playfair Display", serif;
     margin: 0;
@@ -21,8 +22,7 @@ body {
 
 .grid {
     min-height: 100vh;
-=======
->>>>>>> c1321ca3b655fe1bf93bda50dec597086d287a77
+>>>>>>> breindel
     display: grid;
 	min-height: 100vh;
 	grid-template-rows: auto 1fr auto;/*auto es el header, 1fr es el contenido y auto es el footer*/

@@ -1,12 +1,12 @@
 <<<<<<< HEAD
+=======
 <?php
     include_once("../../servidor/sesion.php");
     validarSesionCliente();
     $idUsuario = $_SESSION['idUsuario'];
 ?>
 
-=======
->>>>>>> c1321ca3b655fe1bf93bda50dec597086d287a77
+>>>>>>> breindel
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -17,6 +17,7 @@
 </head>
 <body>
 <<<<<<< HEAD
+=======
         <header>
             <h1 class="playfair-display-titulo"><img id="logo" src="../recursos/img/iconos/logopng.png" alt="">Ek' Balam</h1>
             <nav>
@@ -31,8 +32,7 @@
             </nav>
         </header>
     <div class="container-wrapper">
-=======
->>>>>>> c1321ca3b655fe1bf93bda50dec597086d287a77
+>>>>>>> breindel
     <div class="container">
         <h1>Pago del Carrito</h1>
         <div class="desgloce de precios">
@@ -40,9 +40,9 @@
         </div>
         <form id="formPago">
 <<<<<<< HEAD
-            <input type="hidden" value= <?php echo $idUsuario ?> id="idUsuario">
 =======
->>>>>>> c1321ca3b655fe1bf93bda50dec597086d287a77
+            <input type="hidden" value= <?php echo $idUsuario ?> id="idUsuario">
+>>>>>>> breindel
             <div class="form-group">
                 <label for="titular">Titular de la tarjeta</label>
                 <input type="text" id="titular" name="titular" placeholder="Nombre del titular" required>
@@ -53,12 +53,12 @@
             </div>
             <div class="form-group">
 <<<<<<< HEAD
-                <label for="mes">Mes de vencimiento</label>
-                <input type="month" id="mes" name="mes" placeholder="123" maxlength="3" required>
-=======
                 <label for="cvv">Mes de vencimiento</label>
                 <input type="text" id="cvv" name="cvv" placeholder="123" maxlength="3" required>
->>>>>>> c1321ca3b655fe1bf93bda50dec597086d287a77
+=======
+                <label for="mes">Mes de vencimiento</label>
+                <input type="month" id="mes" name="mes" placeholder="123" maxlength="3" required>
+>>>>>>> breindel
             </div>
             <div class="form-group">
                 <label for="cvv">CVV</label>
@@ -68,12 +68,12 @@
                 <input type="hidden" id="idUsuario" value="1"> <!-- Cambiar con el valor real del usuario -->
             </div>
 <<<<<<< HEAD
+=======
             <div class="form-group">
                 <label for="Total">Total: </label>
                 <input type="text" id="total" name="total" value="" maxlength="16" readonly>
             </div>
-=======
->>>>>>> c1321ca3b655fe1bf93bda50dec597086d287a77
+>>>>>>> breindel
             <div class="actions">
                 <button type="button" id="btnPagar">Pagar</button>
                 <button type="button" id="btnCancelar">Cancelar</button>
@@ -81,12 +81,12 @@
         </form>
     </div>
 <<<<<<< HEAD
+    <script type="module" src="./pagar.js"></script>
+</body>
+</html>
+=======
     </div>
     <script type="module" src="../scripts/pagarCarrito.js"></script>
 </body>
 </html>
-=======
-    <script type="module" src="./pagar.js"></script>
-</body>
-</html>
->>>>>>> c1321ca3b655fe1bf93bda50dec597086d287a77
+>>>>>>> breindel
