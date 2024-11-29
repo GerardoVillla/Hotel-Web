@@ -182,6 +182,27 @@ form input.boton {
 	box-shadow: 0 4px 0 rgba(0, 0, 0, 0.2);
 }
 
+.eliminar {
+    background: url('../recursos/img/iconos/basura.png') no-repeat center left;
+    background-size: 16px 16px;
+    padding-left: 20px; /* Espacio para el ícono */
+    border: none;
+}
+
+.editar {
+    background: url('../recursos/img/iconos/editar.png') no-repeat center left;
+    background-size: 16px 16px;
+    padding-left: 20px; /* Espacio para el ícono */
+    border: none;
+}
+
+.eliminar:hover{
+	transform: scale(1.3);
+}
+
+.editar:hover{
+	transform: scale(1.3);
+}
 
 footer{
     grid-column: 1 / 4;
